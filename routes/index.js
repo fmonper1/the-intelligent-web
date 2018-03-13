@@ -23,24 +23,24 @@ router.get('/', function(req, res, next) {
 
             // Get the documents collection
             var dbo = db.db("intelligentWeb");
-            var collection = dbo.collection('users');
+            var collection = dbo.collection('resturants');
 
-            // Find all students
-            // collection.find({}).toArray(function (err, result) {
-            //     if (err) {
-            //         res.send(err);
-            //     } else if (result.length) {
-            //         res.render('studentlist',{
-            //
-            //             // Pass the returned database documents to Jade
-            //             "studentlist" : result
-            //         });
-            //     } else {
-            //         res.send('No documents found');
-            //     }
-            //     //Close connection
-            //     db.close();
-            // });
+           // Find all students
+            collection.find({}).toArray(function (err, result) {
+                if (err) {
+                    res.send(err);
+                } else if (result.length) {
+                    res.render('resturantlist',{
+
+                        // Pass the returned database documents to Jade
+                        "resturantlist" : result
+                    });
+                } else {
+                    res.send('No documents found');
+                }
+                //Close connection
+                db.close();
+            });
         }
 
     });
