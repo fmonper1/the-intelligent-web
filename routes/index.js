@@ -6,7 +6,6 @@ var mongodb = require('mongodb');
 //     res.render('index', { title: 'Express' });
 // });
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
     var MongoClient = mongodb.MongoClient;
 
@@ -25,24 +24,29 @@ router.get('/', function(req, res, next) {
             var dbo = db.db("intelligentWeb");
             var collection = dbo.collection('resturants');
 
-           // Find all students
-            collection.find({}).toArray(function (err, result) {
-                if (err) {
-                    res.send(err);
-                } else if (result.length) {
-                    res.render('resturants',{
-
-                        // Pass the returned database documents to Jade
-                        "resturantlist" : result
-                    });
-                } else {
-                    res.send('No documents found');
-                }
-                //Close connection
-                db.close();
-            });
+            findDocuments(collection);
         }
-
     });
+
+    function findDocuments(col) {
+// Find all students
+        col.find({}).toArray(function (err, result) {
+            if (err) {
+                res.send(err);
+            } else if (result.length) {
+                res.render('resturants',{
+
+                    // Pass the returned database documents to Jade
+                    "resturantlist" : result
+                });
+            } else {
+                res.send('No documents found');
+            }
+            //Close connection
+            db.close();
+        })
+    };
 });
+
+
 module.exports = router;
