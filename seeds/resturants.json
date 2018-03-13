@@ -1,12 +1,13 @@
 [
-  {
-    "name": "yosushi",
+    {
+      "name": "yosushi",
+      "typeOfCuisine": "japanese",
+      "address": "40 divison street"
+    },
+
+    {
+    "name": "yosushi2",
     "typeOfCuisine": "japanese",
     "address": "40 divison street"
-  },
-  {
-  "name": "yosushi",
-  "typeOfCuisine": "japanese",
-  "address": "40 divison street"
-  }
-]
+    }
+    ]
