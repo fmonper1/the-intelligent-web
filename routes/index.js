@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
                 if (err) {
                     res.send(err);
                 } else if (result.length) {
-                    res.render('resturantlist',{
+                    res.render('resturants',{
 
                         // Pass the returned database documents to Jade
                         "resturantlist" : result

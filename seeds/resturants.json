@@ -1,12 +1,12 @@
-{
-  "restaurants": {
+[
+  {
     "name": "yosushi",
     "typeOfCuisine": "japanese",
     "address": "40 divison street"
   },
-  "restaurants": {
+  {
   "name": "yosushi",
   "typeOfCuisine": "japanese",
   "address": "40 divison street"
   }
-}
+]
