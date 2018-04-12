@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/intelligentWeb.iml" filepath="$PROJECT_DIR$/intelligentWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week 5 Mongo.iml" filepath="$PROJECT_DIR$/Week 5 Mongo.iml" />
     </modules>
   </component>
 </project>

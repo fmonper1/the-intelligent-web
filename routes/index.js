@@ -1,48 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var mongodb = require('mongodb');
+var bodyParser= require("body-parser");
 
-// router.get('/', function(req, res, next) {
-//     res.render('index', { title: 'Express' });
-// });
+
+var restaurant = require('../controllers/restaurants');
+var initDB= require('../controllers/init');
+initDB.init();
+
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    var MongoClient = mongodb.MongoClient;
-
-    // Define where the MongoDB server is
-    var url = 'mongodb://localhost:27017/intelligentWeb';
-
-    // Connect to the server
-    MongoClient.connect(url, function (err, db) {
-        if (err) {
-            console.log('Unable to connect to the Server', err);
-        } else {
-            // We are connected
-            console.log('Connection established to', url);
-
-            // Get the documents collection
-            var dbo = db.db("intelligentWeb");
-            var collection = dbo.collection('resturants');
-
-           // Find all students
-            collection.find({}).toArray(function (err, result) {
-                if (err) {
-                    res.send(err);
-                } else if (result.length) {
-                    res.render('resturants',{
-
-                        // Pass the returned database documents to Jade
-                        "resturantlist" : result
-                    });
-                } else {
-                    res.send('No documents found');
-                }
-                //Close connection
-                db.close();
-            });
-        }
-
-    });
+router.get('/index', function(req, res, next) {
+  res.render('index', { title: 'My Form' });
 });
+
+router.post('/index', restaurant.getAge);
+
+
+/* GET home page. */
+router.get('/insert', function(req, res, next) {
+  res.render('insert', { title: 'My Form' });
+});
+
+router.post('/insert', restaurant.insert);
+
+
 module.exports = router;
