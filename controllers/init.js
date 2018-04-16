@@ -10,11 +10,13 @@ exports.init= function() {
     // });
 
     // const dob=new Date(1908, 12, 1).getFullYear();
+
+
     // var restaurant = new Restaurant({
-    //      name: 'Taco Bell2',
+    //      name: 'Chinese Santa Cruz',
     //      typeOfCuisine: ['Fast Food', 'Mexican'],
     //      address: '42 West Street',
-    //      loc: [30, 15]
+    //      loc: [-16.251573,28.463630]
     // });
     // console.log('name: '+restaurant.loc);
     //

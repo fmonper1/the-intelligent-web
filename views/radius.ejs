@@ -16,10 +16,13 @@
 
 
     <form id=“xForm" onsubmit="onSubmit('/radius')">
-        <label for='firstname'>Restaurant Name:</label>
-        <input type="text" name="searchRadius" id="searchRadius" >
-        <input type="text" name="latitude" id="latitude" >
-        <input type="text" name="longitude" id="longitude" >
+        <p><label for='searchRadius'>SearchRadius:</label>
+            <input type="text" name="searchRadius" id="searchRadius" >
+
+        </p>
+        <!-- keep this fields as hidden later on -->
+        <input type="text" name="longitude" id="longitude" placeholder="long">
+        <input type="text" name="latitude" id="latitude" placeholder="lat">
 
 
         <p><input type="submit" name="g" value="Submit" id="g"></p>

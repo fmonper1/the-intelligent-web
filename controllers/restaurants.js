@@ -87,16 +87,27 @@ exports.queryByRadius = function(req, res) {
         coords[0] = parseFloat(userData.longitude);
         coords[1] = parseFloat(userData.latitude);
 
-        Restaurant.find({
-            loc: {
-                $near: coords,
-                $maxDistance: maxDistance
+
+        var query = Restaurant.find({
+            loc : { $nearSphere : coords, $maxDistance: maxDistance }
+        }).limit(limit);
+
+        // var query = Restaurant.findOne({});
+
+        query.exec(function (err, city) {
+            if (err) {
+                console.log(err);
+                throw err;
             }
-        }).exec()
-        .then(function(location) {
-            console.log(location);
+
+            if (!city) {
+                res.json({});
+            } else {
+                console.log('Cant save: Found city:' + city);
+                res.json(city);
+            }
+
         });
-        .then()
 
     } catch (e) {
         res.status(500).send('error ' + e);

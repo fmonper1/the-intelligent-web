@@ -12,7 +12,7 @@ var Restaurant = new Schema(
             county:String,
             country:String},
         loc: {
-            type: [Number],
+            type: [Number], // [<longitude>, <latitude>]
             index: '2dSphere'
         }
         //whatever: {type: String} //any other field
