@@ -6,7 +6,17 @@ exports.getAge = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        Restaurant.find({typeOfCuisine: userData.cuisine},
+        var query = {};
+        query['$and']=[];
+        if (userData.name.length > 0) {
+            query["$and"].push({ name: userData.name}); // add to the query object
+        }
+        if(userData.cuisine.length > 0){
+            query["$and"].push({ typeOfCuisine:  userData.cuisine });
+        }
+        console.log(query)
+
+        Restaurant.find(query,
             'name typeOfCuisine address',
             function (err, restaurants) {
                 if (err)

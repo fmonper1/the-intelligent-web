@@ -6,7 +6,11 @@ var Restaurant = new Schema(
     {
         name: {type: String, required: true, max: 100},
         typeOfCuisine: [{type: String, required: true, max: 100}],
-        address: {type: String},
+        address: {streetName : String,
+            city:String,
+            postcode:String,
+            county:String,
+            country:String},
         loc: {
             type: [Number],  // [<longitude>, <latitude>]
             index: '2d'      // create the geospatial index
