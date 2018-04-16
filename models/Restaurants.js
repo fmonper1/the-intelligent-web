@@ -8,12 +8,13 @@ var Restaurant = new Schema(
         typeOfCuisine: [{type: String, required: true, max: 100}],
         address: {type: String},
         loc: {
-            type: [Number],  // [<longitude>, <latitude>]
-            index: '2d'      // create the geospatial index
+            type: [Number],
+            index: '2dSphere'
         }
         //whatever: {type: String} //any other field
     }
 );
+
 
 // // Virtual for a character's age
 // Character.virtual('age')

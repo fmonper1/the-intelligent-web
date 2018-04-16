@@ -41,21 +41,21 @@ function sendAjaxQuery(url, data) {
         },
         error: function (xhr, status, error) {
             alert('Error: ' + error.message);
+            console.log('Error: ' + error.message);
+            console.log(error);
         }
     });
 }
 
-function onSubmit() {
-    $('form').submit(function( event ) { // <---- "event" parameter here
+function onSubmit(url) {
 
-        event.preventDefault();
-    });
     var formArray= $("form").serializeArray();
     var data={};
     for (index in formArray){
-        data[formArray[index].name]= formArray[index].value;
+        data[formArray[index].name] = formArray[index].value;
     }
-    // const data = JSON.stringify($(this).serializeArray());
-    sendAjaxQuery('/index', data);
+    console.log('onsubmit');
+    console.log(data);
+    sendAjaxQuery(url, data);
     event.preventDefault();
 }

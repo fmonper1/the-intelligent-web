@@ -60,10 +60,13 @@ exports.queryByRadius = function(req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        var limit = req.query.limit || 10;
+        console.log("data to post")
+        console.log(userData);
+
+        var limit = userData.limit || 10;
 
         // get the max distance or set it to 8 kilometers
-        var maxDistance = req.query.distance || 8;
+        var maxDistance = userData.searchRadius || 8;
 
         // we need to convert the distance to radians
         // the raduis of Earth is approximately 6371 kilometers
@@ -71,22 +74,20 @@ exports.queryByRadius = function(req, res) {
 
         // get coordinates [ <longitude> , <latitude> ]
         var coords = [];
-        coords[0] = req.query.longitude;
-        coords[1] = req.query.latitude;
+        coords[0] = parseFloat(userData.longitude);
+        coords[1] = parseFloat(userData.latitude);
 
-        // find a location
         Restaurant.find({
             loc: {
                 $near: coords,
                 $maxDistance: maxDistance
             }
-        }).limit(limit).exec(function(err, locations) {
-            if (err) {
-                return res.json(500, err);
-            }
-
-            res.json(200, locations);
+        }).exec()
+        .then(function(location) {
+            console.log(location);
         });
+        .then()
+
     } catch (e) {
         res.status(500).send('error ' + e);
     }

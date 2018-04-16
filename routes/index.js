@@ -27,7 +27,7 @@ router.post('/insert', restaurant.insert);
 /* GET home page. */
 router.get('/radius', function(req, res, next) {
     res.render('radius', { title: 'My Form' });
-    console.log("algo");
+    //console.log("algo");
 });
 
 router.post('/radius', restaurant.queryByRadius);
