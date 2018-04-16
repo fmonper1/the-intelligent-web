@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="/javascripts/radius.js"></script>
+
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <div id="demo1"></div>
+
+
+    <form id=“xForm" onsubmit="onSubmit('/radius')">
+        <label for='firstname'>Restaurant Name:</label>
+        <input type="text" name="limit" id="limit" >
+        <input type="text" name="latitude" id="latitude" >
+        <input type="text" name="lonigtude" id="longitude" >
+
+
+        <p><input type="submit" name="g" value="Submit" id="g"></p>
+    </form>
+  <div id="results" style="margin-top:30px"></div>
+
+  </body>
+</html>
