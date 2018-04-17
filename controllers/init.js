@@ -13,8 +13,8 @@ exports.init= function() {
 
     //
     // var restaurant = new Restaurant({
-    //      name: 'Chinese Santa Cruz',
-    //      typeOfCuisine: ['Fast Food', 'Mexican'],
+    //      name: 'Subway',
+    //      typeOfCuisine: ['Fast Food', 'Sandwiches'],
     //     address: {streetName:'West Street',
     //         city: 'Sheffield',
     //         postcode: 'S37GB',

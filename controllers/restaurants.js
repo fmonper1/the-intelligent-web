@@ -9,10 +9,14 @@ exports.getAge = function (req, res) {
         var query = {};
         query['$and']=[];
         if (userData.name.length > 0) {
-            query["$and"].push({ name: userData.name}); // add to the query object
+            var x = userData.name.split(",");
+            regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
+            query["$and"].push({ name: {$in: regex}}); // add to the query object
         }
         if(userData.cuisine.length > 0){
-            query["$and"].push({ typeOfCuisine:  userData.cuisine });
+            var x = userData.cuisine.split(",");
+            regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
+            query["$and"].push({ typeOfCuisine: {$in : regex }});
         }
         if(userData.postcode.length > 0){
             query["$and"].push({ "address.postcode" :  { $regex : new RegExp(userData.postcode, "i") } });
