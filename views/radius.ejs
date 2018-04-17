@@ -15,11 +15,18 @@
     <div id="demo1"></div>
 
 
-    <form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
+    <form id="radiusForm" onsubmit="onSubmit('/radius')">
         <p><label for='searchRadius'>SearchRadius:</label>
-            <input type="text" name="searchRadius" id="searchRadius" >
 
         </p>
+
+        <select class="custom-select" name="searchRadius" id="searchRadius" >
+            <option selected value="0">Select a distance</option>
+            <option value="5">5km</option>
+            <option value="10">10km</option>
+            <option value="20">20km</option>
+            <option value="50">50km</option>
+        </select>
         <!-- keep this fields as hidden later on -->
         <input type="text" name="longitude" id="longitude" placeholder="long">
         <input type="text" name="latitude" id="latitude" placeholder="lat">

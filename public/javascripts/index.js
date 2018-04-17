@@ -15,18 +15,46 @@ function sendAjaxQuery(url, data) {
         },
         error: function (xhr, status, error) {
             alert('Error: ' + error.message);
+            console.log('Error: ' + error.message);
+            console.log(error);
         }
     });
 }
-
 function onSubmit(url) {
-    var formArray= $("form").serializeArray();
+    //getLocation();
+    var formArray= $("#xForm").serializeArray();
     var data={};
     for (index in formArray){
-        data[formArray[index].name]= formArray[index].value;
+        data[formArray[index].name] = formArray[index].value;
     }
-    // const data = JSON.stringify($(this).serializeArray());
+    console.log('onsubmit');
+    console.log(data);
     sendAjaxQuery(url, data);
     event.preventDefault();
 }
 
+function onSubmitRadius(url) {
+    getLocation();
+    var formArray= $("#radiusForm").serializeArray();
+    var data={};
+    for (index in formArray){
+        data[formArray[index].name] = formArray[index].value;
+    }
+    console.log('onsubmit');
+    console.log(data);
+    sendAjaxQuery(url, data);
+    event.preventDefault();
+}
+
+function getLocation() {
+    console.log("algo");
+
+    if (navigator.geolocation) {
+        document.getElementById("demo1").innerHTML = "Geolocation is supported by this browser.";
+
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
