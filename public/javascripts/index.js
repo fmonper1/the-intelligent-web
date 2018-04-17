@@ -15,46 +15,79 @@ function sendAjaxQuery(url, data) {
         },
         error: function (xhr, status, error) {
             alert('Error: ' + error.message);
-            console.log('Error: ' + error.message);
-            console.log(error);
         }
     });
 }
+
 function onSubmit(url) {
-    //getLocation();
-    var formArray= $("#xForm").serializeArray();
+    console.log('hello')
+    var formArray= $('form').serializeArray();
     var data={};
     for (index in formArray){
-        data[formArray[index].name] = formArray[index].value;
+        data[formArray[index].name]= formArray[index].value;
     }
-    console.log('onsubmit');
-    console.log(data);
+    // const data = JSON.stringify($(this).serializeArray());
     sendAjaxQuery(url, data);
     event.preventDefault();
 }
 
 function onSubmitRadius(url) {
-    getLocation();
-    var formArray= $("#radiusForm").serializeArray();
+
+    event.preventDefault();
+    getLocation()
+        .then(function() {
+            console.log("getLocationDone");
+            return data = retrieveValues(url);
+        })
+        .then(function() {
+            console.log("retireveDone");
+            sendAjaxQuery(url, data);
+        })
+        .catch()
+}
+
+function retrieveValues(url) {
+    var formArray = $("form").serializeArray();
     var data={};
     for (index in formArray){
         data[formArray[index].name] = formArray[index].value;
     }
     console.log('onsubmit');
     console.log(data);
-    sendAjaxQuery(url, data);
-    event.preventDefault();
+    return data;
+    //sendAjaxQuery(url, data);
 }
 
+
 function getLocation() {
-    console.log("algo");
+    return new Promise((resolve, reject) => {
+        console.log("getLocation promise returned");
 
     if (navigator.geolocation) {
-        document.getElementById("demo1").innerHTML = "Geolocation is supported by this browser.";
+       console.log("Geolocation is supported by this browser.");
 
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(
+            function success(pos) {
+                var crd = pos.coords;
+
+                console.log('Your current position is:');
+                console.log('Latitude : ' + crd.latitude);
+                console.log('Longitude: ' + crd.longitude);
+                console.log('More or less ' + crd.accuracy + ' meters.');
+                $("#latitude").val(crd.latitude);
+                $("#longitude").val(crd.longitude);
+                resolve(crd);
+            }
+            , function error(err) {
+
+                console.warn('ERROR(' + err.code + '): ' + err.message);
+                reject(err.message);
+            }
+        );
+
 
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Geolocation is not supported by this browser.");
     }
+});
 }

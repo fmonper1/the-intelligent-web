@@ -11,11 +11,15 @@ exports.init= function() {
 
     // const dob=new Date(1908, 12, 1).getFullYear();
 
-
+    //
     // var restaurant = new Restaurant({
-    //      name: 'Chinese Santa Cruz',
-    //      typeOfCuisine: ['Fast Food', 'Mexican'],
-    //      address: '42 West Street',
+    //      name: 'Subway',
+    //      typeOfCuisine: ['Fast Food', 'Sandwiches'],
+    //     address: {streetName:'West Street',
+    //         city: 'Sheffield',
+    //         postcode: 'S37GB',
+    //         county:'South Yorkshire',
+    //         country: 'England'},
     //      loc: [-16.251573,28.463630]
     // });
     // console.log('name: '+restaurant.loc);

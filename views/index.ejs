@@ -3,25 +3,27 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <form id="searchBox" onsubmit="onSubmit('/index')">
-      <div class="form-group">
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Introduce keywords or location">
-      </div>
-      <div class="form-group">
-        <input class="btn btn-primary" type="submit">
-      </div>
-    </form>
-
     <form id=“xForm" onsubmit="onSubmit('/index')">
-      <label for='firstname'>Restaurant Name:</label>
-      <input type="text" name="name" id="name" >
-      <p><label for='lastname'>Cuisine:</label>
-        <input type="text" name="cuisine" id="cuisine" >
-      </p><p><input type="submit" name="g" value="Submit" id="g"></p>
+      <div class="form-group">
+        <label for='firstname'>Restaurant Name:</label>
+        <input class="form-control" type="text" name="name" id="name" >
+        <p><label for='lastname'>Cuisine:</label>
+          <input class="form-control" type="text" name="cuisine" id="cuisine" >
+        </p>
+        <p><label for='lastname'>Postcode:</label>
+          <input class="form-control"type="text" name="postcode" id="postcode" >
+        </p>
+        <p><label for='lastname'>Street:</label>
+          <input class="form-control" type="text" name="street" id="street" >
+        </p>
+        <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
+      </div>
     </form>
+  </div>
+  <div class="container">
 
     <form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
-      <p><label for='searchRadius'>Or search for restaurants around you</label>
+      <p><label for='searchRadius'>Or search for restaurants around you in a radius of</label>
 
         <select class="custom-select" name="searchRadius" id="searchRadius" >
           <option selected>Select a distance</option>
@@ -38,45 +40,28 @@
 
       <p><input type="submit" name="g" value="Submit" id="g"></p>
     </form>
-
   </div>
 </div>
+<div id="results" style="margin-top:30px"></div>
+<div id="results2" style="margin-top:30px"></div>
+<div id="results3" style="margin-top:30px"></div>
+<!--<div class="container">-->
+<!--&lt;!&ndash; Example row of columns &ndash;&gt;-->
+<!--<div class="row">-->
+<!--<h1><%= title %></h1>-->
+<!--<p>Welcome to <%= title %></p>-->
+<!--<div class="col-md-6">-->
+<!--<div class="card">-->
+<!--<div class="card-body">-->
+<!--<h6>RestaurantName</h6>-->
+<!--<p class="card-text">★★★★☆ 4/5</p>-->
+<!--<a href="restaurant" class="card-link">ViewRestaurant</a>-->
+<!--<br>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr>-->
+<!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+<% include footer %>
 
-<div class="container">
-  <!-- Example row of columns -->
-
-  <div class="row">
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h6>RestaurantName</h6>
-          <p class="card-text">★★★★☆ 4/5</p>
-          <a href="restaurant" class="card-link">ViewRestaurant</a>
-          <br>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-  <div id="results" style="margin-top:30px"></div>
-
-</div> <!-- /container -->
-
-
-</main>
-
-<footer class="container">
-  <p>&copy; Company 2017-2018</p>
-</footer>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/javascripts/index.js"></script>
-
-</body>
-</html>

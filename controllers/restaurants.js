@@ -9,10 +9,20 @@ exports.getAge = function (req, res) {
         var query = {};
         query['$and']=[];
         if (userData.name.length > 0) {
-            query["$and"].push({ name: userData.name}); // add to the query object
+            var x = userData.name.split(",");
+            regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
+            query["$and"].push({ name: {$in: regex}}); // add to the query object
         }
         if(userData.cuisine.length > 0){
-            query["$and"].push({ typeOfCuisine:  userData.cuisine });
+            var x = userData.cuisine.split(",");
+            regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
+            query["$and"].push({ typeOfCuisine: {$in : regex }});
+        }
+        if(userData.postcode.length > 0){
+            query["$and"].push({ "address.postcode" :  { $regex : new RegExp(userData.postcode, "i") } });
+        }
+        if(userData.street.length > 0){
+            query["$and"].push({ "address.streetName" :  { $regex : new RegExp(userData.street, "i") } });
         }
         console.log(query)
 
@@ -21,14 +31,14 @@ exports.getAge = function (req, res) {
             function (err, restaurants) {
                 if (err)
                     res.status(500).send('Invalid data!');
-                var restaurant = null;
-                if (restaurants.length > 0) {
-                    var firstElem = restaurants[0];
-                    restaurant = {
-                        name: firstElem.name, cuisine: firstElem.typeOfCuisine,
-                        address: firstElem.address
-                    };
-                }
+                // var restaurant = null;
+                // if (restaurants.length > 0) {
+                //     var firstElem = restaurants[0];
+                //     restaurant = {
+                //         name: firstElem.name, cuisine: firstElem.typeOfCuisine,
+                //         address: firstElem.address
+                //     };
+                // }
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(restaurants));
             });
