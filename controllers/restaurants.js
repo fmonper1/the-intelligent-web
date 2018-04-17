@@ -14,6 +14,12 @@ exports.getAge = function (req, res) {
         if(userData.cuisine.length > 0){
             query["$and"].push({ typeOfCuisine:  userData.cuisine });
         }
+        if(userData.postcode.length > 0){
+            query["$and"].push({ "address.postcode" :  { $regex : new RegExp(userData.postcode, "i") } });
+        }
+        if(userData.street.length > 0){
+            query["$and"].push({ "address.streetName" :  { $regex : new RegExp(userData.street, "i") } });
+        }
         console.log(query)
 
         Restaurant.find(query,
@@ -21,14 +27,14 @@ exports.getAge = function (req, res) {
             function (err, restaurants) {
                 if (err)
                     res.status(500).send('Invalid data!');
-                var restaurant = null;
-                if (restaurants.length > 0) {
-                    var firstElem = restaurants[0];
-                    restaurant = {
-                        name: firstElem.name, cuisine: firstElem.typeOfCuisine,
-                        address: firstElem.address
-                    };
-                }
+                // var restaurant = null;
+                // if (restaurants.length > 0) {
+                //     var firstElem = restaurants[0];
+                //     restaurant = {
+                //         name: firstElem.name, cuisine: firstElem.typeOfCuisine,
+                //         address: firstElem.address
+                //     };
+                // }
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(restaurants));
             });

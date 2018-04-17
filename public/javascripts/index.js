@@ -20,6 +20,7 @@ function sendAjaxQuery(url, data) {
 }
 
 function onSubmit(url) {
+    console.log('hello')
     var formArray= $("form").serializeArray();
     var data={};
     for (index in formArray){
