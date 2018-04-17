@@ -3,7 +3,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <form>
+    <form id="searchBox">
       <div class="form-group">
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Introduce keywords or location">
       </div>
@@ -11,6 +11,26 @@
         <input class="btn btn-primary" type="submit">
       </div>
     </form>
+
+    <form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
+      <p><label for='searchRadius'>Or search for restaurants around you</label>
+
+        <select class="custom-select" name="searchRadius" id="searchRadius" >
+          <option selected>Select a distance</option>
+          <option value="5">5km</option>
+          <option value="10">10km</option>
+          <option value="20">20km</option>
+          <option value="50">50km</option>
+        </select>
+      </p>
+      <!-- keep this fields as hidden later on -->
+      <input type="hidden" name="longitude" id="longitude" placeholder="long">
+      <input type="hidden" name="latitude" id="latitude" placeholder="lat">
+
+
+      <p><input type="submit" name="g" value="Submit" id="g"></p>
+    </form>
+
   </div>
 </div>
 
@@ -33,7 +53,22 @@
   </div>
 
   <hr>
+  <div id="results" style="margin-top:30px"></div>
 
 </div> <!-- /container -->
 
-<% include footer %>
+
+</main>
+
+<footer class="container">
+  <p>&copy; Company 2017-2018</p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/javascripts/radius.js"></script>
+
+</body>
+</html>
