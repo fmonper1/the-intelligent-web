@@ -4,6 +4,10 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Google Maps JS API -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
+      <script src="/javascripts/gmaps.js"></script>
+
       <script src="/javascripts/radius.js"></script>
 
   </head>
@@ -35,6 +39,8 @@
         <p><input type="submit" name="g" value="Submit" id="g"></p>
     </form>
   <div id="results" style="margin-top:30px"></div>
+
+    <div id="map"></div>
 
   </body>
 </html>
