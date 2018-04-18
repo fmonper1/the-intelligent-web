@@ -1,19 +1,22 @@
-x = document.getElementById("demo1");
-console.log(x);
+var map;
 
 function onSubmit(url) {
-
+    let retrievedData;
     event.preventDefault();
     getLocation()
-        .then(function() {
+        .then(function(data) {
             console.log("getLocationDone");
             return data = retrieveValues(url);
         })
-        .then(function() {
-            console.log("retireveDone");
-             sendAjaxQuery(url, data);
-        })
-        .catch()
+            .then(function(data) {
+                console.log("retireveDone");
+                retirevedData = sendAjaxQuery(url, data);
+                return data;
+            })
+            // .then(function(data) {
+            //     console.log(retrievedData);
+            // })
+            .catch()
 }
 
 function retrieveValues(url) {
@@ -76,6 +79,7 @@ function sendAjaxQuery(url, data) {
             // in order to have the object printed by alert
             // we need to JSON stringify the object
             document.getElementById('results').innerHTML= JSON.stringify(ret);
+            addMarkers(ret);
         },
         error: function (xhr, status, error) {
             alert('Error: ' + error.message);
@@ -85,3 +89,29 @@ function sendAjaxQuery(url, data) {
     });
 }
 
+function addMarkers(data) {
+    for(i in data) {
+        console.log(data[i].loc)
+        coords = data[i].loc;
+        map.addMarker({
+            lat: coords[1],
+            lng: coords[0],
+            title: data[i].name,
+            click: function(e) {
+                alert('You clicked in this marker');
+            }
+        });
+    }
+}
+
+$(function() {
+    console.log( "ready!" );
+    map = new GMaps({
+        div: '#map',
+        lat: 53.387507,
+        lng: -1.470275,
+        width: '500px',
+        height: '500px',
+        zoom: 12,
+    });
+});
