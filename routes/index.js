@@ -37,9 +37,12 @@ router.post('/radius', restaurant.queryByRadius);
 
 
 router.get('/restaurant/:id', function (req, res, next) {
-    console.log('ID:', req.params.id)
-    res.render('restaurants');
-})
+    console.log('ID:', req.params.id);
+    restaurant.findOneRestaurant(req.params.id);
+});
+
+router.post('/restaurant/:id',restaurant.findOneRestaurant);
+
 
 // handler for the /user/:id path, which prints the user ID
 router.get('/restaurant/:id', function (req, res, next) {

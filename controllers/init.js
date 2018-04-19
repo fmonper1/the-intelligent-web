@@ -13,6 +13,7 @@ exports.init= function() {
 
     //
     // var restaurant = new Restaurant({
+    //     restaurant_tid: 1,
     //      name: 'DrDonnon',
     //      typeOfCuisine: ['Fast Food', 'Chicken'],
     //     address: {streetName:'West Street',
