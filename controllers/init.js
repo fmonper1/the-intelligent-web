@@ -13,14 +13,14 @@ exports.init= function() {
 
     //
     // var restaurant = new Restaurant({
-    //      name: 'FernisHouse',
-    //      typeOfCuisine: ['Fast Food', 'Sandwiches'],
+    //      name: 'DrDonnon',
+    //      typeOfCuisine: ['Fast Food', 'Chicken'],
     //     address: {streetName:'West Street',
     //         city: 'Sheffield',
-    //         postcode: 'S37GB',
+    //         postcode: 'S37bw',
     //         county:'South Yorkshire',
     //         country: 'England'},
-    //      loc: [-1.4806097000000003, 53.3901654]
+    //      loc: [-1.489091, 53.384588]
     // });
     // console.log('name: '+restaurant.loc);
     //

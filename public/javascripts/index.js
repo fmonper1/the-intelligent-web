@@ -26,9 +26,10 @@ function sendAjaxQuery(url, data) {
             var ret = dataR;
             // in order to have the object printed by alert
             // we need to JSON stringify the object
-            document.getElementById('results').innerHTML= JSON.stringify(ret);
+            //document.getElementById('results').innerHTML= JSON.stringify(ret);
+            displayResultsNicely(ret);
             addMarkers(ret);
-
+            return ret;
         },
         error: function (xhr, status, error) {
             alert('Error: ' + error.message);
@@ -36,8 +37,14 @@ function sendAjaxQuery(url, data) {
     });
 }
 
+function displayResultsNicely(data) {
+    for(i in data) {
+        $('#results').append(JSON.stringify(data[i]));
+    }
+}
+
 function onSubmit(url) {
-    console.log('hello')
+    console.log('hello');
     var formArray= $('form').serializeArray();
     var data={};
     for (index in formArray){
@@ -57,9 +64,14 @@ function onSubmitRadius(url) {
         })
         .then(function() {
             console.log("retrieveValuesDone");
-            sendAjaxQuery(url, data);
+            return ret = sendAjaxQuery(url, data);
         })
-        .catch()
+        .then(function(ret) {
+            console.log(ret);
+        })
+        .catch(function (error) {
+            console.log(error.message)
+        })
 }
 
 function retrieveValues(url) {
@@ -77,7 +89,6 @@ function retrieveValues(url) {
 
 function getLocation() {
     return new Promise((resolve, reject) => {
-        console.log("getLocation promise returned");
 
     if (navigator.geolocation) {
        console.log("Geolocation is supported by this browser.");
@@ -92,6 +103,8 @@ function getLocation() {
                 console.log('More or less ' + crd.accuracy + ' meters.');
                 $("#latitude").val(crd.latitude);
                 $("#longitude").val(crd.longitude);
+                console.log("getLocation promise returned");
+
                 resolve(crd);
             }
             , function error(err) {

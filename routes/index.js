@@ -9,11 +9,14 @@ initDB.init();
 
 
 /* GET home page. */
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'My Form' });
+});
 router.get('/index', function(req, res, next) {
   res.render('index', { title: 'My Form' });
 });
 
-router.post('/index', restaurant.getAge);
+router.post('/index', restaurant.queryDB);
 
 
 /* GET home page. */
@@ -31,5 +34,16 @@ router.get('/radius', function(req, res, next) {
 });
 
 router.post('/radius', restaurant.queryByRadius);
+
+
+router.get('/restaurant/:id', function (req, res, next) {
+    console.log('ID:', req.params.id)
+    res.render('restaurants');
+})
+
+// handler for the /user/:id path, which prints the user ID
+router.get('/restaurant/:id', function (req, res, next) {
+    res.end(req.params.id)
+})
 
 module.exports = router;

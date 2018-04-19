@@ -1,6 +1,6 @@
 var Restaurant = require('../models/Restaurants');
 
-exports.getAge = function (req, res) {
+exports.queryDB = function (req, res) {
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
