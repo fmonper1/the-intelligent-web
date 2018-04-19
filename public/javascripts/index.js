@@ -1,3 +1,18 @@
+var map; //store map in a var
+
+$(function() { //load the map on page.ready
+    console.log( "ready!" );
+    map = new GMaps({
+        div: '#map',
+        lat: 53.387507,
+        lng: -1.470275,
+        height: '300px',
+        zoom: 12,
+    });
+});
+
+
+
 function sendAjaxQuery(url, data) {
     $.ajax({
         url: url ,
@@ -12,6 +27,8 @@ function sendAjaxQuery(url, data) {
             // in order to have the object printed by alert
             // we need to JSON stringify the object
             document.getElementById('results').innerHTML= JSON.stringify(ret);
+            addMarkers(ret);
+
         },
         error: function (xhr, status, error) {
             alert('Error: ' + error.message);
@@ -32,7 +49,6 @@ function onSubmit(url) {
 }
 
 function onSubmitRadius(url) {
-
     event.preventDefault();
     getLocation()
         .then(function() {
@@ -40,7 +56,7 @@ function onSubmitRadius(url) {
             return data = retrieveValues(url);
         })
         .then(function() {
-            console.log("retireveDone");
+            console.log("retrieveValuesDone");
             sendAjaxQuery(url, data);
         })
         .catch()
@@ -91,3 +107,19 @@ function getLocation() {
     }
 });
 }
+
+function addMarkers(data) {
+    for(i in data) {
+        console.log(data[i].loc)
+        coords = data[i].loc;
+        map.addMarker({
+            lat: coords[1],
+            lng: coords[0],
+            title: data[i].name,
+            click: function(e) {
+                alert('You clicked in this marker');
+            }
+        });
+    }
+}
+

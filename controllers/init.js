@@ -13,14 +13,14 @@ exports.init= function() {
 
     //
     // var restaurant = new Restaurant({
-    //      name: 'Subway',
+    //      name: 'FernisHouse',
     //      typeOfCuisine: ['Fast Food', 'Sandwiches'],
     //     address: {streetName:'West Street',
     //         city: 'Sheffield',
     //         postcode: 'S37GB',
     //         county:'South Yorkshire',
     //         country: 'England'},
-    //      loc: [-16.251573,28.463630]
+    //      loc: [-1.4806097000000003, 53.3901654]
     // });
     // console.log('name: '+restaurant.loc);
     //
