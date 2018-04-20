@@ -1,4 +1,5 @@
 var Restaurant = require('../models/Restaurants');
+var ObjectId = require('mongodb').ObjectID;
 
 exports.queryDB = function (req, res) {
     var userData = req.body;
@@ -48,34 +49,26 @@ exports.queryDB = function (req, res) {
 }
 
 exports.findOneRestaurant = function(index, req, res) {
-    console.log("shit");
-    console.log(index);
     //var userData = req.params.id;
     if (index == null) {
         res.status(403).send('No data sent!')
     }
     try {
         var query = {};
-        query['_id'] = [index];
-
-        Restaurant.find(query,
-            'name typeOfCuisine address',
+        //query['_id'] = [ObjectID(index)];
+        console.log(query);
+        Restaurant.find(ObjectId(index),
             function (err, restaurants) {
                 if (err)
                     res.status(500).send('Invalid data!');
-                // var restaurant = null;
-                // if (restaurants.length > 0) {
-                //     var firstElem = restaurants[0];
-                //     restaurant = {
-                //         name: firstElem.name, cuisine: firstElem.typeOfCuisine,
-                //         address: firstElem.address
-                //     };
-                // }
+                console.log(restaurants);
+
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(restaurants));
             });
     } catch (e) {
         res.status(500).send('error ' + e);
+        console.log(e);
     }
 }
 

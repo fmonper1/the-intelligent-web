@@ -14,14 +14,26 @@ exports.init= function() {
     //
     // var restaurant = new Restaurant({
     //     restaurant_tid: 1,
-    //      name: 'DrDonnon',
-    //      typeOfCuisine: ['Fast Food', 'Chicken'],
+    //     name: 'DrDonnonMaxRestaurant',
+    //     typeOfCuisine: ['Fast Food', 'Chicken'],
     //     address: {streetName:'West Street',
     //         city: 'Sheffield',
     //         postcode: 'S37bw',
     //         county:'South Yorkshire',
     //         country: 'England'},
-    //      loc: [-1.489091, 53.384588]
+    //     loc: [-1.5, 53.55],
+    //     addedBy: "admin",
+    //     reviews: [
+    //         {
+    //             postedBy: "Ferni",
+    //             score: 5,
+    //             review: "Nice food at a good price"},
+    //
+    //         {
+    //             postedBy: "Fernifofer",
+    //             score: 3,
+    //             review: "Desserts were dirty"}
+    //     ]
     // });
     // console.log('name: '+restaurant.loc);
     //

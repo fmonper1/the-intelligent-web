@@ -14,7 +14,15 @@ var Restaurant = new Schema(
         loc: {
             type: [Number], // [<longitude>, <latitude>]
             index: '2dSphere'
-        }
+        },
+        addedBy: {type: String}, // user id of the owner
+        reviews: [
+            {postedData: Date,
+            postedBy: String,
+            score: Number,
+            review: String}
+        ]
+
         //whatever: {type: String} //any other field
     }
 );
