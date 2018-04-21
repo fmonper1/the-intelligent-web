@@ -14,7 +14,7 @@ var isAuthenticated = function (req, res, next) {
 }
 
 // restrict index for logged in user only
-router.get('/index', isAuthenticated, function(req, res){
+router.get('/index', function(req, res){
     res.render('index', { user: req.user });
 });
 
