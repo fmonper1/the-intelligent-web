@@ -6,15 +6,42 @@ var bodyParser= require("body-parser");
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
 initDB.init();
+var auth = require("../controllers/auth.js");
+var isAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.redirect('/login');
+}
 
+// restrict index for logged in user only
+router.get('/index', function(req, res){
+    res.render('index', { user: req.user });
+});
+
+// route to register page
+router.get('/register', auth.register);
+
+// route for register action
+router.post('/register', auth.doRegister);
+
+// route to login page
+router.get('/login', auth.login);
+
+// route for login action
+router.post('/login', auth.doLogin);
+
+// route for logout action
+router.get('/logout', auth.logout);
+
+module.exports = router;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'My Form' });
-});
-router.get('/index', function(req, res, next) {
-  res.render('index', { title: 'My Form' });
-});
+// router.get('/', function(req, res, next) {
+//     res.render('index', { title: 'My Form' });
+// });
+// router.get('/index', function(req, res, next) {
+//   res.render('index', { title: 'My Form' });
+// });
 
 router.post('/index', restaurant.queryDB);
 
