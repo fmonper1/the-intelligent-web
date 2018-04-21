@@ -39,7 +39,9 @@ function sendAjaxQuery(url, data) {
 
 function displayResultsNicely(data) {
     for(i in data) {
-        $('#results').append(JSON.stringify(data[i]));
+        $('#results').append("<p>"
+            +JSON.stringify(data[i])+
+            "<a href='/restaurant/"+data[i]._id+"'>view</a></p>");
     }
 }
 

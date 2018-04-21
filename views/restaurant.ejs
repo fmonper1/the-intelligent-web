@@ -1,21 +1,66 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title><%= title %></title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <!--<script src="/javascripts/index.js"></script>-->
-
+    <% include partials/page_head %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <!-- Google Maps JS API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
+    <script src="/javascripts/gmaps.js"></script>
+    <script src="/javascripts/restaurant.js"></script>
 </head>
 
+<body>
+<% include partials/navbar %>
 
-  <body>
-  tester
-  <div id="results"></div>
-  </body>
-  <script>
-  $(function() {
-      console.log(id);
-  })
-  </script>
+<main role="main">
+
+    <div class="container">
+
+        <h3><%= restaurant[0].name %></h3>
+        <% restaurant[0].typeOfCuisine.forEach(function (type) {  %>
+            <%= type %>
+        <% }) %>
+
+        <div class="card" >
+            <img class="card-img-top" src="https://cdn.theculturetrip.com/wp-content/uploads/2016/02/restaurant-939435_960_720.jpg" alt="Card image cap">
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= restaurant[0].address %></li>
+                <li class="list-group-item">Telephone Nº</li>
+                <li class="list-group-item">Website</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <br>
+    <div style="background: #f9f9f9;">
+        <div class="container">
+            <% include partials/restaurantTotalScore.ejs %>
+        </div>
+    </div>
+    <br>
+
+    <div class="container">
+        <% restaurant[0].reviews.forEach(function (review) {  %>
+            <!--<p><%= review %></p>-->
+            <% include partials/displayReview.ejs %>
+        <% }) %>
+    </div>
+
+    <br>
+    <div style="background: #f1f1f1;">
+        <div class="container" >
+            <% include partials/addReviewForm.ejs %>
+        </div>
+    </div>
+    <br>
+
+</main>
+
+<footer class="container">
+    <p>&copy; Company 2017-2018</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div class="card">
+
+    <div class="card-body">
+        <h6 class="card-title"><%= review.reviewTitle%></h6>
+        <p class="card-text"><%= review.review%></p>
+
+        <small>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">-- <%= review.postedBy %></span>
+        </span><!--/author schema -->
+        <span class="float-right">
+              <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                <meta itemprop="worstRating" content="1">
+                  <span itemprop="ratingValue"><%= review.score %></span>
+                <i class="fas fa-star"></i>
+              </span><!--/reviewRating-->
+        </small>
+    </div>
+</div>

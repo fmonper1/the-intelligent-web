@@ -37,9 +37,17 @@ router.post('/radius', restaurant.queryByRadius);
 
 router.get('/restaurant/:id', function (req, res, next) {
     console.log('ID:', req.params.id);
-    restaurant.findOneRestaurant(req.params.id, req, res);
+    return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
+        console.log("result");
+        console.log(result);
+        res.render('restaurant', {title: result[0].name, restaurant: result});
+    });
+
 });
 
 router.post('/restaurant/:id', restaurant.findOneRestaurant);
+
+router.post('/restaurant/:id/addReview', restaurant.addReview);
+
 
 module.exports = router;

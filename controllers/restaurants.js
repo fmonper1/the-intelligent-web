@@ -53,23 +53,27 @@ exports.findOneRestaurant = function(index, req, res) {
     if (index == null) {
         res.status(403).send('No data sent!')
     }
-    try {
+    return new Promise(function (fulfill, reject){
+
+        try {
         var query = {};
         //query['_id'] = [ObjectID(index)];
         console.log(query);
         Restaurant.find(ObjectId(index),
-            function (err, restaurants) {
+            function (err, result) {
                 if (err)
                     res.status(500).send('Invalid data!');
-                console.log(restaurants);
-
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(restaurants));
+                //console.log(result);
+                fulfill(result) ;
+                //res.setHeader('Content-Type', 'application/json');
+                //res.send(JSON.stringify(restaurants));
             });
-    } catch (e) {
-        res.status(500).send('error ' + e);
-        console.log(e);
-    }
+        } catch (e) {
+            res.status(500).send('error ' + e);
+            console.log(e);
+            reject(e);
+        }
+    });
 }
 
 exports.insert = function (req, res) {
@@ -143,6 +147,33 @@ exports.queryByRadius = function(req, res) {
 
         });
 
+    } catch (e) {
+        res.status(500).send('error ' + e);
+    }
+}
+
+exports.addReview = function (index,req, res) {
+    console.log(index);
+    var userData = req.body;
+    if (userData == null) {
+        res.status(403).send('No data sent!')
+    }
+    try {
+        var restaurant = new Restaurant({
+            name: userData.name,
+            typeOfCuisine: userData.cuisine,
+            address: userData.address
+        });
+        console.log('received: ' + restaurant);
+
+        restaurant.save(function (err, results) {
+            console.log(results._id);
+            if (err)
+                res.status(500).send('Invalid data!');
+
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(restaurant));
+        });
     } catch (e) {
         res.status(500).send('error ' + e);
     }

@@ -1,0 +1,81 @@
+<!--<div class="card">-->
+    <!--<div class="card-body">-->
+        <div class="text-center">
+            <h3><%= restaurant[0].rating.averageScore %>/5</h3>
+            <% for(i=0; i<Math.round(restaurant[0].rating.averageScore); i++) {%>
+                <i class="fas fa-star"></i>
+            <%} %>
+            <% for(i=0; i<(5-Math.round(restaurant[0].rating.averageScore)); i++) {%>
+                <i class="far fa-star"></i>
+            <%} %>
+        </div>
+
+
+    <div class="row">
+
+        <div class="col-3 col-md-3 text-right">
+            5stars
+        </div>
+        <div class="col-8 col-md-9">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: <%= (restaurant[0].rating.score5)/(restaurant[0].reviews.length)*100%>%;"
+                     aria-valuenow="<%= (restaurant[0].rating.score5)/(restaurant[0].reviews.length)*100%>" aria-valuemin="0" aria-valuemax="100">
+                    <%=restaurant[0].rating.score5%>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3 text-right">
+            4stars
+        </div>
+        <div class="col-8 col-md-9">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: <%= (restaurant[0].rating.score4)/(restaurant[0].reviews.length)*100%>%;"
+                     aria-valuenow="<%= (restaurant[0].rating.score4)/(restaurant[0].reviews.length)*100%>" aria-valuemin="0" aria-valuemax="100">
+                    <%=restaurant[0].rating.score4%>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3 text-right">
+            3stars
+        </div>
+        <div class="col-8 col-md-9">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: <%= (restaurant[0].rating.score3)/(restaurant[0].reviews.length)*100%>%;"
+                     aria-valuenow="<%= (restaurant[0].rating.score3)/(restaurant[0].reviews.length)*100%>" aria-valuemin="0" aria-valuemax="100">
+                    <%=restaurant[0].rating.score3%>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3 text-right">
+            2stars
+        </div>
+        <div class="col-8 col-md-9">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: <%= (restaurant[0].rating.score2)/(restaurant[0].reviews.length)*100%>%;"
+                     aria-valuenow="<%= (restaurant[0].rating.score2)/(restaurant[0].reviews.length)*100%>" aria-valuemin="0" aria-valuemax="100">
+                    <%=restaurant[0].rating.score2%>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3 text-right">
+            1star
+        </div>
+        <div class="col-8 col-md-9">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: <%= (restaurant[0].rating.score1)/(restaurant[0].reviews.length)*100%>%;"
+                     aria-valuenow="<%= (restaurant[0].rating.score1)/(restaurant[0].reviews.length)*100%>" aria-valuemin="0" aria-valuemax="100">
+                    <%=restaurant[0].rating.score1%>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--</div>-->
+<!--</div>-->

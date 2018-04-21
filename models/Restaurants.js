@@ -2,6 +2,16 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+var ReviewSchema = new Schema(
+    {
+        postedData: Date,
+        postedBy: String,
+        score: Number,
+        reviewTitle:String,
+        review: String
+    }
+);
+
 var Restaurant = new Schema(
     {
         name: {type: String, required: true, max: 100},
@@ -16,14 +26,15 @@ var Restaurant = new Schema(
             index: '2dSphere'
         },
         addedBy: {type: String}, // user id of the owner
-        reviews: [
-            {postedData: Date,
-            postedBy: String,
-            score: Number,
-            review: String}
-        ]
-
-        //whatever: {type: String} //any other field
+        rating: {
+            averageScore: Number,
+            score1: Number,
+            score2: Number,
+            score3: Number,
+            score4: Number,
+            score5: Number,
+        },
+        reviews: [ReviewSchema]
     }
 );
 
