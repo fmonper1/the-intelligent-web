@@ -1,4 +1,5 @@
 var Restaurant = require('../models/Restaurants');
+var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
 
 exports.queryDB = function (req, res) {
@@ -152,29 +153,53 @@ exports.queryByRadius = function(req, res) {
     }
 }
 
-exports.addReview = function (index,req, res) {
-    console.log(index);
-    var userData = req.body;
-    if (userData == null) {
-        res.status(403).send('No data sent!')
-    }
-    try {
-        var restaurant = new Restaurant({
-            name: userData.name,
-            typeOfCuisine: userData.cuisine,
-            address: userData.address
-        });
-        console.log('received: ' + restaurant);
+exports.addReview = function ( req, res) {
+    var data = req.body;
+    console.log(req.params.id);
+    return new Promise(function (fulfill, reject){
+        if (data.userScore == null) {
+            reject("NoData");
+        }
+        try {
+            var review = new Review({
+                postedData: Date.now(),
+                postedBy: "none",
+                score: data.userScore,
+                reviewTitle: data.reviewTitle,
+                review: data.reviewBody
+            });
+            console.log('received: ' + review);
 
-        restaurant.save(function (err, results) {
-            console.log(results._id);
-            if (err)
-                res.status(500).send('Invalid data!');
+            //construct query to update a specific rating field in the docs
+            var toUpdate = "rating.score"+data.userScore;
+            var queryExec = {};
+            queryExec[toUpdate] = +1;
 
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(restaurant));
-        });
-    } catch (e) {
-        res.status(500).send('error ' + e);
-    }
+
+            Restaurant.findOneAndUpdate(
+                {_id: req.params.id},
+                {
+                    $push: {
+                        "reviews": review
+                    },
+                    $inc: queryExec
+                },
+                {safe: true, upsert: true, new : true},
+                function(err, model) {
+                    if(err) console.log(err);
+                    fulfill(model);
+
+                });
+            // restaurant.save(function (err, results) {
+            //     console.log(results._id);
+            //     if (err)
+            //         res.status(500).send('Invalid data!');
+            //
+            //     res.setHeader('Content-Type', 'application/json');
+            //     res.send(JSON.stringify(restaurant));
+            // });
+        } catch (e) {
+            reject(e);
+        }
+    });
 }

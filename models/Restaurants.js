@@ -1,16 +1,19 @@
-var mongoose = require('mongoose');
+
+var mongoose = require('mongoose'),
+    Review = require('./Reviews.js'),
+    ReviewSchema = mongoose.model('Review').schema;
 
 var Schema = mongoose.Schema;
 
-var ReviewSchema = new Schema(
-    {
-        postedData: Date,
-        postedBy: String,
-        score: Number,
-        reviewTitle:String,
-        review: String
-    }
-);
+// var Review = new Schema(
+//     {
+//         postedData: Date,
+//         postedBy: String,
+//         score: Number,
+//         reviewTitle:String,
+//         review: String
+//     }
+// );
 
 var Restaurant = new Schema(
     {
@@ -51,5 +54,8 @@ var Restaurant = new Schema(
 
 
 var restaurantModel = mongoose.model('Restaurant', Restaurant );
+// var reviewModel = mongoose.model('Review', Review);
+
 
 module.exports = restaurantModel;
+// module.exports = reviewModel;
