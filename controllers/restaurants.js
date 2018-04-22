@@ -41,7 +41,7 @@ exports.queryDB = function (req, res) {
                 //         address: firstElem.address
                 //     };
                 // }
-                res.setHeader('Content-Type', 'application/json');
+                // res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(restaurants));
             });
     } catch (e) {

@@ -1,3 +1,21 @@
+function initializeMap(lat,lng) {
+    console.log( "ready!" );
+    var map = new GMaps({
+        div: '#map',
+        lat: lat,
+        lng: lng,
+        height: '200px',
+        zoom: 13,
+    });
+    map.addMarker({
+        lat: lat,
+        lng: lng,
+        // title: data[i].name,
+        // click: function(e) {
+        //     alert('You clicked in this marker');
+        // }
+    });
+};
 
 function onSubmit(url) {
     console.log("Submitted form");
