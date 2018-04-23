@@ -1,8 +1,4 @@
-var reviewCount;
 
-$(function() {
-    console.log(restaurants[0].name);
-});
 function initializeMap(lat,lng) {
     console.log( "ready!" );
     var map = new GMaps({
@@ -25,9 +21,18 @@ function initializeMap(lat,lng) {
 function onSubmit(url) {
     console.log("Submitted form");
     event.preventDefault();
+    $('#submitReview').prop("disabled", true);
+    $('#whatsHappening').html("Sending form");
     retrieveValues()
         .then(function(data) {
             sendAjaxQuery(url, data)
+
+        })
+        .then(function(data) {
+            $('#submitReviewForm').slideUp(400, function () {
+                $('#whatsHappening').html("Your review was added to the system");
+
+            });
         })
         .catch();
 

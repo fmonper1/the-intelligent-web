@@ -5,16 +5,6 @@ var mongoose = require('mongoose'),
 
 var Schema = mongoose.Schema;
 
-// var Review = new Schema(
-//     {
-//         postedData: Date,
-//         postedBy: String,
-//         score: Number,
-//         reviewTitle:String,
-//         review: String
-//     }
-// );
-
 var Restaurant = new Schema(
     {
         name: {type: String, required: true, max: 100},

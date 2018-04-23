@@ -167,8 +167,9 @@ exports.addReview = function ( req, res) {
         }
         try {
             var review = new Review({
-                postedData: Date.now(),
-                postedBy: "none",
+                postedDate: Date.now(),
+                postedBy: data.posterName,
+                posterID: ObjectId(data.posterID),
                 score: data.userScore,
                 reviewTitle: data.reviewTitle,
                 review: data.reviewBody
@@ -179,7 +180,7 @@ exports.addReview = function ( req, res) {
             var toUpdate = "rating.score"+data.userScore;
             var queryExec = {};
             queryExec[toUpdate] = +1;
-            queryExec['totalScore'] = +data.userScore
+            queryExec['rating.totalScore'] = +data.userScore
 
             Restaurant.findOneAndUpdate(
                 {_id: req.params.id},

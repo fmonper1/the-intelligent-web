@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var bodyParser= require("body-parser");
 
-
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
 initDB.init();

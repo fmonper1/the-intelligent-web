@@ -1,4 +1,11 @@
-<form onsubmit="onSubmit('/restaurant/<%=restaurant[0]._id%>/addReview')">
+<form id="submitReviewForm" onsubmit="onSubmit('/restaurant/<%=restaurant[0]._id%>/addReview')">
+
+    <div class="form-group">
+        <label for="posterName">Posting as:</label>
+        <input type="text" readonly class="form-control-plaintext" id="posterName" name="posterName" value="<%=user.name%>">
+        <input type="text" readonly class="form-control-plaintext" id="posterID" name="posterID" value="<%=user._id%>">
+    </div>
+
     <div class="form-group">
         <div>Select A Score</div>
         <div class="form-check form-check-inline">
@@ -40,5 +47,6 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submitReview">Submit</button>
 </form>
+<div id="whatsHappening"></div>

@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var Review = new Schema(
     {
-        postedData: Date,
+        postedDate: Date,
         postedBy: String,
         score: Number,
         reviewTitle:String,
