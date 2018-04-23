@@ -1,3 +1,8 @@
+var reviewCount;
+
+$(function() {
+    console.log(restaurants[0].name);
+});
 function initializeMap(lat,lng) {
     console.log( "ready!" );
     var map = new GMaps({

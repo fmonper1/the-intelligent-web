@@ -24,6 +24,7 @@ exports.init= function() {
     //     addedBy: "admin",
     //     rating: {
     //         averageScore: 3.5,
+    //          totalScore: 7,
     //             score1: 0,
     //             score2: 0,
     //             score3: 1,

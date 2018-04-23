@@ -31,6 +31,7 @@ var Restaurant = new Schema(
         addedBy: {type: String}, // user id of the owner
         rating: {
             averageScore: Number,
+            totalScore: Number,
             score1: Number,
             score2: Number,
             score3: Number,

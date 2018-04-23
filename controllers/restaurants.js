@@ -174,7 +174,7 @@ exports.addReview = function ( req, res) {
             var toUpdate = "rating.score"+data.userScore;
             var queryExec = {};
             queryExec[toUpdate] = +1;
-
+            queryExec['totalScore'] = +data.userScore
 
             Restaurant.findOneAndUpdate(
                 {_id: req.params.id},
@@ -182,7 +182,8 @@ exports.addReview = function ( req, res) {
                     $push: {
                         "reviews": review
                     },
-                    $inc: queryExec
+                    $inc: queryExec,
+
                 },
                 {safe: true, upsert: true, new : true},
                 function(err, model) {
@@ -190,14 +191,7 @@ exports.addReview = function ( req, res) {
                     fulfill(model);
 
                 });
-            // restaurant.save(function (err, results) {
-            //     console.log(results._id);
-            //     if (err)
-            //         res.status(500).send('Invalid data!');
-            //
-            //     res.setHeader('Content-Type', 'application/json');
-            //     res.send(JSON.stringify(restaurant));
-            // });
+
         } catch (e) {
             reject(e);
         }

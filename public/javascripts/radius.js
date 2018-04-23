@@ -114,4 +114,5 @@ $(function() {
         height: '500px',
         zoom: 12,
     });
+    console.log(restaurants[0].name);
 });

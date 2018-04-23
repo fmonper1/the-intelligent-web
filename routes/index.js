@@ -36,14 +36,6 @@ router.get('/logout', auth.logout);
 
 module.exports = router;
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//     res.render('index', { title: 'My Form' });
-// });
-// router.get('/index', function(req, res, next) {
-//   res.render('index', { title: 'My Form' });
-// });
-
 router.post('/index', restaurant.queryDB);
 
 

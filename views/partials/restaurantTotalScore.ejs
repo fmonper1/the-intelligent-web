@@ -1,11 +1,11 @@
 <!--<div class="card">-->
     <!--<div class="card-body">-->
         <div class="text-center">
-            <h3><%= restaurant[0].rating.averageScore %>/5</h3>
-            <% for(i=0; i<Math.round(restaurant[0].rating.averageScore); i++) {%>
+            <h3><%= restaurant[0].rating.totalScore/restaurant[0].reviews.length %>/5</h3>
+            <% for(i=0; i<Math.round(restaurant[0].rating.totalScore/restaurant[0].reviews.length); i++) {%>
                 <i class="fas fa-star"></i>
             <%} %>
-            <% for(i=0; i<(5-Math.round(restaurant[0].rating.averageScore)); i++) {%>
+            <% for(i=0; i<(5-Math.round(restaurant[0].rating.totalScore/restaurant[0].reviews.length)); i++) {%>
                 <i class="far fa-star"></i>
             <%} %>
         </div>
