@@ -10,6 +10,11 @@ exports.queryDB = function (req, res) {
     try {
         var query = {};
         query['$and']=[];
+        if (userData.city.length > 0) {
+            //var x = userData.city.split(",");
+            //regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
+            query["$and"].push({ "address.city":  { $regex : new RegExp(userData.city, "i") }}); // add to the query object
+        }
         if (userData.name.length > 0) {
             var x = userData.name.split(",");
             regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
@@ -19,9 +24,6 @@ exports.queryDB = function (req, res) {
             var x = userData.cuisine.split(",");
             regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
             query["$and"].push({ typeOfCuisine: {$in : regex }});
-        }
-        if(userData.postcode.length > 0){
-            query["$and"].push({ "address.postcode" :  { $regex : new RegExp(userData.postcode, "i") } });
         }
         if(userData.street.length > 0){
             query["$and"].push({ "address.streetName" :  { $regex : new RegExp(userData.street, "i") } });
