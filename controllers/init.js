@@ -4,13 +4,13 @@ var Restaurant = require('../models/Restaurants');
 
 exports.init= function() {
     // uncomment if you need to drop the database
-
+    //
     // Restaurant.remove({}, function(err) {
-    //    console.log('collection removed')
+    //     console.log('collection removed')
     // });
     //
     //
-    //
+
     // var restaurant = new Restaurant({
     //     restaurant_tid: 1,
     //     name: 'DrDonnonMaxRestaurant2',

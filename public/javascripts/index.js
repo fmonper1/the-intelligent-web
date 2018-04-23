@@ -10,7 +10,14 @@ $(function() { //load the map on page.ready
         zoom: 12,
     });
 });
-
+function myFunction(){
+    var x = document.getElementById("advancedForm");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 
 function sendAjaxQuery(url, data) {
