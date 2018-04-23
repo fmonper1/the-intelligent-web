@@ -16,8 +16,8 @@ exports.queryDB = function (req, res) {
             query["$and"].push({ name: {$in: regex}}); // add to the query object
         }
         if(userData.cuisine.length > 0){
-            var x = userData.cuisine.split(",");
-            regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
+            var y = userData.cuisine.split(",");
+            regex = y.map(function (e) { return new RegExp(e.trim(),"i");});
             query["$and"].push({ typeOfCuisine: {$in : regex }});
         }
         if(userData.postcode.length > 0){
@@ -26,7 +26,7 @@ exports.queryDB = function (req, res) {
         if(userData.street.length > 0){
             query["$and"].push({ "address.streetName" :  { $regex : new RegExp(userData.street, "i") } });
         }
-        console.log(query)
+        console.log(query);
 
         Restaurant.find(query,
             'name typeOfCuisine address',
@@ -41,13 +41,13 @@ exports.queryDB = function (req, res) {
                 //         address: firstElem.address
                 //     };
                 // }
-                // res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(restaurants));
             });
     } catch (e) {
         res.status(500).send('error ' + e);
     }
-}
+};
 
 exports.findOneRestaurant = function(index, req, res) {
     //var userData = req.params.id;
@@ -75,7 +75,7 @@ exports.findOneRestaurant = function(index, req, res) {
             reject(e);
         }
     });
-}
+};
 
 exports.insert = function (req, res) {
     var userData = req.body;
@@ -86,7 +86,10 @@ exports.insert = function (req, res) {
         var restaurant = new Restaurant({
             name: userData.name,
             typeOfCuisine: userData.cuisine,
-            address: userData.address
+            address: {
+                streetName: userData.streetName,
+                postcode: userData.postcode,
+            }
         });
         console.log('received: ' + restaurant);
 
@@ -101,7 +104,7 @@ exports.insert = function (req, res) {
     } catch (e) {
         res.status(500).send('error ' + e);
     }
-}
+};
 
 exports.queryByRadius = function(req, res) {
     var userData = req.body;
@@ -109,7 +112,7 @@ exports.queryByRadius = function(req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        console.log("data to post")
+        console.log("data to post");
         console.log(userData);
 
         var limit = userData.limit || 10;
@@ -151,7 +154,7 @@ exports.queryByRadius = function(req, res) {
     } catch (e) {
         res.status(500).send('error ' + e);
     }
-}
+};
 
 exports.addReview = function ( req, res) {
     var data = req.body;
@@ -202,4 +205,4 @@ exports.addReview = function ( req, res) {
             reject(e);
         }
     });
-}
+};
