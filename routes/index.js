@@ -57,8 +57,8 @@ router.post('/radius', restaurant.queryByRadius);
 router.get('/restaurant/:id', function (req, res, next) {
     console.log('ID:', req.params.id);
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
-        console.log("result");
-        console.log(result);
+        // console.log("result");
+        // console.log(result);
         res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user});
     });
 

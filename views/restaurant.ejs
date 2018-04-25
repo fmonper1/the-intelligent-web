@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <% include partials/page_head %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <!-- Google Maps JS API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
     <script src="/javascripts/gmaps.js"></script>
     <script src="/javascripts/restaurant.js"></script>
+
 </head>
 
 <body>
@@ -16,17 +19,15 @@
     <div class="container">
 
         <h3><%= restaurant[0].name %></h3>
-        <% restaurant[0].typeOfCuisine.forEach(function (type) {  %>
-            <%= type %>
-        <% }) %>
 
+        <%= restaurant[0].typeOfCuisine.join(", ")%>
         <div class="card" >
             <img class="card-img-top" src="https://cdn.theculturetrip.com/wp-content/uploads/2016/02/restaurant-939435_960_720.jpg" alt="Card image cap">
 
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= restaurant[0].address %></li>
-                <li class="list-group-item">Telephone Nº</li>
-                <li class="list-group-item">Website</li>
+                <li class="list-group-item"><%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %></li>
+                <li class="list-group-item">Telephone Nº: <%= restaurant[0].contactDetails.telephone%></li>
+                <li class="list-group-item">Website: <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a></li>
             </ul>
         </div>
 

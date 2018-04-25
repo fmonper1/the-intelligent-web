@@ -15,11 +15,17 @@ exports.init= function() {
     //     restaurant_tid: 1,
     //     name: 'DrDonnonMaxRestaurant2',
     //     typeOfCuisine: ['Fast Food', 'Chicken'],
-    //     address: {streetName:'West Street',
+    //     address: {
+    //     streetName:'West Street',
     //         city: 'Sheffield',
     //         postcode: 'S37bw',
     //         county:'South Yorkshire',
-    //         country: 'England'},
+    //         country: 'England'
+    //     },
+    //     contactDetails: {
+    //         telephone: "9222334398",
+    //         website: "http://localhost:3003"
+    //     },
     //     loc: [-1.4805868000000002, 53.39016050000001],
     //     addedBy: "admin",
     //     rating: {

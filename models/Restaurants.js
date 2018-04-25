@@ -9,16 +9,27 @@ var Restaurant = new Schema(
     {
         name: {type: String, required: true, max: 100},
         typeOfCuisine: [{type: String, required: true, max: 100}],
-        address: {streetName : String,
+
+        address: {
+            streetName : String,
             city:String,
             postcode:String,
             county:String,
-            country:String},
+            country:String
+        },
+
+        contactDetails: {
+            telephone: String,
+            website: String,
+        },
+
         loc: {
             type: [Number], // [<longitude>, <latitude>]
             index: '2dSphere'
         },
+
         addedBy: {type: String}, // user id of the owner
+
         rating: {
             averageScore: Number,
             totalScore: Number,
@@ -43,10 +54,6 @@ var Restaurant = new Schema(
 //
 // Character.set('toObject', {getters: true, virtuals: true});
 
-
 var restaurantModel = mongoose.model('Restaurant', Restaurant );
-// var reviewModel = mongoose.model('Review', Review);
-
 
 module.exports = restaurantModel;
-// module.exports = reviewModel;

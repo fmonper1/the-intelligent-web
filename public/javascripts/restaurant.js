@@ -1,3 +1,4 @@
+var socket = io();
 
 function initializeMap(lat,lng) {
     console.log( "ready!" );
@@ -31,25 +32,10 @@ function onSubmit(url) {
         .then(function(data) {
             $('#submitReviewForm').slideUp(400, function () {
                 $('#whatsHappening').html("Your review was added to the system");
-
+                socket.emit('addedReview', data);
             });
         })
         .catch();
-
-    // getLocation()
-    //     .then(function(data) {
-    //         console.log("getLocationDone");
-    //         return data = retrieveValues(url);
-    //     })
-    //     .then(function(data) {
-    //         console.log("retireveDone");
-    //         retirevedData = sendAjaxQuery(url, data);
-    //         return data;
-    //     })
-    //     // .then(function(data) {
-    //     //     console.log(retrievedData);
-    //     // })
-    //     .catch()
 }
 
 function retrieveValues() {
@@ -59,10 +45,10 @@ function retrieveValues() {
         for (index in formArray) {
             data[formArray[index].name] = formArray[index].value;
         }
-        if(!data.userScore) reject("No score given")
+        if (!data.userScore) reject("No score given");
         fulfill(data);
+        //sendAjaxQuery(url, data);
     });
-    //sendAjaxQuery(url, data);
 }
 
 
@@ -80,9 +66,7 @@ function sendAjaxQuery(url, data) {
                 // addMarkers(ret);
             },
             error: function (xhr, status, error) {
-                // alert('Error: ' + error.message);
                 reject(error);
-                // console.log(error);
             }
         });
     });
