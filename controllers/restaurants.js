@@ -191,11 +191,12 @@ exports.addReview = function ( req, res) {
                     $inc: queryExec,
 
                 },
-                {safe: true, upsert: true, new : true},
+                {
+                    safe: true, upsert: true, new : true
+                },
                 function(err, model) {
                     if(err) console.log(err);
                     fulfill(model);
-
                 });
 
         } catch (e) {

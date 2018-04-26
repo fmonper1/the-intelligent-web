@@ -1,4 +1,4 @@
-var socket = io();
+
 
 function initializeMap(lat,lng) {
     console.log( "ready!" );
@@ -24,18 +24,38 @@ function onSubmit(url) {
     event.preventDefault();
     $('#submitReview').prop("disabled", true);
     $('#whatsHappening').html("Sending form");
+
     retrieveValues()
         .then(function(data) {
             sendAjaxQuery(url, data)
-
         })
         .then(function(data) {
             $('#submitReviewForm').slideUp(400, function () {
                 $('#whatsHappening').html("Your review was added to the system");
-                socket.emit('addedReview', data);
             });
         })
         .catch();
+}
+
+function getExample() {
+    var a = retrieveValues();
+    var b = a.then(function(data) {
+        // some processing
+        return sendAjaxQuery(url, data);
+    });
+    var c = b.then(function (data) {
+        $('#submitReviewForm').slideUp(400, function () {
+            $('#whatsHappening').html("Your review was added to the system");
+        });
+        console.log(data);
+    })
+    return Promise.all([a, b]).then(function([resultA, resultB]) {
+        $('#submitReviewForm').slideUp(400, function () {
+            $('#whatsHappening').html("Your review was added to the system");
+        });
+        console.log(data);
+        return // something using both resultA and resultB
+    });
 }
 
 function retrieveValues() {

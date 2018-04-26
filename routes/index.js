@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser= require("body-parser");
 
+
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
 initDB.init();
@@ -57,8 +58,8 @@ router.post('/radius', restaurant.queryByRadius);
 router.get('/restaurant/:id', function (req, res, next) {
     console.log('ID:', req.params.id);
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
-        // console.log("result");
-        // console.log(result);
+        // io.sockets.on('connection', "a user conecter v2" );
+
         res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user});
     });
 
