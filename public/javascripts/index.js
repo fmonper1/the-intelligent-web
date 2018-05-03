@@ -1,14 +1,30 @@
 var map; //store map in a var
+var userCoords;
+
 
 $(function() { //load the map on page.ready
     console.log( "ready!" );
-    map = new GMaps({
-        div: '#map',
-        lat: 53.387507,
-        lng: -1.470275,
-        height: '300px',
-        zoom: 12,
+    getLocation().then(function(data) {
+        userCoords = data;
+        map = new GMaps({
+            div: '#map',
+            lat: data.latitude,
+            lng: data.longitude,
+            height: '300px',
+            zoom: 12,
+        });
+
+        map.addMarker({
+            lat: data.latitude,
+            lng: data.longitude,
+            title: "Your position",
+            infoWindow: {
+                content: '<p>Your last retrieved position</p>'
+            }
+        });
+
     });
+
 });
 
 
@@ -37,6 +53,7 @@ function sendAjaxQuery(url, data) {
 }
 
 function displayResultsNicely(data) {
+    $("#results").innerHTML("");
     for(i in data) {
         $('#results').append("<p>"
             +JSON.stringify(data[i])+

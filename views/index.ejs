@@ -15,29 +15,43 @@
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <form id=“xForm" onsubmit="onSubmitRadius('/index')">
-      <div class="form-group">
-        <label for='firstname'>City:</label>
-        <input class="form-control" type="text" name="city" id="city" >
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          Link with href
-        </a>
-        <div class="collapse" id="collapseExample">
-          <p><label for='lastname'>Restaurant Name:</label>
-            <input class="form-control" type="text" name="name" id="name" >
-          </p>
-        <p><label for='lastname'>Cuisine:</label>
-          <input class="form-control" type="text" name="cuisine" id="cuisine" >
-        </p>
+    <div class="container">
 
+        <form id=“xForm" onsubmit="onSubmitRadius('/index')">
 
-        <p><label for='lastname'>Street:</label>
-          <input class="form-control" type="text" name="street" id="street" >
-        </p>
-        </div>
+            <div class="form-group">
 
-        <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
+                <!--<label for='firstname'>City:</label>-->
+
+                <input class="form-control" type="text" name="city" id="city" placeholder="Enter a city">
+
+                <div class="collapse" id="collapseExample">
+                    <p>
+                        <label for='lastname'>Restaurant Name:</label>
+                        <input class="form-control" type="text" name="name" id="name" >
+                    </p>
+                    <p>
+                        <label for='lastname'>Cuisine:</label>
+                        <input class="form-control" type="text" name="cuisine" id="cuisine" >
+                    </p>
+
+                    <p>
+                        <label for='lastname'>Street:</label>
+                        <input class="form-control" type="text" name="street" id="street" >
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Advanced Search
+                </a>
+
+                <input class="btn btn-primary" type="submit" name="g" value="Submit" id="g">
+
+            </div>
+
       </div>
     </form>
   </div>

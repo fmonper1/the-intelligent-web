@@ -37,7 +37,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/restaurant', index);
+
 
 var User = require('./models/Users');
 passport.use(new LocalStrategy(User.authenticate()));
