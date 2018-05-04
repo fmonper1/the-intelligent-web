@@ -4,7 +4,7 @@ var Restaurant = require('../models/Restaurants');
 
 exports.init= function() {
     // uncomment if you need to drop the database
-    //
+
     // Restaurant.remove({}, function(err) {
     //     console.log('collection removed')
     // });
@@ -12,11 +12,11 @@ exports.init= function() {
     //
     //
     // var restaurant = new Restaurant({
-    //     restaurant_tid: 1,
-    //     name: 'DrDonnonMaxRestaurant2',
-    //     typeOfCuisine: ['Fast Food', 'Chicken'],
+    //     name: 'PipasQuePican',
+    //     typeOfCuisine: ['Fast Food', 'Pipas'],
+    //     officialPhoto: "uploads/preview.jpg",
     //     address: {
-    //     streetName:'West Street',
+    //         streetName:'West Street',
     //         city: 'Sheffield',
     //         postcode: 'S37bw',
     //         county:'South Yorkshire',
@@ -26,7 +26,9 @@ exports.init= function() {
     //         telephone: "9222334398",
     //         website: "http://localhost:3003"
     //     },
-    //     loc: [-1.4805868000000002, 53.39016050000001],
+    //     loc: {
+    //         coordinates: [-1.48055, 53.39017]
+    //     },
     //     addedBy: "admin",
     //     rating: {
     //         averageScore: 3.5,

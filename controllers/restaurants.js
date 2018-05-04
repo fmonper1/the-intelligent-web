@@ -31,7 +31,7 @@ exports.queryDB = function (req, res) {
         console.log(query);
 
         Restaurant.find(query,
-            'name typeOfCuisine address',
+            'name typeOfCuisine address loc rating officialPhoto',
             function (err, restaurants) {
                 if (err)
                     res.status(500).send('Invalid data!');
@@ -132,23 +132,31 @@ exports.queryByRadius = function(req, res) {
         coords[1] = parseFloat(userData.latitude);
 
 
-        var query = Restaurant.find({
-            loc : { $nearSphere : coords, $maxDistance: maxDistance }
+        var query = Restaurant.find(
+            {loc : {
+                $near: {
+                    $geometry: {
+                        type: "Point" ,
+                        coordinates: coords
+                    },
+                    $maxDistance: maxDistance
+                }
+            }
         }).limit(limit);
 
         // var query = Restaurant.findOne({});
 
-        query.exec(function (err, city) {
+        query.exec(function (err, data) {
             if (err) {
                 console.log(err);
                 throw err;
             }
-
-            if (!city) {
+            if (!data) {
+                console.log("no data found");
                 res.json({});
             } else {
-                console.log('Cant save: Found city:' + city);
-                res.json(city);
+                console.log(data);
+                res.json(data);
             }
 
         });

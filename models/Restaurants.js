@@ -9,6 +9,7 @@ var Restaurant = new Schema(
     {
         name: {type: String, required: true, max: 100},
         typeOfCuisine: [{type: String, required: true, max: 100}],
+        officialPhoto: String,
 
         address: {
             streetName : String,
@@ -24,8 +25,8 @@ var Restaurant = new Schema(
         },
 
         loc: {
-            type: [Number], // [<longitude>, <latitude>]
-            index: '2dSphere'
+            type: {type: String, enum: "Point", default: "Point"},
+            coordinates: [Number], // [<longitude>, <latitude>]
         },
 
         addedBy: {type: String}, // user id of the owner
@@ -43,6 +44,8 @@ var Restaurant = new Schema(
     }
 );
 
+
+Restaurant.index({ "loc": "2dsphere" });
 
 // // Virtual for a character's age
 // Character.virtual('age')

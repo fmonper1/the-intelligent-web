@@ -37,27 +37,6 @@ function onSubmit(url) {
         .catch();
 }
 
-function getExample() {
-    var a = retrieveValues();
-    var b = a.then(function(data) {
-        // some processing
-        return sendAjaxQuery(url, data);
-    });
-    var c = b.then(function (data) {
-        $('#submitReviewForm').slideUp(400, function () {
-            $('#whatsHappening').html("Your review was added to the system");
-        });
-        console.log(data);
-    })
-    return Promise.all([a, b]).then(function([resultA, resultB]) {
-        $('#submitReviewForm').slideUp(400, function () {
-            $('#whatsHappening').html("Your review was added to the system");
-        });
-        console.log(data);
-        return // something using both resultA and resultB
-    });
-}
-
 function retrieveValues() {
     return new Promise(function (fulfill, reject) {
         var formArray = $('form').serializeArray();

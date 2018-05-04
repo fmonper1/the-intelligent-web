@@ -43,41 +43,55 @@
 
             </div>
 
-            <div class="form-group">
-                <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Advanced Search
-                </a>
+                <div class="form-group">
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Advanced Search
+                    </a>
 
-                <input class="btn btn-primary" type="submit" name="g" value="Submit" id="g">
+                <input class="btn btn-primary" type="submit" name="g" value="Search" id="g">
+
+                </div>
 
             </div>
+        </form>
+    </div>
 
-      </div>
+    <div class="container">
+
+        <form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
+            <div class="row">
+
+                <div class="col-12">
+                  <label for='searchRadius'>Or search for restaurants around you in a radius of</label>
+                </div>
+                <div class="col-9">
+                <select class="custom-select" name="searchRadius" id="searchRadius" >
+                  <option selected value="5">5km</option>
+                  <option value="10">10km</option>
+                  <option value="20">20km</option>
+                  <option value="50">50km</option>
+                </select>
+                </div>
+
+              <!-- keep this fields as hidden later on -->
+              <input type="hidden" name="longitude" id="longitude" placeholder="long">
+              <input type="hidden" name="latitude" id="latitude" placeholder="lat">
+
+
+                <div class="col-3">
+                    <input type="submit" name="g" value="Submit" id="g" class="btn btn-primary btn-block">
+                </div>
+            </div>
     </form>
   </div>
-  <div class="container">
 
-    <form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
-      <p><label for='searchRadius'>Or search for restaurants around you in a radius of</label>
+    <div class="container">
 
-        <select class="custom-select" name="searchRadius" id="searchRadius" >
-          <option selected value="5">5km</option>
-          <option value="10">10km</option>
-          <option value="20">20km</option>
-          <option value="50">50km</option>
-        </select>
-      </p>
-      <!-- keep this fields as hidden later on -->
-      <input type="hidden" name="longitude" id="longitude" placeholder="long">
-      <input type="hidden" name="latitude" id="latitude" placeholder="lat">
+      <div id="results" style="margin-top:30px"></div>
+      <div id="map"></div>
+    </div>
 
 
-      <p><input type="submit" name="g" value="Submit" id="g"></p>
-    </form>
-  </div>
-</div>
-<div id="results" style="margin-top:30px"></div>
-<div id="map"></div>
 
 
 <footer class="container">

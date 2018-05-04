@@ -53,24 +53,32 @@ function sendAjaxQuery(url, data) {
 }
 
 function displayResultsNicely(data) {
-    $("#results").innerHTML("");
+    $("#results").html("");
     for(i in data) {
-        $('#results').append("<p>"
-            +JSON.stringify(data[i])+
-            "<a href='/restaurant/"+data[i]._id+"'>view</a></p>");
+        $('#results').append("<p>" +
+            // + JSON.stringify(data[i]) + "<br>"
+            "<img src='"+ data[i].officialPhoto + "' style='width: 50px'><br>"
+            + data[i].name + "<br>"
+            + data[i].rating.averageScore + "/5 <br>"
+            + data[i].typeOfCuisine.join() + "<br>"
+
+            + "<a href='/restaurant/"+data[i]._id+"'>view</a></p>");
     }
 }
 
 function onSubmit(url) {
-    console.log('hello');
+    event.preventDefault();
+
     var formArray= $('form').serializeArray();
     var data={};
     for (index in formArray){
         data[formArray[index].name]= formArray[index].value;
     }
     // const data = JSON.stringify($(this).serializeArray());
-    sendAjaxQuery(url, data);
-    event.preventDefault();
+    sendAjaxQuery(url, data)
+    // sendAjaxQuery(url, data).then(function(){
+    //     console.log("query sent")
+    // });
 }
 
 function onSubmitRadius(url) {
@@ -80,8 +88,9 @@ function onSubmitRadius(url) {
             console.log("getLocationDone");
             return data = retrieveValues(url);
         })
-        .then(function() {
+        .then(function(data) {
             console.log("retrieveValuesDone");
+            console.log(data);
             return ret = sendAjaxQuery(url, data);
         })
         .then(function(ret) {
@@ -142,7 +151,7 @@ function getLocation() {
 function addMarkers(data) {
     for(i in data) {
         console.log(data[i].loc)
-        coords = data[i].loc;
+        coords = data[i].loc.coordinates;
         map.addMarker({
             lat: coords[1],
             lng: coords[0],
