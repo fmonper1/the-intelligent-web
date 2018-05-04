@@ -114,7 +114,7 @@ exports.queryByRadius = function(req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        console.log("data to post");
+        console.log("Data received in POST /radius");
         console.log(userData);
 
         var limit = userData.limit || 10;
@@ -130,11 +130,12 @@ exports.queryByRadius = function(req, res) {
         var coords = [];
         coords[0] = parseFloat(userData.longitude);
         coords[1] = parseFloat(userData.latitude);
+        console.log(coords);
 
 
         var query = Restaurant.find(
             {loc : {
-                $near: {
+                $nearSphere: {
                     $geometry: {
                         type: "Point" ,
                         coordinates: coords

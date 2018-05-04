@@ -26,7 +26,7 @@
 
         <%= restaurant[0].typeOfCuisine.join(", ")%>
         <div class="card" >
-            <img class="card-img-top" src="https://cdn.theculturetrip.com/wp-content/uploads/2016/02/restaurant-939435_960_720.jpg" alt="Card image cap">
+            <img class="card-img-top" src="../<%= restaurant[0].officialPhoto %>" alt="Card image cap">
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %></li>

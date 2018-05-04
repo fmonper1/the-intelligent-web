@@ -29,28 +29,36 @@ $(function() { //load the map on page.ready
 
 
 function sendAjaxQuery(url, data) {
-    $.ajax({
-        url: url ,
-        data: data,
-        dataType: 'json',
-        type: 'POST',
-        success: function (dataR) {
-            // no need to JSON parse the result, as we are using
-            // dataType:json, so JQuery knows it and unpacks the
-            // object for us before returning it
-            var ret = dataR;
-            // in order to have the object printed by alert
-            // we need to JSON stringify the object
-            //document.getElementById('results').innerHTML= JSON.stringify(ret);
-            displayResultsNicely(ret);
-            addMarkers(ret);
-            return ret;
-        },
-        error: function (xhr, status, error) {
-            alert('Error: ' + error.message);
-        }
+    return new Promise( (resolve, reject) => {
+
+
+        $.ajax({
+            url: url ,
+            data: data,
+            dataType: 'json',
+            type: 'POST',
+            success: function (dataR) {
+                // no need to JSON parse the result, as we are using
+                // dataType:json, so JQuery knows it and unpacks the
+                // object for us before returning it
+                var ret = dataR;
+                // in order to have the object printed by alert
+                // we need to JSON stringify the object
+                //document.getElementById('results').innerHTML= JSON.stringify(ret);
+                console.log(ret);
+                displayResultsNicely(ret);
+                addMarkers(ret);
+                // return ret;
+                resolve(ret);
+            },
+            error: function (xhr, status, error) {
+                alert('Error: ' + error.message);
+                reject(error);
+            }
+        });
     });
 }
+
 
 function displayResultsNicely(data) {
     $("#results").html("");
@@ -91,7 +99,10 @@ function onSubmitRadius(url) {
         .then(function(data) {
             console.log("retrieveValuesDone");
             console.log(data);
-            return ret = sendAjaxQuery(url, data);
+            sendAjaxQuery(url, data).then(function (data) {
+                console.log(data);
+            });
+
         })
         .then(function(ret) {
             console.log(ret);

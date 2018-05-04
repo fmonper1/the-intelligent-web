@@ -12,9 +12,9 @@ exports.init= function() {
     //
     //
     // var restaurant = new Restaurant({
-    //     name: 'PipasQuePican',
-    //     typeOfCuisine: ['Fast Food', 'Pipas'],
-    //     officialPhoto: "uploads/preview.jpg",
+    //     name: 'BurgerQueen',
+    //     typeOfCuisine: ['Fast Food', 'Burgers'],
+    //     officialPhoto: "uploads/burgerking.png",
     //     address: {
     //         streetName:'West Street',
     //         city: 'Sheffield',
@@ -27,7 +27,7 @@ exports.init= function() {
     //         website: "http://localhost:3003"
     //     },
     //     loc: {
-    //         coordinates: [-1.48055, 53.39017]
+    //         coordinates: [-1.4820851, 53.3816197],
     //     },
     //     addedBy: "admin",
     //     rating: {
