@@ -19,6 +19,9 @@ router.get('/index', function(req, res){
     res.render('index', { user: req.user });
 });
 
+router.post('/index', restaurant.queryDB);
+
+
 // route to register page
 router.get('/register', auth.register);
 
@@ -38,7 +41,6 @@ router.get('/logout', auth.logout);
 
 module.exports = router;
 
-router.post('/index', restaurant.queryDB);
 
 
 /* GET home page. */

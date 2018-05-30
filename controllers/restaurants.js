@@ -2,50 +2,132 @@ var Restaurant = require('../models/Restaurants');
 var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
 
+var NodeGeocoder = require('node-geocoder');
+
+var options = {
+    provider: 'google',
+
+    // Optional depending on the providers
+    httpAdapter: 'https', // Default
+    apiKey: 'AIzaSyDkAOYCfVVZKFmNvBUm9NfY20Up4SveaXQ', // for Mapquest, OpenCage, Google Premier
+    formatter: null         // 'gpx', 'string', ...
+};
+
+var geocoder = NodeGeocoder(options);
+
 exports.queryDB = function (req, res) {
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
-    try {
-        var query = {};
-        query['$and']=[];
-       if (userData.city.length > 0) {
-            //var x = userData.city.split(",");
-            //regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
-            query["$and"].push({ "address.city":  { $regex : new RegExp(userData.city, "i") }}); // add to the query object
-        }
-        if (userData.name.length > 0) {
-            var x = userData.name.split(",");
-            regex = x.map(function (e) { return new RegExp(e.trim(),"i");});
-            query["$and"].push({ name: {$in: regex}}); // add to the query object
-        }
-        if(userData.cuisine.length > 0){
-            var y = userData.cuisine.split(",");
-            regex = y.map(function (e) { return new RegExp(e.trim(),"i");});
-            query["$and"].push({ typeOfCuisine: {$in : regex }});
-        }
-        if(userData.street.length > 0){
-            query["$and"].push({ "address.streetName" :  { $regex : new RegExp(userData.street, "i") } });
-        }
-        console.log(query);
+    geocoder.geocode(userData.city)
+    .then(function(geocoded) {
+        try {
 
-        Restaurant.find(query,
-            'name typeOfCuisine address location rating officialPhoto',
-            function (err, restaurants) {
-                if (err)
-                    res.status(500).send('Invalid data!');
-                // var restaurant = null;
-                // if (restaurants.length > 0) {
-                //     var firstElem = restaurants[0];
-                //     restaurant = {
-                //         name: firstElem.name, cuisine: firstElem.typeOfCuisine,
-                //         address: firstElem.address
-                //     };
-                // }
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(restaurants));
+            console.log("geocoding:");
+            console.log(geocoded[0]);
+            var coords = [geocoded[0].longitude, geocoded[0].latitude];
+
+            var maxDistance = userData.searchRadius ;
+
+            // we need to convert the distance to radians
+            maxDistance /= 6371;
+
+            var query = Restaurant.find({
+                "location" : {
+                    $geoWithin : {
+                        $centerSphere : [coords, maxDistance ]
+                    }
+                }
+            },
+                'name typeOfCuisine address location rating officialPhoto'
+            ).limit(100);
+
+            query.exec(function (err, data) {
+                if (err) {
+                    console.log(err);
+                    throw err;
+                }
+                if (!data) {
+                    console.log("no data found");
+                    res.json({});
+                } else {
+                    console.log(data);
+                    res.json(data);
+                }
+
             });
+
+        } catch (e) {
+            res.status(500).send('error ' + e);
+        }
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+};
+
+
+exports.queryByRadius = function(req, res) {
+
+    var userData = req.body;
+    if (userData == null) {
+        res.status(403).send('No data sent!')
+    }
+    try {
+        console.log("Data received in POST /radius");
+        console.log(userData);
+
+        var limit = userData.limit || 10;
+
+        // get the max distance or set it to 8 kilometers
+        var maxDistance = userData.searchRadius || 8;
+
+        // we need to convert the distance to radians
+        // the raduis of Earth is approximately 6371 kilometers
+        maxDistance /= 6371;
+
+        // get coordinates [ <longitude> , <latitude> ]
+        var coords = [];
+        coords[0] = parseFloat(userData.longitude);
+        coords[1] = parseFloat(userData.latitude);
+        console.log(coords);
+
+        var query = Restaurant.find({
+            "location" : {
+                $geoWithin : {
+                    $centerSphere : [coords, maxDistance ]
+                }
+            }
+        }).limit(limit);
+
+        // var query = Restaurant.find(
+        //     {location : {
+        //         $nearSphere: {
+        //             $geometry: {
+        //                 type: "Point" ,
+        //                 coordinates: coords
+        //             },
+        //             $maxDistance: maxDistance
+        //         }
+        //     }
+        // })
+
+        query.exec(function (err, data) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            if (!data) {
+                console.log("no data found");
+                res.json({});
+            } else {
+                console.log(data);
+                res.json(data);
+            }
+
+        });
+
     } catch (e) {
         res.status(500).send('error ' + e);
     }
@@ -103,73 +185,6 @@ exports.insert = function (req, res) {
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(restaurant));
         });
-    } catch (e) {
-        res.status(500).send('error ' + e);
-    }
-};
-
-exports.queryByRadius = function(req, res) {
-    var userData = req.body;
-    if (userData == null) {
-        res.status(403).send('No data sent!')
-    }
-    try {
-        console.log("Data received in POST /radius");
-        console.log(userData);
-
-        var limit = userData.limit || 10;
-
-        // get the max distance or set it to 8 kilometers
-        var maxDistance = userData.searchRadius || 8;
-
-        // we need to convert the distance to radians
-        // the raduis of Earth is approximately 6371 kilometers
-        maxDistance /= 6371;
-
-        // get coordinates [ <longitude> , <latitude> ]
-        var coords = [];
-        coords[0] = parseFloat(userData.longitude);
-        coords[1] = parseFloat(userData.latitude);
-        console.log(coords);
-
-
-        // var query = Restaurant.find(
-        //     {location : {
-        //         $nearSphere: {
-        //             $geometry: {
-        //                 type: "Point" ,
-        //                 coordinates: coords
-        //             },
-        //             $maxDistance: maxDistance
-        //         }
-        //     }
-        // })
-
-        var query = Restaurant.find({
-            "location" : {
-                $geoWithin : {
-                    $centerSphere : [coords, maxDistance ]
-                }
-            }
-        }).limit(limit);
-
-        // var query = Restaurant.findOne({});
-
-        query.exec(function (err, data) {
-            if (err) {
-                console.log(err);
-                throw err;
-            }
-            if (!data) {
-                console.log("no data found");
-                res.json({});
-            } else {
-                console.log(data);
-                res.json(data);
-            }
-
-        });
-
     } catch (e) {
         res.status(500).send('error ' + e);
     }
