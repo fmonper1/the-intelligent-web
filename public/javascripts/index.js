@@ -93,7 +93,7 @@ function onSubmitRadius(url) {
     getLocation()
         .then(function() {
             console.log("getLocationDone");
-            return data = retrieveValues(url);
+            return retrieveValues(url);
         })
         .then(function(data) {
             console.log("retrieveValuesDone");
@@ -102,9 +102,6 @@ function onSubmitRadius(url) {
                 console.log(data);
             });
 
-        })
-        .then(function(ret) {
-            console.log(ret);
         })
         .catch(function (error) {
             console.log(error.message)
