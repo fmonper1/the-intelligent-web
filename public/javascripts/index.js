@@ -10,7 +10,7 @@ $(function() { //load the map on page.ready
             div: '#map',
             lat: data.latitude,
             lng: data.longitude,
-            height: '300px',
+            height: '125px',
             zoom: 12,
         });
 
@@ -63,14 +63,14 @@ function sendAjaxQuery(url, data) {
 function displayResultsNicely(data) {
     $("#results").html("");
     for(i in data) {
-        $('#results').append("<p>" +
+        $('#results').append("" +
             // + JSON.stringify(data[i]) + "<br>"
-            "<img src='"+ data[i].officialPhoto + "' style='width: 50px'><br>"
-            + data[i].name + "<br>"
+            "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a></div>" +
+            "<div class='col-9'>"+ data[i].name + "<br>"
             + data[i].rating.averageScore + "/5 <br>"
             + data[i].typeOfCuisine.join() + "<br>"
 
-            + "<a href='/restaurant/"+data[i]._id+"'>view</a></p>");
+            + "<a href='/restaurant/"+data[i]._id+"'>view</a></div>");
     }
 }
 
@@ -161,8 +161,8 @@ function getLocation() {
 
 function addMarkers(data) {
     for(i in data) {
-        console.log(data[i].loc)
-        coords = data[i].loc.coordinates;
+        console.log(data[i].location)
+        coords = data[i].location.coordinates;
         map.addMarker({
             lat: coords[1],
             lng: coords[0],

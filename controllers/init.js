@@ -8,11 +8,9 @@ exports.init= function() {
     // Restaurant.remove({}, function(err) {
     //     console.log('collection removed')
     // });
-    //
-    //
-    //
+
     // var restaurant = new Restaurant({
-    //     name: 'BurgerQueen',
+    //     name: 'BurgerQueen2',
     //     typeOfCuisine: ['Fast Food', 'Burgers'],
     //     officialPhoto: "uploads/burgerking.png",
     //     address: {
@@ -26,7 +24,8 @@ exports.init= function() {
     //         telephone: "9222334398",
     //         website: "http://localhost:3003"
     //     },
-    //     loc: {
+    //     location: {
+    //         type: "Point",
     //         coordinates: [-1.4820851, 53.3816197],
     //     },
     //     addedBy: "admin",

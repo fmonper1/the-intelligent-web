@@ -31,7 +31,7 @@ exports.queryDB = function (req, res) {
         console.log(query);
 
         Restaurant.find(query,
-            'name typeOfCuisine address loc rating officialPhoto',
+            'name typeOfCuisine address location rating officialPhoto',
             function (err, restaurants) {
                 if (err)
                     res.status(500).send('Invalid data!');
@@ -133,14 +133,22 @@ exports.queryByRadius = function(req, res) {
         console.log(coords);
 
 
-        var query = Restaurant.find(
-            {loc : {
-                $nearSphere: {
-                    $geometry: {
-                        type: "Point" ,
-                        coordinates: coords
-                    },
-                    $maxDistance: maxDistance
+        // var query = Restaurant.find(
+        //     {location : {
+        //         $nearSphere: {
+        //             $geometry: {
+        //                 type: "Point" ,
+        //                 coordinates: coords
+        //             },
+        //             $maxDistance: maxDistance
+        //         }
+        //     }
+        // })
+
+        var query = Restaurant.find({
+            "location" : {
+                $geoWithin : {
+                    $centerSphere : [coords, maxDistance ]
                 }
             }
         }).limit(limit);

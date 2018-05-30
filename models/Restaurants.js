@@ -24,8 +24,8 @@ var Restaurant = new Schema(
             website: String,
         },
 
-        loc: {
-            type: {type: String, enum: "Point", default: "Point"},
+        location: {
+            type: {type:String},
             coordinates: [Number], // [<longitude>, <latitude>]
         },
 
@@ -44,8 +44,7 @@ var Restaurant = new Schema(
     }
 );
 
-
-Restaurant.index({ "loc": "2dsphere" });
+Restaurant.index({location: '2dsphere'});
 
 // // Virtual for a character's age
 // Character.virtual('age')

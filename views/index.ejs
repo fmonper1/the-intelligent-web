@@ -6,6 +6,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
   <script src="/javascripts/gmaps.js"></script>
   <script src="/javascripts/index.js"></script>
+
 </head>
 
 <body>
@@ -57,38 +58,25 @@
     </div>
 
     <div class="container">
+        <!--<form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">-->
+        <p>Just show me things nearby</p>
+    </div>
 
-        <form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
-            <div class="row">
+    <div class="container" style="margin-top:30px">
+        <div class="row">
 
-                <div class="col-12">
-                  <label for='searchRadius'>Or search for restaurants around you in a radius of</label>
-                </div>
-                <div class="col-9">
-                <select class="custom-select" name="searchRadius" id="searchRadius" >
-                  <option selected value="5">5km</option>
-                  <option value="10">10km</option>
-                  <option value="20">20km</option>
-                  <option value="50">50km</option>
-                </select>
-                </div>
+            <div class="col-4">
+                <% include partials/index_sidebar %>
 
-              <!-- keep this fields as hidden later on -->
-              <input type="hidden" name="longitude" id="longitude" placeholder="long">
-              <input type="hidden" name="latitude" id="latitude" placeholder="lat">
-
-
-                <div class="col-3">
-                    <input type="submit" name="g" value="Submit" id="g" class="btn btn-primary btn-block">
-                </div>
             </div>
-    </form>
-  </div>
+            <div class="col-8">
+                <div id="results" class="row">
 
-    <div class="container">
 
-      <div id="results" style="margin-top:30px"></div>
-      <div id="map"></div>
+                </div>
+                <div id="map"></div>
+            </div>
+
     </div>
 
 

@@ -1,0 +1,20 @@
+<p class="sidebar-separator">
+    Search Radius
+</p>
+<form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
+
+
+            <select class="custom-select" name="searchRadius" id="searchRadius" >
+                <option selected value="5">5km</option>
+                <option value="10">10km</option>
+                <option value="20">20km</option>
+                <option value="50">50km</option>
+            </select>
+
+        <!-- keep this fields as hidden later on -->
+        <input type="hidden" name="longitude" id="longitude" placeholder="long">
+        <input type="hidden" name="latitude" id="latitude" placeholder="lat">
+
+
+            <input type="submit" name="g" value="Submit" id="g" class="btn btn-primary">
+</form>
