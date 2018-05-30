@@ -43,7 +43,7 @@ userController.doLogin = function(req, res) {
 // logout
 userController.logout = function(req, res) {
     req.logout();
-    res.redirect('/login');
+    res.redirect('/index');
 };
 
 module.exports = userController;

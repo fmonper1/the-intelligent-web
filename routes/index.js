@@ -30,7 +30,9 @@ router.get('/register', auth.register);
 router.post('/register', auth.doRegister);
 
 // route to login page
-router.get('/login', auth.login);
+router.get('/login', function(req, res){
+    res.render('login', { user: req.user });
+});
 
 // route for login action
 router.post('/login', auth.doLogin);

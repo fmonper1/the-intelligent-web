@@ -1,12 +1,28 @@
-<form id=“xForm" action='/login', method='post'>
-    <div class="form-group">
-        <label for='firstname'>User Name:</label>
-        <input class="form-control" type="text" name="username" id="name" >
-        <p><label for='lastname'>Password:</label>
-            <input class="form-control" type="text" name="password" id="cuisine" >
-        </p>
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<% include partials/navbar %>
+<body>
 
-        </p>
-        <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+        <form id=“xForm" action='/login', method='post' class="form-login">
+
+            <label for='firstname'>User Name:</label>
+            <input class="form-control input-sm chat-input" type="text" name="username" id="name" >
+            <p><label for='lastname'>Password:</label>
+                <input class="form-control input-sm chat-input" type="password" name="password" id="cuisine" >
+            </p>
+
+            </p>
+            <p><input class="btn btn-lg btn-primary btn-block" type="submit" name="g" value="Login" id="g"></p>
+        </form>
+        </div>
     </div>
-</form>
+</div>
+
+</body>
