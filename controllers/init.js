@@ -4,11 +4,10 @@ var Restaurant = require('../models/Restaurants');
 
 exports.init= function() {
     // uncomment if you need to drop the database
-
     // Restaurant.remove({}, function(err) {
     //     console.log('collection removed')
     // });
-
+    //
     // var restaurant = new Restaurant({
     //     name: 'BurgerQueen2',
     //     typeOfCuisine: ['Fast Food', 'Burgers'],
@@ -31,12 +30,12 @@ exports.init= function() {
     //     addedBy: "admin",
     //     rating: {
     //         averageScore: 3.5,
-    //          totalScore: 7,
-    //             score1: 0,
-    //             score2: 0,
-    //             score3: 1,
-    //             score4: 1,
-    //             score5: 0,
+    //         totalScore: 7,
+    //         score1: 0,
+    //         score2: 0,
+    //         score3: 1,
+    //         score4: 1,
+    //         score5: 0,
     //     },
     //     reviews: [
     //         {
@@ -58,5 +57,6 @@ exports.init= function() {
     //     if (err) console.log(err);
     //     console.log(results._id);
     // });
+
 }
 

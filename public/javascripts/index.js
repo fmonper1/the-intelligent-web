@@ -3,7 +3,6 @@ var userCoords;
 
 
 $(function() { //load the map on page.ready
-    console.log( "ready!" );
     getLocation().then(function(data) {
         userCoords = data;
         map = new GMaps({

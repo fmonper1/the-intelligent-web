@@ -2,12 +2,33 @@ var Restaurant = require('../models/Restaurants');
 var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
 
+var NodeGeocoder = require('node-geocoder');
+
+var options = {
+    provider: 'google',
+
+    // Optional depending on the providers
+    httpAdapter: 'https', // Default
+    apiKey: 'AIzaSyDkAOYCfVVZKFmNvBUm9NfY20Up4SveaXQ', // for Mapquest, OpenCage, Google Premier
+    formatter: null         // 'gpx', 'string', ...
+};
+
+var geocoder = NodeGeocoder(options);
+
 exports.queryDB = function (req, res) {
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
     try {
+        geocoder.geocode(userData.city)
+            .then(function(res) {
+                console.log(res);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
         var query = {};
         query['$and']=[];
        if (userData.city.length > 0) {
@@ -109,6 +130,7 @@ exports.insert = function (req, res) {
 };
 
 exports.queryByRadius = function(req, res) {
+
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
