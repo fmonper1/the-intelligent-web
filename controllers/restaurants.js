@@ -4,7 +4,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 var NodeGeocoder = require('node-geocoder');
 
-var options = {
+var GeocoderOptions = {
     provider: 'google',
 
     // Optional depending on the providers
@@ -13,7 +13,7 @@ var options = {
     formatter: null         // 'gpx', 'string', ...
 };
 
-var geocoder = NodeGeocoder(options);
+var geocoder = NodeGeocoder(GeocoderOptions);
 
 exports.queryDB = function (req, res) {
     var userData = req.body;
@@ -29,21 +29,30 @@ exports.queryDB = function (req, res) {
             var coords = [geocoded[0].longitude, geocoded[0].latitude];
 
             var maxDistance = userData.searchRadius ;
-
             // we need to convert the distance to radians
             maxDistance /= 6371;
 
-            var query = Restaurant.find({
+            //store query in variable and push $and operator
+            var query = {};
+            query['$and']=[];
+
+            // push geolocation query to the query
+            query['$and'].push({
                 "location" : {
                     $geoWithin : {
                         $centerSphere : [coords, maxDistance ]
                     }
                 }
-            },
-                'name typeOfCuisine address location rating officialPhoto'
-            ).limit(100);
+            });
 
-            query.exec(function (err, data) {
+            if (userData.cuisineType != "all") {
+                query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
+            }
+            console.log(query);
+
+            Restaurant.find(query,
+            'name typeOfCuisine address location rating officialPhoto',
+            function (err, data) {
                 if (err) {
                     console.log(err);
                     throw err;
@@ -98,8 +107,8 @@ exports.queryByRadius = function(req, res) {
                 $geoWithin : {
                     $centerSphere : [coords, maxDistance ]
                 }
-            }
-        }).limit(limit);
+            }}
+        ).limit(limit);
 
         // var query = Restaurant.find(
         //     {location : {

@@ -21,30 +21,36 @@
 <main role="main">
 
     <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
 
-        <h3><%= restaurant[0].name %></h3>
+                <h3><%= restaurant[0].name %></h3>
 
-        <%= restaurant[0].typeOfCuisine.join(", ")%>
-        <div class="card" >
-            <img class="card-img-top" src="../<%= restaurant[0].officialPhoto %>" alt="Card image cap">
+                <%= restaurant[0].typeOfCuisine.join(", ")%>
+            </div>
+            <div class="col-sm-6">
 
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %></li>
-                <li class="list-group-item">Telephone Nº: <%= restaurant[0].contactDetails.telephone%></li>
-                <li class="list-group-item">Website: <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a></li>
-            </ul>
-        </div>
+                <div class="card" >
+                    <img class="card-img-top" src="../<%= restaurant[0].officialPhoto %>" alt="Card image cap">
 
-        <div id="map"></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %></li>
+                        <li class="list-group-item">Telephone Nº: <%= restaurant[0].contactDetails.telephone%></li>
+                        <li class="list-group-item">Website: <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a></li>
+                    </ul>
+                </div>
 
+                <div id="map"></div>
 
-    </div>
+            </div>
+            <div class="col-sm-6">
 
-    <br>
-    <div style="background: #f9f9f9;">
-        <div class="container">
-            <% include partials/restaurantTotalScore.ejs %>
-        </div>
+            <br>
+
+                <div class="container">
+                    <% include partials/restaurantTotalScore.ejs %>
+                </div>
+            </div>
     </div>
     <br>
 

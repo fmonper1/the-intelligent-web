@@ -108,55 +108,55 @@ exports.init= function() {
     //     console.log(results._id);
     // });
 
-    var restaurant3 = new Restaurant({
-        name: 'ManchesterSomething',
-        typeOfCuisine: ['Lebanese', 'Kebab'],
-        officialPhoto: "uploads/whatkind.png",
-        address: {
-            streetName:'West Street',
-            city: 'Sheffield',
-            postcode: 'S37bw',
-            county:'South Yorkshire',
-            country: 'England'
-        },
-        contactDetails: {
-            telephone: "9222334398",
-            website: "http://localhost:3003"
-        },
-        location: {
-            type: "Point",
-            coordinates: [-2.2426305, 53.4807593],
-        },
-        addedBy: "admin",
-        rating: {
-            averageScore: 3.5,
-            totalScore: 7,
-            score1: 0,
-            score2: 0,
-            score3: 1,
-            score4: 1,
-            score5: 0,
-        },
-        reviews: [
-            {
-                postedBy: "Ferni",
-                score: 4,
-                reviewTitle: "Excellent",
-                review: "Nice food at a good price"},
-
-            {
-                postedBy: "Fernifofer",
-                score: 3,
-                reviewTitle: "Una de cal otra de arena",
-                review: "Desserts were dirty"}
-        ]
-    });
-    console.log('name: '+restaurant3._id);
-
-    restaurant3.save(function (err, results) {
-        if (err) console.log(err);
-        console.log(results._id);
-    });
+    // var restaurant3 = new Restaurant({
+    //     name: 'ManchesterSomething',
+    //     typeOfCuisine: ['Lebanese', 'Kebab'],
+    //     officialPhoto: "uploads/whatkind.png",
+    //     address: {
+    //         streetName:'West Street',
+    //         city: 'Sheffield',
+    //         postcode: 'S37bw',
+    //         county:'South Yorkshire',
+    //         country: 'England'
+    //     },
+    //     contactDetails: {
+    //         telephone: "9222334398",
+    //         website: "http://localhost:3003"
+    //     },
+    //     location: {
+    //         type: "Point",
+    //         coordinates: [-2.2426305, 53.4807593],
+    //     },
+    //     addedBy: "admin",
+    //     rating: {
+    //         averageScore: 3.5,
+    //         totalScore: 7,
+    //         score1: 0,
+    //         score2: 0,
+    //         score3: 1,
+    //         score4: 1,
+    //         score5: 0,
+    //     },
+    //     reviews: [
+    //         {
+    //             postedBy: "Ferni",
+    //             score: 4,
+    //             reviewTitle: "Excellent",
+    //             review: "Nice food at a good price"},
+    //
+    //         {
+    //             postedBy: "Fernifofer",
+    //             score: 3,
+    //             reviewTitle: "Una de cal otra de arena",
+    //             review: "Desserts were dirty"}
+    //     ]
+    // });
+    // console.log('name: '+restaurant3._id);
+    //
+    // restaurant3.save(function (err, results) {
+    //     if (err) console.log(err);
+    //     console.log(results._id);
+    // });
 
 }
 

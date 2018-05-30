@@ -1,21 +1,43 @@
 <p class="sidebar-separator">
-    Search Radius
+    Advanced Options
 </p>
-<form id=“radiusForm" onsubmit="onSubmitRadius('/radius')">
+<form id=“radiusForm" onsubmit="onSubmitRadius('/index')">
 
-    <select class="custom-select" name="searchRadius" id="searchRadius" >
-        <option selected value="5">5km</option>
-        <option value="10">10km</option>
-        <option value="20">20km</option>
-        <option value="50">50km</option>
-        <option value="100">100km</option>
-        <option value="200">200km</option>
-    </select>
+    <p>
+        <label for='searchRadius'>Search Radius:</label>
+
+        <select class="custom-select" name="searchRadius" id="searchRadius" >
+            <option selected value="5">5km</option>
+            <option value="10">10km</option>
+            <option value="20">20km</option>
+            <option value="50">50km</option>
+            <option value="100">100km</option>
+            <option value="200">200km</option>
+        </select>
+    </p>
 
     <!-- keep this fields as hidden later on -->
     <input type="hidden" name="longitude" id="longitude" placeholder="long">
     <input type="hidden" name="latitude" id="latitude" placeholder="lat">
 
-    <input type="submit" name="g" value="Submit" id="g" class="btn btn-primary">
+
+    <p>
+        <% var foodTypes = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian"] %>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineCheckbox" value="all" name="cuisineType" checked="checked">
+            <label class="form-check-label" for="inlineCheckbox">All types</label>
+        </div>
+        <% for (i in foodTypes) { %>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="inlineCheckbox<%= i %>" value="<%= foodTypes[i] %>" name="cuisineType">
+                <label class="form-check-label" for="inlineCheckbox<%= i %>"><%= foodTypes[i] %></label>
+            </div>
+        <% }%>
+    </p>
+
+
+    <input type="submit" name="g" value="Update" id="g" class="btn btn-primary">
+
 
 </form>

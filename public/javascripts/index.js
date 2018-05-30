@@ -9,13 +9,13 @@ $(function() { //load the map on page.ready
             div: '#map',
             lat: data.latitude,
             lng: data.longitude,
-            height: '125px',
+            height: '200px',
             zoom: 12,
         });
 
         map.addMarker({
-            lat: data.latitude,
-            lng: data.longitude,
+            lat: userCoords.latitude,
+            lng: userCoords.longitude,
             title: "Your position",
             infoWindow: {
                 content: '<p>Your last retrieved position</p>'
@@ -156,15 +156,29 @@ function getLocation() {
 }
 
 function addMarkers(data) {
+    map.removeMarkers();
+    var coordArray = [[userCoords.longitude, userCoords.latitude]];
+
+    map.addMarker({
+        lat: userCoords.latitude,
+        lng: userCoords.longitude,
+        title: "Your position",
+        infoWindow: {
+            content: '<p>Your last retrieved position</p>'
+        }
+    });
+
     for(i in data) {
         console.log(data[i].location)
-        coords = data[i].location.coordinates;
+        var coords = data[i].location.coordinates;
+        coordArray.push(coords);
         map.addMarker({
             lat: coords[1],
             lng: coords[0],
             title: data[i].name,
-            click: function(e) {
-                alert('You clicked in this marker');
+            infoWindow: {
+                content: "<p>"+data[i].name+"</p>"+
+                "<a href='/restaurant/"+data[i]._id+"'>view</a>"
             }
         });
     }
