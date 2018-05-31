@@ -92,12 +92,13 @@
     <div id="myReview"></div>
 
     <br>
-    <div style="background: #f1f1f1;">
-        <div class="container" >
-            <% if (user) {%>
-                <% include partials/addReviewForm.ejs %>
-            <% }%>
-        </div>
+    <div class="container" >
+        <% if (user) {%>
+        <h5 class="top-1-rem">Leave A Review</h5>
+        <div class="separator-red"></div>
+
+        <% include partials/addReviewForm.ejs %>
+        <% }%>
     </div>
     <br>
 
