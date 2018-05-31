@@ -1,6 +1,8 @@
 var Restaurant = require('../models/Restaurants');
 var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
+var formidable = require('formidable');
+var fs = require('fs');
 
 var NodeGeocoder = require('node-geocoder');
 
@@ -225,12 +227,26 @@ exports.insert = function (req, res) {
             if (err) console.log(err);
             console.log(results._id);
 
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(restaurant));
+            res.redirect('/fileupload/'+results.id);
         });
     } catch (e) {
         res.status(500).send('error ' + e);
     }
+};
+
+exports.uploadPhoto = function(req,res) {
+    console.log('ID:', req.params.id);
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        var oldpath = files.filetoupload.path;
+        var newpath = '../public/uploads/' + files.filetoupload.name;
+        fs.rename(oldpath, newpath, function (err) {
+            if (err) throw err;
+            res.write('File uploaded and moved!');
+            res.end();
+        });
+        Restaurant.update({ _id: req.params.id },{$set: { officialPhoto: newpath }})
+    });
 };
 
 exports.addReview = function ( req, res) {
