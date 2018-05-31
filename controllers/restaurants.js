@@ -45,7 +45,7 @@ exports.queryDB = function (req, res) {
                 }
             });
 
-            if (userData.cuisineType != "all") {
+            if (userData.cuisineType != "All") {
                 query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
             }
             console.log(query);

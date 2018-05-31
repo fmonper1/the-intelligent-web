@@ -1,7 +1,6 @@
 var map; //store map in a var
 var userCoords;
 
-
 $(function() { //load the map on page.ready
     getLocation().then(function(data) {
         userCoords = data;
@@ -62,14 +61,14 @@ function sendAjaxQuery(url, data) {
 function displayResultsNicely(data) {
     $("#results").html("");
     for(i in data) {
-        $('#results').append("" +
+        $('#results').append("<div class='col-sm-12 col-md-6'><div class='row'>" +
             // + JSON.stringify(data[i]) + "<br>"
             "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a></div>" +
             "<div class='col-9'>"+ data[i].name + "<br>"
             + data[i].rating.averageScore + "/5 <br>"
             + data[i].typeOfCuisine.join() + "<br>"
 
-            + "<a href='/restaurant/"+data[i]._id+"'>view</a></div>");
+            + "<a href='/restaurant/"+data[i]._id+"'>view</a></div> </div></div>");
     }
 }
 

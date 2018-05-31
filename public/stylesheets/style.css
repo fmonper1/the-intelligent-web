@@ -1,3 +1,17 @@
 #mainmenu {
   background: rgb(188, 1, 13) !important;
 }
+
+.separator-red {
+  background: rgb(188, 1, 13) !important;
+  height: 4px;
+  margin-bottom: 1rem;
+}
+
+.top-1-rem {
+  margin-top: 1rem;
+}
+
+.bg-red-brand {
+  background: #bc010d;
+}

@@ -10,6 +10,11 @@
 
     <!-- Google Maps JS API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
+    <script type="text/javascript">
+        $(function() {
+            window.RestaurantData = <%- JSON.stringify(restaurant[0]) %>;
+        });
+    </script>
     <script src="/javascripts/gmaps.js"></script>
     <script src="/javascripts/restaurant.js"></script>
 
@@ -21,37 +26,60 @@
 <main role="main">
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-
-                <h3><%= restaurant[0].name %></h3>
+        <div class="d-flex bd-highlight">
+            <div class="p-2 bd-highlight">
+                <img src="../<%= restaurant[0].officialPhoto %>" style="width: 65px; height: 65px;" alt="Card image cap">
+            </div>
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <p class="h4"><%= restaurant[0].name %></p>
 
                 <%= restaurant[0].typeOfCuisine.join(", ")%>
             </div>
-            <div class="col-sm-6">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <div id="distToRestaurant"></div>
+                </p>
+                <p>
+                    <i class="fa fa-location-arrow" aria-hidden="true"></i> <%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %>
+                </p>
+                <p>
+                    <i class="fa fa-phone" aria-hidden="true"></i> <%= restaurant[0].contactDetails.telephone%>
+                </p>
+                <p>
+                    <i class="fa fa-link" aria-hidden="true"></i> <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h5 >Image Gallery</h5>
+                <div class="separator-red"></div>
 
-                <div class="card" >
-                    <img class="card-img-top" src="../<%= restaurant[0].officialPhoto %>" alt="Card image cap">
+                <img class="img-fluid" src="https://img1.cgtrader.com/items/663571/dd7119d83f/fast-food-restaurant-3d-model-low-poly-max-3ds.jpg
+" alt="Card image cap">
+            </div>
 
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %></li>
-                        <li class="list-group-item">Telephone Nº: <%= restaurant[0].contactDetails.telephone%></li>
-                        <li class="list-group-item">Website: <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a></li>
-                    </ul>
-                </div>
+
+            <div class="col-12">
+                <h5 class="top-1-rem">Map View</h5>
+                <div class="separator-red"></div>
 
                 <div id="map"></div>
-
             </div>
-            <div class="col-sm-6">
 
-            <br>
+
+            <div class="col-12">
+                <h5 class="top-1-rem">Rating & Comments</h5>
+                <div class="separator-red"></div>
 
                 <div class="container">
                     <% include partials/restaurantTotalScore.ejs %>
                 </div>
             </div>
-    </div>
+        </div>
+
     <br>
 
     <div class="container">

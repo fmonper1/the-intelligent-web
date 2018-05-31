@@ -1,8 +1,9 @@
-<p class="sidebar-separator">
-    Advanced Options
+<p class="h5">
+    Refine Search
 </p>
-<form id=“radiusForm" onsubmit="onSubmitRadius('/index')">
+<div class="separator-red"></div>
 
+<form id=“radiusForm" onsubmit="onSubmitRadius('/index')">
     <p>
         <label for='searchRadius'>Search Radius:</label>
 
@@ -20,20 +21,19 @@
     <input type="hidden" name="longitude" id="longitude" placeholder="long">
     <input type="hidden" name="latitude" id="latitude" placeholder="lat">
 
-
     <p>
         <% var foodTypes = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian"] %>
 
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="inlineCheckbox" value="all" name="cuisineType" checked="checked">
-            <label class="form-check-label" for="inlineCheckbox">All types</label>
-        </div>
+
+        <label for="exampleFormControlSelect1">Type Of Cuisine</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="cuisineType">
+            <option>All</option>
         <% for (i in foodTypes) { %>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="inlineCheckbox<%= i %>" value="<%= foodTypes[i] %>" name="cuisineType">
-                <label class="form-check-label" for="inlineCheckbox<%= i %>"><%= foodTypes[i] %></label>
+                <option><%= foodTypes[i] %></option>
             </div>
         <% }%>
+        </select>
     </p>
 
 
@@ -41,3 +41,5 @@
 
 
 </form>
+
+<div class="separator-red top-1-rem"></div>
