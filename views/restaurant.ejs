@@ -34,6 +34,12 @@
                 <p class="h4"><%= restaurant[0].name %></p>
 
                 <%= restaurant[0].typeOfCuisine.join(", ")%>
+
+                <% if (restaurant[0].hasDelivery == true) {%>
+                <span class="hasDelivery">
+                        <i class="fas fa-motorcycle"></i> Delivery
+                    </span>
+                <% }%>
             </div>
         </div>
         <div class="row">
@@ -49,7 +55,9 @@
                 </p>
                 <p>
                     <i class="fa fa-link" aria-hidden="true"></i> <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a>
+
                 </p>
+
             </div>
         </div>
         <div class="row">
@@ -74,32 +82,28 @@
                 <h5 class="top-1-rem">Rating & Comments</h5>
                 <div class="separator-red"></div>
 
-                <div class="container">
-                    <% include partials/restaurantTotalScore.ejs %>
-                </div>
+
+                <% include partials/restaurantTotalScore.ejs %>
+
             </div>
         </div>
 
     <br>
 
-    <div class="container">
         <% restaurant[0].reviews.forEach(function (review) {  %>
             <!--<p><%= review %></p>-->
             <% include partials/displayReview.ejs %>
         <% }) %>
-    </div>
 
     <div id="myReview"></div>
 
     <br>
-    <div class="container" >
         <% if (user) {%>
         <h5 class="top-1-rem">Leave A Review</h5>
         <div class="separator-red"></div>
 
         <% include partials/addReviewForm.ejs %>
         <% }%>
-    </div>
     <br>
 
 </main>

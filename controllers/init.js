@@ -12,6 +12,7 @@ exports.init= function() {
     //     name: 'BurgerQueen2',
     //     typeOfCuisine: ['Fast Food', 'Burgers'],
     //     officialPhoto: "uploads/burgerking.png",
+    //     hasDelivery: true,
     //     address: {
     //         streetName:'West Street',
     //         city: 'Sheffield',

@@ -10,6 +10,7 @@ var Restaurant = new Schema(
         name: {type: String, required: true, max: 100},
         typeOfCuisine: [{type: String, required: true, max: 100}],
         officialPhoto: String,
+        hasDelivery: Boolean,
 
         address: {
             streetName : String,
