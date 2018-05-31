@@ -22,6 +22,7 @@
     "passport-local-mongoose": "^4.0.0",
     "passport-mongoose": "0.0.1",
     "socket.io": "2.1.0",
-    "node-geocoder": "3.22.0"
+    "node-geocoder": "3.22.0",
+    "jsdoc": "~3.5.2"
   }
 }

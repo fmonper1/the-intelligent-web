@@ -24,7 +24,9 @@ router.post('/index', restaurant.queryDB);
 
 
 // route to register page
-router.get('/register', auth.register);
+router.get('/register', function(req, res){
+    res.render('register', { user: req.user });
+});
 
 // route for register action
 router.post('/register', auth.doRegister);
@@ -39,10 +41,6 @@ router.post('/login', auth.doLogin);
 
 // route for logout action
 router.get('/logout', auth.logout);
-
-module.exports = router;
-
-
 
 /* GET home page. */
 router.get('/insert', isAuthenticated, function(req, res){
@@ -73,8 +71,6 @@ router.get('/restaurant/:id', function (req, res, next) {
 router.post('/restaurant/:id',restaurant.findOneRestaurant);
 
 router.post('/restaurant/:id/addReview', restaurant.addReview);
-
-
 
 
 module.exports = router;
