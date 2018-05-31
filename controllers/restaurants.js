@@ -181,7 +181,14 @@ exports.insert = function (req, res) {
             typeOfCuisine: userData.cuisine,
             address: {
                 streetName: userData.streetName,
-                postcode: userData.postcode
+                city: 'Sheffield',
+                postcode: userData.postcode,
+                county: userData.county,
+                country: userData.country
+            },
+            location: {
+                type: "Point",
+                coordinates: [-1.4820851, 53.3816197]
             }
         });
         console.log('received: ' + restaurant);
