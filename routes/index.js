@@ -45,8 +45,8 @@ module.exports = router;
 
 
 /* GET home page. */
-router.get('/insert', function(req, res, next) {
-  res.render('insert', { title: 'My Form' });
+router.get('/insert', isAuthenticated, function(req, res){
+    res.render('insert', { user: req.user });
 });
 
 router.post('/insert', restaurant.insert);
