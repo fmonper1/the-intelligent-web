@@ -3,7 +3,7 @@ var Restaurant = require('../models/Restaurants');
 
 
 exports.init= function() {
-    // uncomment if you need to drop the database
+    //uncomment if you need to drop the database
     // Restaurant.remove({}, function(err) {
     //     console.log('collection removed')
     // });
@@ -107,7 +107,7 @@ exports.init= function() {
     //     if (err) console.log(err);
     //     console.log(results._id);
     // });
-
+    //
     // var restaurant3 = new Restaurant({
     //     name: 'ManchesterSomething',
     //     typeOfCuisine: ['Lebanese', 'Kebab'],
@@ -157,8 +157,8 @@ exports.init= function() {
     //     if (err) console.log(err);
     //     console.log(results._id);
     // });
-
-
+    //
+    //
     // var restaurant4 = new Restaurant({
     //     name: 'FarFrom HomeWith A LongName',
     //     typeOfCuisine: ['Pizza', 'Italian'],

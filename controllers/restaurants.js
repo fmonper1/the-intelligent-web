@@ -181,15 +181,14 @@ exports.insert = function (req, res) {
             typeOfCuisine: userData.cuisine,
             address: {
                 streetName: userData.streetName,
-                postcode: userData.postcode,
+                postcode: userData.postcode
             }
         });
         console.log('received: ' + restaurant);
 
         restaurant.save(function (err, results) {
+            if (err) console.log(err);
             console.log(results._id);
-            if (err)
-                res.status(500).send('Invalid data!');
 
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(restaurant));
