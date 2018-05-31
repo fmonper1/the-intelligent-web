@@ -18,16 +18,30 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
 
-        <form id="xForm" onsubmit="onSubmitRadius('/index')">
+        <form onsubmit="onSubmitRadius('/index')">
             <div class="row">
-                <div class="col-8 no-pad-right">
-                    <input class="form-control" type="text" name="city" id="city" placeholder="Enter a city">
-                </div>
-
-                <div class="col-4 no-pad-left">
-                    <input id="searchButton" class="btn btn-white btn-block" type="submit" name="g" value="Search" id="g">
+                <div class="col-12">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-searchbox active">
+                            <input type="radio" name="typeOfSearch" id="option1" value="address" checked> Address
+                        </label>
+                        <label class="btn btn-searchbox">
+                            <input type="radio" name="typeOfSearch" id="option2" value="restaurantName"> Name
+                        </label>
+                    </div>
                 </div>
             </div>
+            <div id="xForm">
+                <div class="row">
+                    <div class="col-8 no-pad-right">
+                        <input class="form-control" type="text" name="city" id="city" placeholder="Enter a city">
+                    </div>
+
+                    <div class="col-4 no-pad-left">
+                        <input id="searchButton" class="btn btn-white btn-block" type="submit" name="g" value="Search" id="g">
+                    </div>
+                </div>
+                </div>
         </form>
 
         <div class="row">

@@ -21,9 +21,7 @@
   padding: 10px;
   border-radius: 5px;
 }
-#xForm .col3 {
-  padding-left: 0;
-}
+
 .btn-white {
   color: #212529;
   background-color: #ffffff;
@@ -38,10 +36,8 @@
 .no-pad-left {
   padding-left: 0;
 }
-#city {
+#xForm #city {
   border-color: #900009;
-}
-#city {
   border-radius: 5px 0 0 5px;
 }
 .hasDelivery {
@@ -57,3 +53,15 @@
   font-size: .8rem;
   font-weight: bold;
 }
+
+.btn-searchbox {
+  margin-bottom: 0;
+}
+.btn-searchbox.active {
+background: #bc010d;
+color: white;
+}
+.btn-searchbox input[type=radio] {
+   position:fixed;
+   opacity:0;
+ }

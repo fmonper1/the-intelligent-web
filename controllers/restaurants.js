@@ -20,30 +20,59 @@ exports.queryDB = function (req, res) {
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
-    geocoder.geocode(userData.city)
-    .then(function(geocoded) {
+    if (userData.typeOfSearch == "address") {
+        geocoder.geocode(userData.city)
+        .then(function(geocoded) {
+            try {
+                console.log("geocoding:");
+                console.log(geocoded[0]);
+                var coords = [geocoded[0].longitude, geocoded[0].latitude];
+
+                var maxDistance = userData.searchRadius ;
+                maxDistance /= 6371; // convert the distance to radians
+
+                //store query in variable and push $and operator
+                var query = {};
+                query['$and']=[];
+
+                // push geolocation query
+                query['$and'].push({"location": {$geoWithin: {$centerSphere: [coords, maxDistance]}}});
+
+                if (userData.cuisineType != "All") {
+                    query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
+                }
+                console.log(query);
+
+                Restaurant.find(query,
+                'name typeOfCuisine address location rating officialPhoto',
+                function (err, data) {
+                    if (err) {
+                        console.log(err);
+                        throw err;
+                    }
+                    if (!data) {
+                        console.log("no data found");
+                        res.json({});
+                    } else {
+                        console.log(data);
+                        res.json(data);
+                    }
+                });
+            } catch (e) {
+                res.status(500).send('error ' + e);
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+    }
+    else if (userData.typeOfSearch == "restaurantName") {
         try {
-
-            console.log("geocoding:");
-            console.log(geocoded[0]);
-            var coords = [geocoded[0].longitude, geocoded[0].latitude];
-
-            var maxDistance = userData.searchRadius ;
-            // we need to convert the distance to radians
-            maxDistance /= 6371;
-
             //store query in variable and push $and operator
             var query = {};
             query['$and']=[];
 
-            // push geolocation query to the query
-            query['$and'].push({
-                "location" : {
-                    $geoWithin : {
-                        $centerSphere : [coords, maxDistance ]
-                    }
-                }
-            });
+            query['$and'].push({"name": {$regex:userData.city ,$options:"$i"} });
 
             if (userData.cuisineType != "All") {
                 query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
@@ -51,34 +80,28 @@ exports.queryDB = function (req, res) {
             console.log(query);
 
             Restaurant.find(query,
-            'name typeOfCuisine address location rating officialPhoto',
-            function (err, data) {
-                if (err) {
-                    console.log(err);
-                    throw err;
-                }
-                if (!data) {
-                    console.log("no data found");
-                    res.json({});
-                } else {
-                    console.log(data);
-                    res.json(data);
-                }
-
-            });
-
+                'name typeOfCuisine address location rating officialPhoto',
+                function (err, data) {
+                    if (err) {
+                        console.log(err);
+                        throw err;
+                    }
+                    if (!data) {
+                        console.log("no data found");
+                        res.json({});
+                    } else {
+                        console.log(data);
+                        res.json(data);
+                    }
+                });
         } catch (e) {
             res.status(500).send('error ' + e);
         }
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
+    }
 };
 
 
 exports.queryByRadius = function(req, res) {
-
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
