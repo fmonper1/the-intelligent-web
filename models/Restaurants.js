@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     Review = require('./Reviews.js'),
     ReviewSchema = mongoose.model('Review').schema;
 
+// Create a new schema for the restaurant collection with all the relevant information for a restaurant
 var Schema = mongoose.Schema;
 
 var Restaurant = new Schema(
@@ -47,16 +48,6 @@ var Restaurant = new Schema(
 
 Restaurant.index({location: '2dsphere'});
 
-// // Virtual for a character's age
-// Character.virtual('age')
-//     .get(function () {
-//         const currentDate = new Date().getFullYear();
-//         const result= currentDate - this.dob;
-//         return result;
-//     });
-//
-// Character.set('toObject', {getters: true, virtuals: true});
-
 var restaurantModel = mongoose.model('Restaurant', Restaurant );
-
+// export the restaurant model
 module.exports = restaurantModel;
