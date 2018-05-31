@@ -3,7 +3,6 @@
 <head>
     <% include partials/page_head %>
     <% include partials/navbar %>
-    <script src="/javascripts/insert.js"></script>
 </head>
 
 <body>
@@ -12,7 +11,7 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <form id=“xForm" onsubmit="onSubmit('/insert')">
+        <form id=“xForm" method="post">
             <div class="form-group">
                 <label for='firstname'>Restaurant Name:</label>
                 <input class="form-control" type="text" name="name" id="name" >
@@ -23,13 +22,13 @@
                     <input class="form-control" type="text" name="streetName" id="streetName" >
                 </p>
                 <p><label for='lastname'>City:</label>
-                    <input class="form-control"type="text" name="city" id="city" >
+                    <input class="form-control" type="text" name="city" id="city" >
                 </p>
                 <p><label for='lastname'>Postcode:</label>
-                    <input class="form-control"type="text" name="postcode" id="postcode" >
+                    <input class="form-control" type="text" name="postcode" id="postcode" >
                 </p>
                 <p><label for='lastname'>County:</label>
-                    <input class="form-control"type="text" name="county" id="county" >
+                    <input class="form-control" type="text" name="county" id="county" >
                 </p>
                 <p><label for='lastname'>Country:</label>
                     <input class="form-control"type="text" name="country" id="country" >
