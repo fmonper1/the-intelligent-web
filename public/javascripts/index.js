@@ -65,8 +65,9 @@ function displayResultsNicely(data) {
             // + JSON.stringify(data[i]) + "<br>"
             "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a></div>" +
             "<div class='col-9'>"+ data[i].name + "<br>"
-            + data[i].rating.averageScore + "/5 <br>"
+            + "<p class='resRating'>" + data[i].rating.averageScore + "<i class=\"fas fa-star\"></i> </p>"
             + data[i].typeOfCuisine.join() + "<br>"
+            + (data[i].hasDelivery > 0 ? "<span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
 
             + "<a href='/restaurant/"+data[i]._id+"'>view</a></div> </div></div>");
     }

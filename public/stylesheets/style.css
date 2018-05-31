@@ -15,3 +15,45 @@
 .bg-red-brand {
   background: #bc010d;
 }
+
+#xForm {
+  background: #bc010d;
+  padding: 10px;
+  border-radius: 5px;
+}
+#xForm .col3 {
+  padding-left: 0;
+}
+.btn-white {
+  color: #212529;
+  background-color: #ffffff;
+  border-color: #900009;
+  border-radius: 0 5px 5px 0;
+
+}
+
+.no-pad-right {
+  padding-right: 0;
+}
+.no-pad-left {
+  padding-left: 0;
+}
+#city {
+  border-color: #900009;
+}
+#city {
+  border-radius: 5px 0 0 5px;
+}
+.hasDelivery {
+  padding: 1px 3px;
+  display: inline-block;
+  border: 1px solid #bc010d;
+  border-radius: 3px;
+  font-size: .8rem;
+}
+
+.resRating {
+  margin: 0;
+  font-size: .8rem;
+  font-weight: bold;
+}
