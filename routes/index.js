@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser= require("body-parser");
-
+var formidable = require('formidable');
+var fs = require('fs');
 
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
@@ -68,6 +69,23 @@ router.get('/restaurant/:id', function (req, res, next) {
         res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user});
     });
 
+});
+
+router.get('/fileupload', function(req, res, next) {
+    res.render('fileupload', { title: 'My Form' });
+});
+
+router.post('/fileupload', function(req,res,next) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        var oldpath = files.filetoupload.path;
+        var newpath = '../public/uploads/' + files.filetoupload.name;
+        fs.rename(oldpath, newpath, function (err) {
+            if (err) throw err;
+            res.write('File uploaded and moved!');
+            res.end();
+        });
+    });
 });
 
 router.post('/restaurant/:id',restaurant.findOneRestaurant);
