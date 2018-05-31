@@ -14,7 +14,12 @@ var GeocoderOptions = {
 };
 
 var geocoder = NodeGeocoder(GeocoderOptions);
-
+/**
+ * uses serialized data to search the db for matching restaurants .
+ * @constructor
+ * @param {string} req - the data from the form.
+ * @param {string} res - response to send back to the client side.
+ */
 exports.queryDB = function (req, res) {
     var userData = req.body;
     if (userData == null) {

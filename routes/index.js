@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser= require("body-parser");
-
+var formidable = require('formidable');
+var fs = require('fs');
 
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
@@ -24,7 +25,9 @@ router.post('/index', restaurant.queryDB);
 
 
 // route to register page
-router.get('/register', auth.register);
+router.get('/register', function(req, res){
+    res.render('register', { user: req.user });
+});
 
 // route for register action
 router.post('/register', auth.doRegister);
@@ -40,13 +43,9 @@ router.post('/login', auth.doLogin);
 // route for logout action
 router.get('/logout', auth.logout);
 
-module.exports = router;
-
-
-
 /* GET home page. */
-router.get('/insert', function(req, res, next) {
-  res.render('insert', { title: 'My Form' });
+router.get('/insert', isAuthenticated, function(req, res){
+    res.render('insert', { user: req.user });
 });
 
 router.post('/insert', restaurant.insert);
@@ -70,11 +69,26 @@ router.get('/restaurant/:id', function (req, res, next) {
 
 });
 
+router.get('/fileupload', function(req, res, next) {
+    res.render('fileupload', { title: 'My Form' });
+});
+
+router.post('/fileupload', function(req,res,next) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        var oldpath = files.filetoupload.path;
+        var newpath = '../public/uploads/' + files.filetoupload.name;
+        fs.rename(oldpath, newpath, function (err) {
+            if (err) throw err;
+            res.write('File uploaded and moved!');
+            res.end();
+        });
+    });
+});
+
 router.post('/restaurant/:id',restaurant.findOneRestaurant);
 
 router.post('/restaurant/:id/addReview', restaurant.addReview);
-
-
 
 
 module.exports = router;

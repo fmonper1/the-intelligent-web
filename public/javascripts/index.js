@@ -25,7 +25,12 @@ $(function() { //load the map on page.ready
 
 });
 
-
+/**
+ * Ajax query to searchdb .
+ * @constructor
+ * @param {string} url - url of the home page.
+ * @param {string} data - The data received from the form.
+ */
 function sendAjaxQuery(url, data) {
     return new Promise( (resolve, reject) => {
 
@@ -57,7 +62,11 @@ function sendAjaxQuery(url, data) {
     });
 }
 
-
+/**
+ * Displaying results in correct format .
+ * @constructor
+ * @param {string} data - The data received from the ajax query.
+ */
 function displayResultsNicely(data) {
     $("#results").html("");
     for(i in data) {
@@ -72,7 +81,11 @@ function displayResultsNicely(data) {
             + "<a href='/restaurant/"+data[i]._id+"'>view</a></div> </div></div>");
     }
 }
-
+/**
+ * Serialize data that is recived when form is submitted .
+ * @constructor
+ * @param {string} url - url of the home page.
+ */
 function onSubmit(url) {
     event.preventDefault();
 
@@ -87,7 +100,11 @@ function onSubmit(url) {
     //     console.log("query sent")
     // });
 }
-
+/**
+ * onSubmit radius function .
+ * @constructor
+ * @param {string} url - url of the home page.
+ */
 function onSubmitRadius(url) {
     event.preventDefault();
     getLocation()
@@ -107,7 +124,11 @@ function onSubmitRadius(url) {
             console.log(error.message)
         })
 }
-
+/**
+ * retrieves the values from the form data and serializes it.
+ * @constructor
+ * @param {string} url - url of the home page.
+ */
 function retrieveValues(url) {
     var formArray = $("form").serializeArray();
     var data={};
@@ -120,7 +141,10 @@ function retrieveValues(url) {
     //sendAjaxQuery(url, data);
 }
 
-
+/**
+ * Checks if geolocation is supported by the browser and returns the location of the user.
+ * @constructor
+   */
 function getLocation() {
     return new Promise((resolve, reject) => {
 
@@ -154,7 +178,11 @@ function getLocation() {
     }
 });
 }
-
+/**
+ * Adds marker to google maps.
+ * @constructor
+  * @param {string} data - The data received from the form.
+ */
 function addMarkers(data) {
     map.removeMarkers();
     var coordArray = [[userCoords.longitude, userCoords.latitude]];
