@@ -1,7 +1,21 @@
 var map; //store map in a var
 var userCoords;
+var socket = io();
 
 $(function() { //load the map on page.ready
+
+    socket.on('viewedRestaurant1', function (data) {
+        console.log("receivedViewedRestaurant");
+        console.log(data);
+        $('#socketRestaurant').append(
+            "<p><a href='/restaurant/" +data.restaurant._id+ "'>"
+            +data.restaurant.name.valueOf()
+            +"</a>"
+            +data.restaurant.typeOfCuisine.join(", ")
+            + "</p>"
+        );
+    });
+
     getLocation().then(function(data) {
         userCoords = data;
         map = new GMaps({
@@ -82,7 +96,7 @@ function displayResultsNicely(data) {
     }
 }
 /**
- * Serialize data that is recived when form is submitted .
+ * Serialize data that is received when form is submitted .
  * @constructor
  * @param {string} url - url of the home page.
  */

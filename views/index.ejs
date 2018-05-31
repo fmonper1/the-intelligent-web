@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <% include partials/page_head %>
-  <!-- Google Maps JS API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
-  <script src="/javascripts/gmaps.js"></script>
-  <script src="/javascripts/index.js"></script>
+    <!-- Google Maps JS API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8UgLksCoAWs5n4eG4UsAEpMJsWc3kg_U"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+    <script src="/javascripts/gmaps.js"></script>
+    <script src="/javascripts/index.js"></script>
 
 </head>
 
@@ -61,6 +63,7 @@
                 <% include partials/index_sidebar %>
 
             </div>
+
             <div class="col-sm-8">
                 <p class="h5">Search Results:</p>
                 <div class="separator-red"></div>
@@ -70,6 +73,10 @@
 
                 </div>
                 <div id="map"></div>
+
+                <p class="h5 top-1-rem">Other People Viewed:</p>
+                <div class="separator-red"></div>
+                <div id="socketRestaurant"></div>
             </div>
 
     </div>

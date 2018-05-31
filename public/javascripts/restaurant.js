@@ -1,8 +1,13 @@
 var map; //store map in a var
 var userCoords;
-// var theRestaurant = JSON.parse(window.RestaurantData);
+var socket = io();
+
 
 $(function() { //load the map on page.ready
+
+    socket.emit('viewedRestaurant', { restaurant: window.RestaurantData });
+    console.log("socket sent-> viewewdRestaurans")
+
     console.log(window.RestaurantData);
     getLocation().then(function(data) {
         userCoords = data;
@@ -87,25 +92,6 @@ function distance(lat1, lon1, lat2, lon2, unit) {
     return dist
 }
 
-// function initializeMap(lat,lng) {
-//     console.log( "ready!" );
-//     var map = new GMaps({
-//         div: '#map',
-//         lat: lat,
-//         lng: lng,
-//         height: '200px',
-//         zoom: 13,
-//     });
-//     map.addMarker({
-//         lat: lat,
-//         lng: lng,
-//         // title: data[i].name,
-//         // click: function(e) {
-//         //     alert('You clicked in this marker');
-//         // }
-//     });
-// };
-
 function onSubmit(url) {
     console.log("Submitted form");
     event.preventDefault();
@@ -171,3 +157,4 @@ function addMarkers(data) {
         });
     }
 }
+

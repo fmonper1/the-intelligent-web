@@ -65,9 +65,11 @@ app.use(function(err, req, res, next) {
 io.on( "connection", function( socket )
 {
     console.log( "A user connected" );
-    socket.on('addedReview', function(data) {
-        console.log("review was added")
-        console.log(data);
+    socket.on('viewedRestaurant', function(data) {
+        console.log("restaurantViewed")
+        console.log(data.restaurant)
+        io.emit('viewedRestaurant1', { restaurant: data.restaurant });
+
     });
 });
 
