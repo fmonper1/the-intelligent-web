@@ -10,7 +10,8 @@ var Review = new Schema(
         postedBy: String,
         score: Number,
         reviewTitle:String,
-        review: String
+        review: String,
+        photos: {type: [String], default: []},
     }
 );
 

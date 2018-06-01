@@ -10,8 +10,9 @@ var Restaurant = new Schema(
     {
         name: {type: String, required: true, max: 100},
         typeOfCuisine: [{type: String, required: true, max: 100}],
-        officialPhoto: String,
+        officialPhoto: {type: String, default: "uploads/default.png"},
         hasDelivery: Boolean,
+        photoGallery: {type:[String], default: [] },
 
         address: {
             streetName : String,

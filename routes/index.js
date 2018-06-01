@@ -67,16 +67,23 @@ router.get('/restaurant/:id', function (req, res, next) {
     console.log('ID:', req.params.id);
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
         // io.sockets.on('connection', "a user conecter v2" );
-
-        res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user});
+        res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user, restid: req.params.id});
     });
 
 });
 
 router.get('/fileupload/:id', function(req, res, next) {
     console.log('ID:', req.params.id);
-    res.render('fileupload', { title: 'My Form' });
+    res.render('fileupload', { title: 'My Form', uploaded: false, user: req.user });
 });
+
+router.post('/fileupload/:id', restaurant.uploadPhoto);
+
+router.get('/multipleupload/:id', function(req, res, next) {
+    console.log('ID:', req.params.id);
+    res.render('multipleupload', { title: 'My Form', user: req.user });
+});
+router.post('/multipleupload/:id', restaurant.multipleUpload);
 
 router.post('/fileupload/:id', restaurant.uploadPhoto);
 

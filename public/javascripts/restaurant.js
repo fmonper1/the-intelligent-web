@@ -1,7 +1,8 @@
 var map; //store map in a var
 var userCoords;
 var socket = io();
-
+// var formidable = require('formidable');
+// var fs = require('fs');
 
 $(function() { //load the map on page.ready
 
@@ -100,6 +101,7 @@ function onSubmit(url) {
 
     retrieveValues()
         .then(function(data) {
+            console.log(data);
             sendAjaxQuery(url, data)
         })
         .then(function(data) {
@@ -109,6 +111,7 @@ function onSubmit(url) {
         })
         .catch();
 }
+
 
 function retrieveValues() {
     return new Promise(function (fulfill, reject) {
