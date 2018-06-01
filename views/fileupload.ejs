@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <% include partials/page_head %>
+    <% include partials/navbar %>
+    <script src="/javascripts/fileupload.js"></script>
 </head>
 
-<body>
+<body onload="checkUpload( <%= uploaded %>)">
 
 <main role="main">
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <form method="post" enctype="multipart/form-data">
+            <form id="form1" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <p><input type="file" class="form-control" name="filetoupload" id="filetoupload"></p>
                     <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
                 </div>
             </form>
+
+            <p id="msg">Photo Uploaded Successfully!</p>
+
         </div>
     </div>
 

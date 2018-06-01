@@ -8,7 +8,7 @@ exports.init= function() {
     //     console.log('collection removed')
     // });
     //
-    // Populate database with new restaurants
+    // //Populate database with new restaurants
     //
     // var restaurant = new Restaurant({
     //     name: 'BurgerQueen2',

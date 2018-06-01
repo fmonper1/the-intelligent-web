@@ -244,13 +244,57 @@ exports.uploadPhoto = function(req,res) {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
         var oldpath = files.filetoupload.path;
-        var newpath = '/uploads/' + files.filetoupload.name;
+        var temp = Date.now() + files.filetoupload.name;
+        var newpath = '../public/uploads/' + temp;
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
-            res.write('File uploaded and moved!');
-            res.end();
         });
-        Restaurant.update({ _id: req.params.id },{$set: { officialPhoto: newpath }})
+        Restaurant.update(
+            { _id: req.params.id },{$set: { officialPhoto: ('uploads/' + temp) }},
+            function(err,succ) {
+                if (err) console.log(err);
+                console.log(succ);
+            });
+
+        res.render('fileupload', { title: 'My Form', uploaded: true, user: req.user });
+    });
+};
+
+exports.multipleUpload = function(req,res) {
+    console.log('in /photos handler');
+    var form = new formidable.IncomingForm();
+
+    form.on('file', function(field, file) {
+        //rename the incoming file to the file's name
+        var temp = Date.now() + file.name;
+        var newpath = '../public/uploads/' + temp;
+        fs.rename(file.path, newpath, function (err) {
+            if (err) throw err;
+        });
+        Restaurant.update(
+            { _id: req.params.id },{$push: { photoGallery: ('uploads/' + temp) }},
+            function(err,succ) {
+                if (err) console.log(err);
+                console.log(succ);
+            });
+    });
+
+    form.on('error', function(err) {
+        console.log("an error has occured with form upload");
+        console.log(err);
+        request.resume();
+    });
+
+    form.on('aborted', function(err) {
+        console.log("user aborted upload");
+    });
+
+    form.on('end', function() {
+        console.log('-> upload done');
+    });
+
+    form.parse(req, function() {
+        res.redirect('/restaurant/'+req.params.id);
     });
 };
 
