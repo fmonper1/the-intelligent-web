@@ -22,9 +22,16 @@ userController.doRegister = function(req, res) {
 // Post login
 userController.doLogin = function(req, res) {
     // authenticates user and redirects them to the home page
-    passport.authenticate('local')(req, res, function () {
+    passport.authenticate('local')(req, res, function(err, user, info) {
+        if(err) res.redirect('/login');
+
         res.redirect('/index');
     });
+    // passport.authenticate('local')(function(err, user, info) {
+    //     if(err) console.log(err);
+    //     console.log("no err");
+    // });
+
 };
 
 // logout

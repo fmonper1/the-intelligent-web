@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser= require("body-parser");
+var passport = require("passport");
+
 
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
@@ -36,7 +38,11 @@ router.get('/login', function(req, res){
 });
 
 // route for login action
-router.post('/login', auth.doLogin);
+// router.post('/login', auth.doLogin);
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/index',
+    failureRedirect: '/login'
+}));
 
 // route for logout action
 router.get('/logout', auth.logout);

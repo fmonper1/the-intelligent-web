@@ -3,7 +3,6 @@ var userCoords;
 var socket = io();
 
 $(function() { //load the map on page.ready
-
     socket.on('viewedRestaurant1', function (data) {
         console.log("receivedViewedRestaurant");
         console.log(data);
@@ -22,23 +21,35 @@ $(function() { //load the map on page.ready
             div: '#map',
             lat: data.latitude,
             lng: data.longitude,
-            height: '200px',
+            height: '300px',
             zoom: 12,
         });
-
-        map.addMarker({
-            lat: userCoords.latitude,
-            lng: userCoords.longitude,
-            title: "Your position",
-            infoWindow: {
-                content: '<p>Your last retrieved position</p>'
-            }
-        });
-
+       markUserPos();
     });
+
+// $('#city').attr("placeholder", "Enter a city, address or postcode");
 
 });
 
+function changePlaceholder(data) {
+    if (data=="city") {
+        $('#city').attr("placeholder", "Enter a city, address or postcode");
+    } else {
+        $('#city').attr("placeholder", "Enter the name of a restaurant");
+    }
+}
+
+function markUserPos() {
+    map.addMarker({
+        lat: userCoords.latitude,
+        lng: userCoords.longitude,
+        title: "Your position",
+        icon: "userPosMarker.png",
+        infoWindow: {
+            content: '<p>Your last retrieved position</p>'
+        }
+    });
+}
 /**
  * Ajax query to searchdb .
  * @constructor
@@ -207,14 +218,7 @@ function addMarkers(data) {
     map.removeMarkers();
     var coordArray = [[userCoords.longitude, userCoords.latitude]];
 
-    map.addMarker({
-        lat: userCoords.latitude,
-        lng: userCoords.longitude,
-        title: "Your position",
-        infoWindow: {
-            content: '<p>Your last retrieved position</p>'
-        }
-    });
+    markUserPos();
 
     for(i in data) {
         console.log(data[i].location)
@@ -230,5 +234,7 @@ function addMarkers(data) {
             }
         });
     }
+
+    map.fitZoom();
 }
 

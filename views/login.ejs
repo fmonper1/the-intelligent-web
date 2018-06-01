@@ -9,8 +9,10 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-5 col-md-3">
-        <form id=“xForm" action='/login', method='post' class="form-login">
+        <div class="col-12 col-md-6 offset-md-3">
+        <p class="h5 top-1-rem">Log In:</p>
+        <div class="separator-red"></div>
+        <form action='/login' method='post' class="form-login">
 
             <label for='firstname'>User Name:</label>
             <input class="form-control input-sm chat-input" type="text" name="username" id="name" >
@@ -18,7 +20,7 @@
                 <input class="form-control input-sm chat-input" type="password" name="password" id="cuisine" >
             </p>
 
-            </p>
+
             <p><input class="btn btn-lg btn-primary btn-block" type="submit" name="g" value="Login" id="g"></p>
         </form>
         </div>
@@ -26,3 +28,4 @@
 </div>
 
 </body>
+</html>

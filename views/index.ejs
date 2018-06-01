@@ -24,11 +24,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-searchbox active">
-                            <input type="radio" name="typeOfSearch" id="option1" value="address" checked> Address
+                        <label id="searchBoxLabel">Search By:</label>
+                        <label class="btn btn-searchbox active" onclick="changePlaceholder('city')">
+                            <input type="radio" name="typeOfSearch" id="doAddressSearch" value="address" checked> Address
                         </label>
-                        <label class="btn btn-searchbox">
-                            <input type="radio" name="typeOfSearch" id="option2" value="restaurantName"> Name
+                        <label class="btn btn-searchbox" onclick="changePlaceholder('name')">
+                            <input type="radio" name="typeOfSearch" id="doNameSearch" value="restaurantName" > Name
                         </label>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
             <div id="xForm">
                 <div class="row">
                     <div class="col-8 no-pad-right">
-                        <input class="form-control" type="text" name="city" id="city" placeholder="Enter a city">
+                        <input class="form-control" type="text" name="city" id="city" placeholder="Enter a city, address or postcode">
                     </div>
 
                     <div class="col-4 no-pad-left">
@@ -48,7 +49,7 @@
 
         <div class="row">
             <div class="col-12">
-                ... or<button type="button" class="btn btn-link" onClick="onSubmitRadius('/radius')">just show me things nearby</button>
+                ... or <button type="button" class="btn btn-link" onClick="onSubmitRadius('/radius')" style="padding: 0">just show me things nearby</button>
             </div>
 
         </div>

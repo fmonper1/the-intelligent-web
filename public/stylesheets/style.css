@@ -46,6 +46,10 @@
   border-color: #900009;
   border-radius: 5px 0 0 5px;
 }
+#searchBoxLabel {
+  padding: 7px;
+  margin-bottom: 0;
+}
 .hasDelivery {
   padding: 1px 3px;
   display: inline-block;
@@ -53,6 +57,7 @@
   border-radius: 3px;
   font-size: .8rem;
 }
+
 
 .resRating {
   margin: 0;
@@ -62,10 +67,11 @@
 
 .btn-searchbox {
   margin-bottom: 0;
+  border-radius: 5px 5px 0 0!important;
 }
 .btn-searchbox.active {
-background: #bc010d;
-color: white;
+  background: #bc010d;
+  color: white;
 }
 .btn-searchbox input[type=radio] {
    position:fixed;
