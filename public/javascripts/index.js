@@ -16,7 +16,7 @@ $(function() { //load the map on page.ready
             + "<span class='resTitle'>" +data.restaurant.name+ "</span>"
             + "<br>"
 
-            + data.restaurant.typeOfCuisine.join() + "<br>"
+            + data.restaurant.typeOfCuisine.join(", ") + "<br>"
             // + (data[i].hasDelivery > 0 ? "<span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
             + (data.restaurant.hasDelivery > 0 ? " <span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span><br>":"")
             + "<a href='/restaurant/"+data.restaurant._id+"'>view more</a></div>"
