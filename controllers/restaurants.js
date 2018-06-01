@@ -22,85 +22,86 @@ var geocoder = NodeGeocoder(GeocoderOptions);
  */
 exports.queryDB = function (req, res) {
     var userData = req.body;
-    if (userData == null) {
-        res.status(403).send('No data sent!')
-    }
-    if (userData.typeOfSearch == "address") {
-        geocoder.geocode(userData.city)
-        .then(function(geocoded) {
+    if (userData.city == "") {
+        res.status(403).send('No data sent!');
+    } else {
+        if (userData.typeOfSearch == "address") {
+            geocoder.geocode(userData.city)
+                .then(function (geocoded) {
+                    try {
+                        console.log("geocoding:");
+                        console.log(geocoded[0]);
+                        var coords = [geocoded[0].longitude, geocoded[0].latitude];
+
+                        var maxDistance = userData.searchRadius;
+                        maxDistance /= 6371; // convert the distance to radians
+
+                        //store query in variable and push $and operator
+                        var query = {};
+                        query['$and'] = [];
+
+                        // push geolocation query
+                        query['$and'].push({"location": {$geoWithin: {$centerSphere: [coords, maxDistance]}}});
+
+                        if (userData.cuisineType != "All") {
+                            query['$and'].push({"typeOfCuisine": {$in: [userData.cuisineType]}});
+                        }
+                        console.log(query);
+
+                        Restaurant.find(query,
+                            'name typeOfCuisine address location rating officialPhoto hasDelivery',
+                            function (err, data) {
+                                if (err) {
+                                    console.log(err);
+                                    throw err;
+                                }
+                                if (!data) {
+                                    console.log("no data found");
+                                    res.json({});
+                                } else {
+                                    console.log(data);
+                                    res.json(data);
+                                }
+                            });
+                    } catch (e) {
+                        res.status(500).send('error ' + e);
+                    }
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+        else if (userData.typeOfSearch == "restaurantName") {
             try {
-                console.log("geocoding:");
-                console.log(geocoded[0]);
-                var coords = [geocoded[0].longitude, geocoded[0].latitude];
-
-                var maxDistance = userData.searchRadius ;
-                maxDistance /= 6371; // convert the distance to radians
-
                 //store query in variable and push $and operator
                 var query = {};
-                query['$and']=[];
+                query['$and'] = [];
 
-                // push geolocation query
-                query['$and'].push({"location": {$geoWithin: {$centerSphere: [coords, maxDistance]}}});
+                query['$and'].push({"name": {$regex: userData.city, $options: "$i"}});
 
                 if (userData.cuisineType != "All") {
-                    query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
+                    query['$and'].push({"typeOfCuisine": {$in: [userData.cuisineType]}});
                 }
                 console.log(query);
 
                 Restaurant.find(query,
-                'name typeOfCuisine address location rating officialPhoto hasDelivery',
-                function (err, data) {
-                    if (err) {
-                        console.log(err);
-                        throw err;
-                    }
-                    if (!data) {
-                        console.log("no data found");
-                        res.json({});
-                    } else {
-                        console.log(data);
-                        res.json(data);
-                    }
-                });
+                    'name typeOfCuisine address location rating officialPhoto hasDelivery',
+                    function (err, data) {
+                        if (err) {
+                            console.log(err);
+                            throw err;
+                        }
+                        if (!data) {
+                            console.log("no data found");
+                            res.json({});
+                        } else {
+                            console.log(data);
+                            res.json(data);
+                        }
+                    });
             } catch (e) {
                 res.status(500).send('error ' + e);
             }
-        })
-        .catch(function(err) {
-            console.log(err);
-        });
-    }
-    else if (userData.typeOfSearch == "restaurantName") {
-        try {
-            //store query in variable and push $and operator
-            var query = {};
-            query['$and']=[];
-
-            query['$and'].push({"name": {$regex:userData.city ,$options:"$i"} });
-
-            if (userData.cuisineType != "All") {
-                query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
-            }
-            console.log(query);
-
-            Restaurant.find(query,
-                'name typeOfCuisine address location rating officialPhoto hasDelivery',
-                function (err, data) {
-                    if (err) {
-                        console.log(err);
-                        throw err;
-                    }
-                    if (!data) {
-                        console.log("no data found");
-                        res.json({});
-                    } else {
-                        console.log(data);
-                        res.json(data);
-                    }
-                });
-        } catch (e) {
-            res.status(500).send('error ' + e);
         }
     }
 };
@@ -137,18 +138,6 @@ exports.queryByRadius = function(req, res) {
             }}
         ).limit(limit);
 
-        // var query = Restaurant.find(
-        //     {location : {
-        //         $nearSphere: {
-        //             $geometry: {
-        //                 type: "Point" ,
-        //                 coordinates: coords
-        //             },
-        //             $maxDistance: maxDistance
-        //         }
-        //     }
-        // })
-
         query.exec(function (err, data) {
             if (err) {
                 console.log(err);
@@ -177,18 +166,18 @@ exports.findOneRestaurant = function(index, req, res) {
     return new Promise(function (fulfill, reject){
 
         try {
-        var query = {};
-        //query['_id'] = [ObjectID(index)];
-        console.log(query);
-        Restaurant.find(ObjectId(index),
-            function (err, result) {
-                if (err)
-                    res.status(500).send('Invalid data!');
-                //console.log(result);
-                fulfill(result) ;
-                //res.setHeader('Content-Type', 'application/json');
-                //res.send(JSON.stringify(restaurants));
-            });
+            var query = {};
+            //query['_id'] = [ObjectID(index)];
+            console.log(query);
+            Restaurant.find(ObjectId(index),
+                function (err, result) {
+                    if (err)
+                        res.status(500).send('Invalid data!');
+                    //console.log(result);
+                    fulfill(result) ;
+                    //res.setHeader('Content-Type', 'application/json');
+                    //res.send(JSON.stringify(restaurants));
+                });
         } catch (e) {
             res.status(500).send('error ' + e);
             console.log(e);

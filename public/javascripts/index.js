@@ -58,8 +58,6 @@ function markUserPos() {
  */
 function sendAjaxQuery(url, data) {
     return new Promise( (resolve, reject) => {
-
-
         $.ajax({
             url: url ,
             data: data,
@@ -80,9 +78,11 @@ function sendAjaxQuery(url, data) {
                 resolve(ret);
             },
             error: function (xhr, status, error) {
-                alert('Error: ' + error.message);
-                reject(error);
-            }
+                console.log('Error: ' + xhr.responseText);
+                $("#errors").html(xhr.responseText);
+                reject(xhr.responseText);
+            },
+            // timeout: 5000
         });
     });
 }
@@ -99,14 +99,15 @@ function displayResultsNicely(data) {
             // + JSON.stringify(data[i]) + "<br>"
             "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a>"
             + "</div>"
-            +"<div class='col-9 no-pad-left'>"+ data[i].name
-            + (data[i].hasDelivery > 0 ? " <span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
+            +"<div class='col-9 no-pad-left'>"
 
+            + "<span class='resRating'>" + data[i].rating.averageScore + "<i class=\"fas fa-star\"></i> </span>"
+            + "<span class='resTitle'>" +data[i].name+ "</span>"
             + "<br>"
-            + "<p class='resRating'>" + data[i].rating.averageScore + "<i class=\"fas fa-star\"></i> </p>"
+
             + data[i].typeOfCuisine.join() + "<br>"
             // + (data[i].hasDelivery > 0 ? "<span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
-
+            + (data[i].hasDelivery > 0 ? " <span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span><br>":"")
             + "<a href='/restaurant/"+data[i]._id+"'>view more</a></div>"
             + "<div class='col-12'><div class='separator-red-thin'></div></div>"
             + "</div></div>");
@@ -125,11 +126,6 @@ function onSubmit(url) {
     for (index in formArray){
         data[formArray[index].name]= formArray[index].value;
     }
-    // const data = JSON.stringify($(this).serializeArray());
-    sendAjaxQuery(url, data)
-    // sendAjaxQuery(url, data).then(function(){
-    //     console.log("query sent")
-    // });
 }
 /**
  * onSubmit radius function .
@@ -138,6 +134,7 @@ function onSubmit(url) {
  */
 function onSubmitRadius(url) {
     event.preventDefault();
+    $('#errors').html("");
     getLocation()
         .then(function() {
             console.log("getLocationDone");
@@ -154,6 +151,7 @@ function onSubmitRadius(url) {
         .catch(function (error) {
             console.log(error.message)
         })
+
 }
 /**
  * retrieves the values from the form data and serializes it.
@@ -197,7 +195,6 @@ function getLocation() {
                 resolve(crd);
             }
             , function error(err) {
-
                 console.warn('ERROR(' + err.code + '): ' + err.message);
                 reject(err.message);
             }

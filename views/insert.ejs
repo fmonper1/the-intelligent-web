@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link href="//localhost:3003/stylesheets/multi-select.css" rel="stylesheet">
+
     <% include partials/page_head %>
     <% include partials/navbar %>
     <script src="//localhost:3003/javascripts/jquery.multi-select.js"></script>
-    <link href="//localhost:3003/stylesheets/multi-select.css" rel="stylesheet">
     <script type="text/javascript">
         $(function() {
             $('#my-select').multiSelect();
         });
-
-
 
     </script>
 
@@ -30,19 +29,19 @@
                 <div class="form-group">
                     <p>
                         <label for='restaurantName'>Restaurant Name:</label>
-                        <input class="form-control" type="text" name="restaurantName" id="name" >
+                        <input class="form-control" type="text" name="restaurantName" id="name" required>
                     </p>
                     <p>
                         <label for='lastname'>Cuisine:</label>
+                        <select multiple="multiple" id="my-select" name="cuisine">
+                            <option>All</option>
+                            <% for (i in foodTypes) { %>
+                            <div class="form-check form-check-inline">
+                                <option><%= foodTypes[i] %></option>
+                            </div>
+                            <% }%>
+                        </select>
                     </p>
-                    <select multiple="multiple" id="my-select" name="cuisine">
-                        <option>All</option>
-                        <% for (i in foodTypes) { %>
-                        <div class="form-check form-check-inline">
-                            <option><%= foodTypes[i] %></option>
-                        </div>
-                        <% }%>
-                    </select>
 
                     <p>
                         <label for="exampleFormControlSelect1">Delivery?</label>
@@ -52,25 +51,25 @@
                         </select>
                     </p>
                     <p><label for='telephone'>Telephone:</label>
-                        <input class="form-control" type="text" name="telephone" id="telephone" >
+                        <input class="form-control" type="text" name="telephone" id="telephone" required>
                     </p>
                     <p><label for='website'>Website:</label>
-                        <input class="form-control" type="text" name="website" id="website" >
+                        <input class="form-control" type="text" name="website" id="website" required>
                     </p>
                     <p><label for='streetName'>Street Name:</label>
-                        <input class="form-control" type="text" name="streetName" id="streetName" >
+                        <input class="form-control" type="text" name="streetName" id="streetName" required>
                     </p>
                     <p><label for='city'>City:</label>
-                        <input class="form-control" type="text" name="city" id="city" >
+                        <input class="form-control" type="text" name="city" id="city" required>
                     </p>
                     <p><label for='postcode'>Postcode:</label>
-                        <input class="form-control" type="text" name="postcode" id="postcode" >
+                        <input class="form-control" type="text" name="postcode" id="postcode" required>
                     </p>
                     <p><label for='lastname'>County:</label>
-                        <input class="form-control" type="text" name="county" id="county" >
+                        <input class="form-control" type="text" name="county" id="county" required>
                     </p>
                     <p><label for='lastname'>Country:</label>
-                        <input class="form-control"type="text" name="country" id="country" >
+                        <input class="form-control"type="text" name="country" id="country" required>
                     </p>
                     <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
                 </div>
