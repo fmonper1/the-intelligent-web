@@ -6,20 +6,18 @@
     <script src="/javascripts/fileupload.js"></script>
 </head>
 
-<body onload="checkUpload( <%= uploaded %>)">
-
 <main role="main">
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
+            <!--form for file upload, choose one file for official photo-->
+            <!--post handled in restaurant controller-->
             <form id="form1" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <p><input type="file" class="form-control" name="filetoupload" id="filetoupload"></p>
                     <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
                 </div>
             </form>
-
-            <p id="msg">Photo Uploaded Successfully!</p>
 
         </div>
     </div>

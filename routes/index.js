@@ -1,27 +1,30 @@
+/**
+ * Module dependencies.
+ */
 var express = require('express');
 var router = express.Router();
 var bodyParser= require("body-parser");
 var passport = require("passport");
-
-
 var restaurant = require('../controllers/restaurants');
 var initDB= require('../controllers/init');
+var auth = require("../controllers/auth.js");
+
 initDB.init();
 
-var auth = require("../controllers/auth.js");
+// checks if user is logged in then allows action to be performed else redirects to login page
 var isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated())
         return next();
     res.redirect('/login');
 }
+// list of the cuisines
+var foodList = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian", "Sandwiches"] ;
 
-var foodList = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian"] ;
-
-// restrict index for logged in user only
+// route to index page and passes in the list of food and user
 router.get('/index', function(req, res){
     res.render('index', { user: req.user, foodTypes: foodList });
 });
-
+// route to post fromhome page and query db
 router.post('/index', restaurant.queryDB);
 
 
@@ -38,8 +41,7 @@ router.get('/login', function(req, res){
     res.render('login', { user: req.user });
 });
 
-// route for login action
-// router.post('/login', auth.doLogin);
+// route for login action that authenticates user and redirects them
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/index',
     failureRedirect: '/login'
@@ -48,43 +50,40 @@ router.post('/login', passport.authenticate('local', {
 // route for logout action
 router.get('/logout', auth.logout);
 
-/* GET home page. */
+// route to insert page and passes in the list of food and user
 router.get('/insert', isAuthenticated, function(req, res){
     res.render('insert', { user: req.user, foodTypes: foodList });
 });
-
+// route for insert action
 router.post('/insert', restaurant.insert);
 
 
-/* GET home page. */
-router.get('/radius', function(req, res, next) {
-    res.render('radius', { title: 'My Form' });
-    //console.log("algo");
-});
-
+// route for radius action
 router.post('/radius', restaurant.queryByRadius);
 
+// route to get restaurant page
 router.get('/restaurant/:id', function (req, res, next) {
     console.log('ID:', req.params.id);
+    // query db to find restaurant using id
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
-        // io.sockets.on('connection', "a user conecter v2" );
         res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user, restid: req.params.id});
     });
 
 });
-
+// route to post restaurant page
 router.post('/restaurant/:id',restaurant.findOneRestaurant);
-
+// route to post review to restaurant page
 router.post('/restaurant/:id/addReview', restaurant.addReview);
 
-
+// route to get file upload page
 router.get('/fileupload/:id', function(req, res, next) {
     console.log('ID:', req.params.id);
     res.render('fileupload', { title: 'My Form', uploaded: false, user: req.user });
 });
-
+// route to post to file upload page
 router.post('/fileupload/:id', restaurant.uploadPhoto);
 
+// route to get multiple upload page using restaurant id
 router.get('/multipleupload/:id', function(req, res, next) {
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
         console.log('ID:', req.params.id);
@@ -94,8 +93,10 @@ router.get('/multipleupload/:id', function(req, res, next) {
     });
 });
 
+// route to post multiple upload page
 router.post('/multipleupload/:id', restaurant.multipleUpload);
 
+// route to post to file upload page
 router.post('/fileupload/:id', restaurant.uploadPhoto);
 
 

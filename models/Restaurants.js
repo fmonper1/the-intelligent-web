@@ -1,4 +1,6 @@
-
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose'),
     Review = require('./Reviews.js'),
     ReviewSchema = mongoose.model('Review').schema;
@@ -44,10 +46,11 @@ var Restaurant = new Schema(
             score4: {type: Number, default: 0},
             score5: {type: Number, default: 0},
         },
+        // array of reviews
         reviews: [ReviewSchema]
     }
 );
-
+//makes the location field an index so it can be queried later
 Restaurant.index({location: '2dsphere'});
 
 var restaurantModel = mongoose.model('Restaurant', Restaurant );

@@ -22,17 +22,17 @@
 <% include partials/navbar %>
 
 <main role="main">
-
+    <div itemscope itemtype="http://schema.org/Restaurant">
     <div class="container">
         <div class="d-flex bd-highlight">
             <div class="p-2 bd-highlight">
                 <img src="../<%= restaurant[0].officialPhoto %>" style="width: 65px; height: 65px;" alt="Card image cap">
             </div>
             <div class="p-2 flex-grow-1 bd-highlight">
-                <p class="h4"><%= restaurant[0].name %></p>
-
+                <p class="h4"><div itemscope itemtype="http://schema.org/name"><%= restaurant[0].name %></div></p>
+                <div itemscope itemtype="http://schema.org/servesCuisine">
                 <%= restaurant[0].typeOfCuisine.join(", ")%>
-
+                </div>
                 <% if (restaurant[0].hasDelivery == true) {%>
                 <span class="hasDelivery">
                         <i class="fas fa-motorcycle"></i> Delivery
@@ -45,11 +45,16 @@
                 <p>
                     <div id="distToRestaurant"></div>
                 </p>
-                <p>
-                    <i class="fa fa-location-arrow" aria-hidden="true"></i> <%= restaurant[0].address.streetName %>, <%= restaurant[0].address.city %>, <%= restaurant[0].address.postcode %>, <%= restaurant[0].address.country %>
-                </p>
-                <p>
-                    <i class="fa fa-phone" aria-hidden="true"></i> <%= restaurant[0].contactDetails.telephone%>
+                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><p>
+                    <i class="fa fa-location-arrow" aria-hidden="true">
+
+                    </i> <span itemprop="streetAddress"> <%= restaurant[0].address.streetName %> </span>,
+                        <span itemprop="addressLocality"> <%= restaurant[0].address.city %> </span>,
+                        <span itemprop="postalCode"> <%= restaurant[0].address.postcode %> </span>,
+                        <%= restaurant[0].address.country %>
+                </p></div>
+                <p><i class="fa fa-phone" aria-hidden="true"></i>
+                    <span itemprop="telephone"> <%= restaurant[0].contactDetails.telephone%></span>
                 </p>
                 <p>
                     <i class="fa fa-link" aria-hidden="true"></i> <a href="<%=restaurant[0].contactDetails.website%>"><%=restaurant[0].contactDetails.website%></a>
@@ -65,11 +70,11 @@
 
                 <div class="row">
                 <% restaurant[0].photoGallery.forEach(function (photo) {  %>
-                    <div class="col-3">
+                    <div class="col-3"><div itemscope itemtype="http://schema.org/photos">
                         <a href="../<%= photo %>">
                             <img class="img-fluid" src="../<%= photo %>">
                         </a>
-                    </div>
+                        </div></div>
                 <% }) %>
                     <div class="col-3">
                     <a href="/multipleupload/<%=restaurant[0].id%>"><img class="img-fluid" src="../addImages.png"></a>
@@ -114,7 +119,8 @@
         <% include partials/addReviewForm.ejs %>
         <% }%>
     <br>
-
+    </div>
+    </div>
 </main>
 
 <footer class="container">

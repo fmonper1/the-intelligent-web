@@ -1,7 +1,7 @@
 <!--<div class="card">-->
     <!--<div class="card-body">-->
         <div class="text-center">
-            <h3><%= if(0)(restaurant[0].rating.totalScore/restaurant[0].reviews.length).toFixed(2) %>/5</h3>
+            <h3><%= (restaurant[0].rating.totalScore/restaurant[0].reviews.length).toFixed(2) %>/5</h3>
             <% for(i=0; i<Math.round(restaurant[0].rating.totalScore/restaurant[0].reviews.length); i++) {%>
                 <i class="fas fa-star"></i>
             <%} %>
@@ -9,7 +9,6 @@
                 <i class="far fa-star"></i>
             <%} %>
         </div>
-
 
     <div class="row">
 
