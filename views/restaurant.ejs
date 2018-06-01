@@ -29,7 +29,7 @@
                 <img src="../<%= restaurant[0].officialPhoto %>" style="width: 65px; height: 65px;" alt="Card image cap">
             </div>
             <div class="p-2 flex-grow-1 bd-highlight">
-                <p class="h4"><div itemscope itemtype="http://schema.org/name"><%= restaurant[0].name %></div></p>
+                <div itemscope itemtype="http://schema.org/name"><p class="h4"><%= restaurant[0].name %></p></div>
                 <div itemscope itemtype="http://schema.org/servesCuisine">
                 <%= restaurant[0].typeOfCuisine.join(", ")%>
                 </div>
@@ -40,8 +40,11 @@
                 <% }%>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-6">
+                <h5 class="top-1-rem">Restaurant Info</h5>
+                <div class="separator-red"></div>
                 <p>
                     <div id="distToRestaurant"></div>
                 </p>
@@ -62,56 +65,70 @@
                 </p>
 
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <h5>Image Gallery</h5>
-                <div class="separator-red"></div>
-
-                <div class="row">
-                <% restaurant[0].photoGallery.forEach(function (photo) {  %>
-                    <div class="col-3"><div itemscope itemtype="http://schema.org/photos">
-                        <a href="../<%= photo %>">
-                            <img class="img-fluid" src="../<%= photo %>">
-                        </a>
-                        </div></div>
-                <% }) %>
-                    <div class="col-3">
-                    <a href="/multipleupload/<%=restaurant[0].id%>"><img class="img-fluid" src="../addImages.png"></a>
-                    </div>
-                </div>
-            </div>
 
 
-            <div class="col-12">
+            <div class="col-12 col-md-6">
                 <h5 class="top-1-rem">Map View</h5>
                 <div class="separator-red"></div>
 
                 <div id="map"></div>
             </div>
 
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <h5 class="top-1-rem">Image Gallery</h5>
+                <div class="separator-red"></div>
+
+                <div class="row">
+                <% restaurant[0].photoGallery.forEach(function (photo) {  %>
+                    <div class="col-3 col-md-2 col-lg-2"><div itemscope itemtype="http://schema.org/photos">
+                        <a href="../<%= photo %>">
+                            <img class="img-fluid" src="../<%= photo %>">
+                        </a>
+                        </div></div>
+                <% }) %>
+                    <% if (user) {%>
+                    <div class="col-3 col-md-2 col-lg-2">
+                    <a href="/multipleupload/<%=restaurant[0].id%>"><img class="img-fluid" src="../addImages.png"></a>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+
 
             <div class="col-12">
-                <h5 class="top-1-rem">Rating & Comments</h5>
+                <h5 class="top-1-rem">Rating</h5>
                 <div class="separator-red"></div>
 
 
                 <% include partials/restaurantTotalScore.ejs %>
 
             </div>
+            <div class="col-12">
+                <h5 class="top-1-rem">Reviews <button class="btn btn-link btn-sm" type="button" data-toggle="collapse" data-target="#myReview" aria-expanded="true" aria-controls="myReview">
+                        Show/Hide Reviews
+                    </button></h5>
+                <div class="separator-red"></div>
+
+            </div>
         </div>
 
 
-    <div class="row">
+    <div id="myReview" class="collapse show">
+        <div class="row">
+
+
         <% restaurant[0].reviews.forEach(function (review) {  %>
             <!--<p><%= review %></p>-->
             <% include partials/displayReview.ejs %>
         <% }) %>
+        <div ></div>
+        </div>
     </div>
 
-    <div id="myReview"></div>
-
-    <br>
         <% if (user) {%>
         <h5 class="top-1-rem">Leave A Review</h5>
         <div class="separator-red"></div>
@@ -123,9 +140,8 @@
     </div>
 </main>
 
-<footer class="container">
-    <p>&copy; Company 2017-2018</p>
-</footer>
+<% include partials/page_foot.ejs %>
+
 
 </body>
 </html>

@@ -21,6 +21,10 @@ var isAuthenticated = function (req, res, next) {
 var foodList = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian", "Sandwiches"] ;
 
 // route to index page and passes in the list of food and user
+router.get('/', function(req, res){
+    res.render('index', { user: req.user, foodTypes: foodList });
+});
+
 router.get('/index', function(req, res){
     res.render('index', { user: req.user, foodTypes: foodList });
 });

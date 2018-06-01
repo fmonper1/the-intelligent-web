@@ -24,6 +24,7 @@ $(function() { //load the map on page.ready
             lat: userCoords.latitude,
             lng: userCoords.longitude,
             title: "Your position",
+            icon: "/userPosMarker.png",
             infoWindow: {
                 content: '<p>Your last retrieved position</p>'
             }
@@ -110,7 +111,7 @@ function onSubmit(url) {
                 $('#whatsHappening').html("Your review was added to the system");
             });
             console.log(data);
-            $('#myReview').html("<div class=\"col-6 top-1-rem\">\n" +
+            $('#myReview').append("<div class=\"col-12 col-md-6 top-1-rem\">\n" +
                 "    <div class=\"card\">\n" +
                 "\n" +
                 "        <div class=\"card-body\">\n" +

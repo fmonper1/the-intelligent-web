@@ -4,13 +4,24 @@ var socket = io();
 
 $(function() { //load the map on page.ready
     socket.on('viewedRestaurant1', function (data) {
+        $("#socketContainer").removeClass("displayNone");
         $('#socketRestaurant').append(
-            "<p><a href='/restaurant/" +data.restaurant._id+ "'>"
-            +data.restaurant.name.valueOf()
-            +"</a>"
-            +data.restaurant.typeOfCuisine.join(", ")
-            + "</p>"
-        );
+            "<div class='col-sm-12 col-md-6'><div class='row'>" +
+            // + JSON.stringify(data[i]) + "<br>"
+            "<div class='col-3 align-items-middle'><a href='/restaurant/"+data.restaurant._id+"'><img src='"+ data.restaurant.officialPhoto + "' class='img-fluid'></a>"
+            + "</div>"
+            +"<div class='col-9 no-pad-left'>"
+
+            + "<span class='resRating'>" + data.restaurant.rating.averageScore + "<i class=\"fas fa-star\"></i> </span>"
+            + "<span class='resTitle'>" +data.restaurant.name+ "</span>"
+            + "<br>"
+
+            + data.restaurant.typeOfCuisine.join() + "<br>"
+            // + (data[i].hasDelivery > 0 ? "<span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
+            + (data.restaurant.hasDelivery > 0 ? " <span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span><br>":"")
+            + "<a href='/restaurant/"+data.restaurant._id+"'>view more</a></div>"
+            + "<div class='col-12'><div class='separator-red-thin'></div></div>"
+            + "</div></div>");
     });
 
     getLocation().then(function(data) {
@@ -93,7 +104,8 @@ function sendAjaxQuery(url, data) {
 function displayResultsNicely(data) {
     $("#results").html("");
     for(i in data) {
-        $('#results').append("<div class='col-sm-12 col-md-6'><div class='row'>" +
+        $('#results').append(
+            "<div class='col-sm-12 col-md-6'><div class='row'>" +
             // + JSON.stringify(data[i]) + "<br>"
             "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a>"
             + "</div>"

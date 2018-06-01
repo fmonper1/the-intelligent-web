@@ -25,6 +25,11 @@
   background: #bc010d;
 }
 
+#socketContainer {
+}
+.displayNone {
+    display: none;
+}
 #xForm {
   background: #bc010d;
   padding: 10px;
