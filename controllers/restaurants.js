@@ -246,9 +246,11 @@ exports.uploadPhoto = function(req,res) {
     form.parse(req, function (err, fields, files) {
         // take old path from users file system
         var oldpath = files.filetoupload.path;
+        // rename file
         var temp = Date.now() + files.filetoupload.name;
         // make new path to save the file to the project directory
         var newpath = '../public/uploads/' + temp;
+        // change path of file to new path
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
         });
@@ -260,14 +262,14 @@ exports.uploadPhoto = function(req,res) {
                 console.log(succ);
             });
         // redirect to success page
-        res.render('fileupload', { title: 'My Form', uploaded: true, user: req.user });
+        res.redirect('/restaurant/'+req.params.id);
     });
 };
 // function for users to upload multiple photos to a restaurant
 exports.multipleUpload = function(req,res) {
     console.log('in /photos handler');
     var form = new formidable.IncomingForm();
-
+    // for each file in form
     form.on('file', function(field, file) {
         //rename the incoming file to the file's name
         var temp = Date.now() + file.name;
@@ -291,18 +293,22 @@ exports.multipleUpload = function(req,res) {
         request.resume();
     });
 
+    // error message
     form.on('aborted', function(err) {
         console.log("user aborted upload");
     });
 
+    // reached end of form
     form.on('end', function() {
         console.log('-> upload done');
     });
 
+    // parse form
     form.parse(req, function() {
         res.redirect('/restaurant/'+req.params.id);
     });
 };
+
 // function to add review posted by user to the database
 exports.addReview = function ( req, res) {
     var data = req.body;
