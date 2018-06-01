@@ -60,11 +60,21 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h5 >Image Gallery</h5> <a href="/multipleupload/<%=restaurant[0].id%>">  Add Photos</a>
+                <h5>Image Gallery</h5>
                 <div class="separator-red"></div>
 
-                <img class="img-fluid" src="https://img1.cgtrader.com/items/663571/dd7119d83f/fast-food-restaurant-3d-model-low-poly-max-3ds.jpg
-" alt="Card image cap">
+                <div class="row">
+                <% restaurant[0].photoGallery.forEach(function (photo) {  %>
+                    <div class="col-3">
+                        <a href="../<%= photo %>">
+                            <img class="img-fluid" src="../<%= photo %>">
+                        </a>
+                    </div>
+                <% }) %>
+                    <div class="col-3">
+                    <a href="/multipleupload/<%=restaurant[0].id%>"><img class="img-fluid" src="../addImages.png"></a>
+                    </div>
+                </div>
             </div>
 
 

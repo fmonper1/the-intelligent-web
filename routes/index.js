@@ -15,10 +15,12 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/login');
 }
 
+var foodList = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian"] ;
+
 
 // restrict index for logged in user only
 router.get('/index', function(req, res){
-    res.render('index', { user: req.user });
+    res.render('index', { user: req.user, foodTypes: foodList });
 });
 
 router.post('/index', restaurant.queryDB);
