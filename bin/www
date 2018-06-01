@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('Intelligent web: server');
 var http = require('http');
 var database= require('../databases/restaurants')
+var fs = require('fs-extra');
 /**
  * Get port from environment and store in Express.
  */
@@ -18,8 +19,16 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+var https = require('https');
+var options = {
+    key: fs.readFileSync('../private_access/ca.key'),
+    cert: fs.readFileSync('../private_access/ca.crt')
+};
 
-var server = http.createServer(app);
+/**
+ * Create HTTPs server using the options
+ */
+var server = https.createServer(options, app);
 
 /**
  * Socket.io

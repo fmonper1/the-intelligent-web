@@ -1,7 +1,13 @@
 var map; //store map in a var
 var userCoords;
 var socket = io();
-
+function initRestaurant() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('./service-worker.js')
+            .then(function() { console.log('Service Worker Registered'); });
+    }
+}
 $(function() { //load the map on page.ready
 
     socket.on('viewedRestaurant1', function (data) {
