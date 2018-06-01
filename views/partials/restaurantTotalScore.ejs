@@ -1,7 +1,9 @@
 <!--<div class="card">-->
     <!--<div class="card-body">-->
         <div class="text-center">
+            <span class="reviewRating" itemscope itemtype="http://schema.org/Rating">
             <h3><%= (restaurant[0].rating.totalScore/restaurant[0].reviews.length).toFixed(2) %>/5</h3>
+            </span>
             <% for(i=0; i<Math.round(restaurant[0].rating.totalScore/restaurant[0].reviews.length); i++) {%>
                 <i class="fas fa-star"></i>
             <%} %>
@@ -9,7 +11,6 @@
                 <i class="far fa-star"></i>
             <%} %>
         </div>
-
 
     <div class="row">
 
