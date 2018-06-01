@@ -1,8 +1,11 @@
+/**
+* Module dependencies.
+*/
 var mongoose = require("mongoose");
 var passport = require("passport");
 var User = require("../models/Users");
-// Uses passport package to authenticate users and register users
 
+// Uses passport package to authenticate users and register users
 
 var userController = {};
 // Post registration
@@ -23,14 +26,12 @@ userController.doRegister = function(req, res) {
 userController.doLogin = function(req, res) {
     // authenticates user and redirects them to the home page
     passport.authenticate('local')(req, res, function(err, user, info) {
+        // if the users credentials are invalid they are re directed to the login
+        // page else redirected to the home page
         if(err) res.redirect('/login');
 
         res.redirect('/index');
     });
-    // passport.authenticate('local')(function(err, user, info) {
-    //     if(err) console.log(err);
-    //     console.log("no err");
-    // });
 
 };
 

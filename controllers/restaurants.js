@@ -1,3 +1,6 @@
+/**
+ * Module dependencies.
+ */
 var Restaurant = require('../models/Restaurants');
 var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
@@ -25,6 +28,7 @@ exports.queryDB = function (req, res) {
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
+    // query by address
     if (userData.typeOfSearch == "address") {
         geocoder.geocode(userData.city)
         .then(function(geocoded) {
@@ -42,12 +46,12 @@ exports.queryDB = function (req, res) {
 
                 // push geolocation query
                 query['$and'].push({"location": {$geoWithin: {$centerSphere: [coords, maxDistance]}}});
-
+                // push type of cuisne query
                 if (userData.cuisineType != "All") {
                     query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
                 }
                 console.log(query);
-
+                // query restaurant collection using constructed query
                 Restaurant.find(query,
                 'name typeOfCuisine address location rating officialPhoto hasDelivery',
                 function (err, data) {
@@ -71,19 +75,20 @@ exports.queryDB = function (req, res) {
             console.log(err);
         });
     }
+    // query by name
     else if (userData.typeOfSearch == "restaurantName") {
         try {
             //store query in variable and push $and operator
             var query = {};
             query['$and']=[];
-
+            // push name query
             query['$and'].push({"name": {$regex:userData.city ,$options:"$i"} });
-
+            // push cuisine query
             if (userData.cuisineType != "All") {
                 query['$and'].push({"typeOfCuisine": { $in: [ userData.cuisineType ] }});
             }
             console.log(query);
-
+            // query restaurant collection using constructed query
             Restaurant.find(query,
                 'name typeOfCuisine address location rating officialPhoto hasDelivery',
                 function (err, data) {
@@ -128,7 +133,7 @@ exports.queryByRadius = function(req, res) {
         coords[0] = parseFloat(userData.longitude);
         coords[1] = parseFloat(userData.latitude);
         console.log(coords);
-
+        // querys restaurant colection around a sphere with specefic radius specified by user
         var query = Restaurant.find({
             "location" : {
                 $geoWithin : {
@@ -137,17 +142,7 @@ exports.queryByRadius = function(req, res) {
             }}
         ).limit(limit);
 
-        // var query = Restaurant.find(
-        //     {location : {
-        //         $nearSphere: {
-        //             $geometry: {
-        //                 type: "Point" ,
-        //                 coordinates: coords
-        //             },
-        //             $maxDistance: maxDistance
-        //         }
-        //     }
-        // })
+
 
         query.exec(function (err, data) {
             if (err) {
@@ -168,9 +163,9 @@ exports.queryByRadius = function(req, res) {
         res.status(500).send('error ' + e);
     }
 };
-
+// this function takes in the id of a restaurant and returns the document of that restaurant
 exports.findOneRestaurant = function(index, req, res) {
-    //var userData = req.params.id;
+
     if (index == null) {
         res.status(403).send('No data sent!')
     }
@@ -178,16 +173,15 @@ exports.findOneRestaurant = function(index, req, res) {
 
         try {
         var query = {};
-        //query['_id'] = [ObjectID(index)];
+
         console.log(query);
         Restaurant.find(ObjectId(index),
             function (err, result) {
                 if (err)
                     res.status(500).send('Invalid data!');
-                //console.log(result);
+
                 fulfill(result) ;
-                //res.setHeader('Content-Type', 'application/json');
-                //res.send(JSON.stringify(restaurants));
+
             });
         } catch (e) {
             res.status(500).send('error ' + e);
@@ -196,17 +190,18 @@ exports.findOneRestaurant = function(index, req, res) {
         }
     });
 };
-
+// inserts new restaurant added by user to the restaurant collection
 exports.insert = function (req, res) {
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
+    // geocodes address to give longitude and latitude to be saved in the collection
     var combinedAddress = userData.streetName+", "+userData.city+" "+userData.postcode;
     Promise.all([geocoder.geocode(combinedAddress)]).then(function(values) {
         console.log("geocoded address for new record")
         console.log(values[0][0].latitude);
-
+        // adds a new restaurant to the Restaurant collection with all the details
         try {
             var restaurant = new Restaurant({
                 name: userData.restaurantName,
@@ -229,11 +224,11 @@ exports.insert = function (req, res) {
                 },
             });
             console.log('received: ' + restaurant);
-
+            // saves new restaurant
             restaurant.save(function (err, results) {
                 if (err) console.log(err);
                 console.log(results._id);
-
+                // redirect to file upload page where user can add official photo for that restaurant
                 res.redirect('/fileupload/'+results.id);
             });
         } catch (e) {
@@ -243,28 +238,32 @@ exports.insert = function (req, res) {
     });
 
 };
-
+// function that allows user to upload a photo when they add a new restaurant
 exports.uploadPhoto = function(req,res) {
     console.log('ID:', req.params.id);
+    // use formidable package to handle form
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        // take old path from users file system
         var oldpath = files.filetoupload.path;
         var temp = Date.now() + files.filetoupload.name;
+        // make new path to save the file to the project directory
         var newpath = '../public/uploads/' + temp;
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
         });
+        // update specific restaurant document to add the offical photo to the collection
         Restaurant.update(
             { _id: req.params.id },{$set: { officialPhoto: ('uploads/' + temp) }},
             function(err,succ) {
                 if (err) console.log(err);
                 console.log(succ);
             });
-
+        // redirect to success page
         res.render('fileupload', { title: 'My Form', uploaded: true, user: req.user });
     });
 };
-
+// function for users to upload multiple photos to a restaurant
 exports.multipleUpload = function(req,res) {
     console.log('in /photos handler');
     var form = new formidable.IncomingForm();
@@ -272,10 +271,12 @@ exports.multipleUpload = function(req,res) {
     form.on('file', function(field, file) {
         //rename the incoming file to the file's name
         var temp = Date.now() + file.name;
+        //make new path to save photo to project directory
         var newpath = '../public/uploads/' + temp;
         fs.rename(file.path, newpath, function (err) {
             if (err) throw err;
         });
+        // update restaurant with new photos that were added
         Restaurant.update(
             { _id: req.params.id },{$push: { photoGallery: ('uploads/' + temp) }},
             function(err,succ) {
@@ -283,7 +284,7 @@ exports.multipleUpload = function(req,res) {
                 console.log(succ);
             });
     });
-
+    // validation to ensure each photo is uploaded correctly
     form.on('error', function(err) {
         console.log("an error has occured with form upload");
         console.log(err);
@@ -302,7 +303,7 @@ exports.multipleUpload = function(req,res) {
         res.redirect('/restaurant/'+req.params.id);
     });
 };
-
+// function to add review posted by user to the database
 exports.addReview = function ( req, res) {
     var data = req.body;
     console.log(req.params.id);
@@ -310,6 +311,7 @@ exports.addReview = function ( req, res) {
         if (data.userScore == null) {
             reject("NoData");
         }
+        //add review to the Review collection
         try {
             var review = new Review({
                 postedDate: Date.now(),
@@ -320,13 +322,12 @@ exports.addReview = function ( req, res) {
                 review: data.reviewBody
             });
             console.log('received: ' + review);
-
             //construct query to update a specific rating field in the docs
             var toUpdate = "rating.score"+data.userScore;
             var queryExec = {};
             queryExec[toUpdate] = +1;
             queryExec['rating.totalScore'] = +data.userScore
-
+            // update the reviews with new scores
             Restaurant.findOneAndUpdate(
                 {_id: req.params.id},
                 {
