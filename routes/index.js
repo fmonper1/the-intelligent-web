@@ -17,7 +17,6 @@ var isAuthenticated = function (req, res, next) {
 
 var foodList = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian", "Sandwiches"] ;
 
-
 // restrict index for logged in user only
 router.get('/index', function(req, res){
     res.render('index', { user: req.user, foodTypes: foodList });
@@ -51,7 +50,7 @@ router.get('/logout', auth.logout);
 
 /* GET home page. */
 router.get('/insert', isAuthenticated, function(req, res){
-    res.render('insert', { user: req.user });
+    res.render('insert', { user: req.user, foodTypes: foodList });
 });
 
 router.post('/insert', restaurant.insert);

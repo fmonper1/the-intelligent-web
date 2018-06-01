@@ -209,14 +209,19 @@ exports.insert = function (req, res) {
 
         try {
             var restaurant = new Restaurant({
-                name: userData.name,
+                name: userData.restaurantName,
                 typeOfCuisine: userData.cuisine,
+                hasDelivery: userData.hasDelivery,
                 address: {
                     streetName: userData.streetName,
                     city: userData.city,
                     postcode: userData.postcode,
                     county: userData.county,
                     country: userData.country
+                },
+                contactDetails:{
+                  telephone: userData.telephone,
+                  website: userData.website
                 },
                 location: {
                     type: "Point",

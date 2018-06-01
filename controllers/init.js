@@ -13,7 +13,7 @@ exports.init= function() {
         //
         // var restaurant = new Restaurant({
         //     name: 'BurgerQueen2',
-        //     typeOfCuisine: ['Fast Food', 'Burgers'],
+        //     typeOfCuisine: ['Fast Food', 'Burger'],
         //     officialPhoto: "uploads/burgerking.png",
         //     hasDelivery: true,
         //     photoGallery : [],

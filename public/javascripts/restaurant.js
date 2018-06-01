@@ -101,13 +101,34 @@ function onSubmit(url) {
 
     retrieveValues()
         .then(function(data) {
-            console.log(data);
+            // console.log(data);
             sendAjaxQuery(url, data)
+            return data;
         })
         .then(function(data) {
             $('#submitReviewForm').slideUp(400, function () {
                 $('#whatsHappening').html("Your review was added to the system");
             });
+            console.log(data);
+            $('#myReview').html("<div class=\"col-6 top-1-rem\">\n" +
+                "    <div class=\"card\">\n" +
+                "\n" +
+                "        <div class=\"card-body\">\n" +
+                "            <h6 class=\"card-title\">"+data.reviewTitle+"</h6>\n" +
+                "            <p class=\"card-text\">"+data.reviewBody+"</p>\n" +
+                "            <small>\n" +
+                "            <span itemprop=\"author\" itemscope itemtype=\"http://schema.org/Person\">\n" +
+                "                <span itemprop=\"name\">-- "+data.posterName+" </span>\n" +
+                "            </span>\n" +
+                "            <span class=\"float-right\">\n" +
+                "                  <span class=\"reviewRating\" itemscope itemtype=\"http://schema.org/Rating\">\n" +
+                "                    <meta itemprop=\"worstRating\" content=\"1\">\n" +
+                "                      <span itemprop=\"ratingValue\">"+data.userScore+"</span>\n" +
+                "                    <i class=\"fas fa-star\"></i>\n" +
+                "                  </span>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</div>")
         })
         .catch();
 }
