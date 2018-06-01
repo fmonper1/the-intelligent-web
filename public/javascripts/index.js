@@ -4,8 +4,6 @@ var socket = io();
 
 $(function() { //load the map on page.ready
     socket.on('viewedRestaurant1', function (data) {
-        console.log("receivedViewedRestaurant");
-        console.log(data);
         $('#socketRestaurant').append(
             "<p><a href='/restaurant/" +data.restaurant._id+ "'>"
             +data.restaurant.name.valueOf()
@@ -22,7 +20,7 @@ $(function() { //load the map on page.ready
             lat: data.latitude,
             lng: data.longitude,
             height: '300px',
-            zoom: 12,
+            zoom: 12
         });
        markUserPos();
     });
@@ -178,19 +176,12 @@ function getLocation() {
     return new Promise((resolve, reject) => {
 
     if (navigator.geolocation) {
-       console.log("Geolocation is supported by this browser.");
 
         navigator.geolocation.getCurrentPosition(
             function success(pos) {
                 var crd = pos.coords;
-
-                console.log('Your current position is:');
-                console.log('Latitude : ' + crd.latitude);
-                console.log('Longitude: ' + crd.longitude);
-                console.log('More or less ' + crd.accuracy + ' meters.');
                 $("#latitude").val(crd.latitude);
                 $("#longitude").val(crd.longitude);
-                console.log("getLocation promise returned");
 
                 resolve(crd);
             }
@@ -218,7 +209,6 @@ function addMarkers(data) {
     markUserPos();
 
     for(i in data) {
-        console.log(data[i].location)
         var coords = data[i].location.coordinates;
         coordArray.push(coords);
         map.addMarker({

@@ -1,3 +1,6 @@
+/**
+ * Module dependencies.
+ */
 var Restaurant = require('../models/Restaurants');
 var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
@@ -184,9 +187,10 @@ exports.findOneRestaurant = function(index, req, res) {
         }
     });
 };
-
+// inserts new restaurant added by user to the restaurant collection
 exports.insert = function (req, res) {
     var userData = req.body;
+    // check that data has been inputted to form
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
@@ -197,6 +201,7 @@ exports.insert = function (req, res) {
         console.log(values[0][0].latitude);
         // adds a new restaurant to the Restaurant collection with all the details
         try {
+            // create new restaurant object
             var restaurant = new Restaurant({
                 name: userData.restaurantName,
                 typeOfCuisine: userData.cuisine,
@@ -215,9 +220,8 @@ exports.insert = function (req, res) {
                 location: {
                     type: "Point",
                     coordinates: [values[0][0].longitude, values[0][0].latitude]
-                },
+                }
             });
-            console.log('received: ' + restaurant);
             // saves new restaurant
             restaurant.save(function (err, results) {
                 if (err) console.log(err);
@@ -234,7 +238,6 @@ exports.insert = function (req, res) {
 };
 // function that allows user to upload a photo when they add a new restaurant
 exports.uploadPhoto = function(req,res) {
-    console.log('ID:', req.params.id);
     // use formidable package to handle form
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
@@ -261,7 +264,6 @@ exports.uploadPhoto = function(req,res) {
 };
 // function for users to upload multiple photos to a restaurant
 exports.multipleUpload = function(req,res) {
-    console.log('in /photos handler');
     var form = new formidable.IncomingForm();
     // for each file in form
     form.on('file', function(field, file) {
@@ -282,7 +284,6 @@ exports.multipleUpload = function(req,res) {
     });
     // validation to ensure each photo is uploaded correctly
     form.on('error', function(err) {
-        console.log("an error has occured with form upload");
         console.log(err);
         request.resume();
     });
@@ -306,7 +307,6 @@ exports.multipleUpload = function(req,res) {
 // function to add review posted by user to the database
 exports.addReview = function ( req, res) {
     var data = req.body;
-    console.log(req.params.id);
     return new Promise(function (fulfill, reject){
         if (data.userScore == null) {
             reject("NoData");
@@ -321,7 +321,6 @@ exports.addReview = function ( req, res) {
                 reviewTitle: data.reviewTitle,
                 review: data.reviewBody
             });
-            console.log('received: ' + review);
             //construct query to update a specific rating field in the docs
             var toUpdate = "rating.score"+data.userScore;
             var queryExec = {};

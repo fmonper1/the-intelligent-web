@@ -63,7 +63,6 @@ router.post('/radius', restaurant.queryByRadius);
 
 // route to get restaurant page
 router.get('/restaurant/:id', function (req, res, next) {
-    console.log('ID:', req.params.id);
     // query db to find restaurant using id
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
         res.render('restaurant', {title: result[0].name, restaurant: result, user: req.user, restid: req.params.id});
@@ -77,7 +76,6 @@ router.post('/restaurant/:id/addReview', restaurant.addReview);
 
 // route to get file upload page
 router.get('/fileupload/:id', function(req, res, next) {
-    console.log('ID:', req.params.id);
     res.render('fileupload', { title: 'My Form', uploaded: false, user: req.user });
 });
 // route to post to file upload page
@@ -86,9 +84,6 @@ router.post('/fileupload/:id', restaurant.uploadPhoto);
 // route to get multiple upload page using restaurant id
 router.get('/multipleupload/:id', function(req, res, next) {
     return restaurant.findOneRestaurant(req.params.id, req, res).then(function(result) {
-        console.log('ID:', req.params.id);
-        console.log(result);
-
         res.render('multipleupload', {restaurant: result, user: req.user});
     });
 });
