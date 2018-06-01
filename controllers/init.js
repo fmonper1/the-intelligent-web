@@ -15,6 +15,7 @@ exports.init= function() {
     //     typeOfCuisine: ['Fast Food', 'Burgers'],
     //     officialPhoto: "uploads/burgerking.png",
     //     hasDelivery: true,
+    //     photoGallery : [],
     //     address: {
     //         streetName:'West Street',
     //         city: 'Sheffield',
@@ -65,6 +66,8 @@ exports.init= function() {
     //     name: 'MeadowHallFood',
     //     typeOfCuisine: ['Fast Food', 'Burgers'],
     //     officialPhoto: "uploads/whatkind.png",
+    //     hasDelivery: true,
+    //     photoGallery : [],
     //     address: {
     //         streetName:'West Street',
     //         city: 'Sheffield',
@@ -115,6 +118,8 @@ exports.init= function() {
     //     name: 'ManchesterSomething',
     //     typeOfCuisine: ['Lebanese', 'Kebab'],
     //     officialPhoto: "uploads/whatkind.png",
+    //     hasDelivery: true,
+    //     photoGallery : [],
     //     address: {
     //         streetName:'West Street',
     //         city: 'Sheffield',
@@ -166,6 +171,8 @@ exports.init= function() {
     //     name: 'FarFrom HomeWith A LongName',
     //     typeOfCuisine: ['Pizza', 'Italian'],
     //     officialPhoto: "uploads/whatkind.png",
+    //     hasDelivery: false,
+    //     photoGallery : [],
     //     address: {
     //         streetName:'West Street',
     //         city: 'Sheffield',

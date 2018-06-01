@@ -2,20 +2,40 @@
 <html lang="en">
 <head>
     <% include partials/page_head %>
-    <% include partials/navbar %>
 </head>
 
+<body>
+<% include partials/navbar %>
 <main role="main">
 
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <form id="form1" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <p><input type="file" class="form-control" name="filetoupload" multiple="multiple" id="filetoupload"></p>
-                    <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
-                </div>
-            </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex bd-highlight top-1-rem">
+                    <div class="p-2 bd-highlight">
+                        <img src="../<%= restaurant[0].officialPhoto %>" style="width: 65px; height: 65px;" alt="Card image cap">
+                    </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <p class="h4"><%= restaurant[0].name %></p>
 
+                        <%= restaurant[0].typeOfCuisine.join(", ")%>
+
+                        <% if (restaurant[0].hasDelivery == true) {%>
+                        <span class="hasDelivery">
+                        <i class="fas fa-motorcycle"></i> Delivery
+                    </span>
+                        <% }%>
+                    </div>
+                </div>
+                <p class="h5 top-1-rem">Select pictures to upload:</p>
+                <div class="separator-red"></div>
+                <form id="form1" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <p><input type="file" class="form-control" name="filetoupload" multiple="multiple" id="filetoupload"></p>
+                        <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
