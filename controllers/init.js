@@ -115,48 +115,48 @@ exports.init= function() {
     // });
     //
     // var restaurant3 = new Restaurant({
-    //     name: 'ManchesterSomething',
-    //     typeOfCuisine: ['Lebanese', 'Kebab'],
-    //     officialPhoto: "uploads/whatkind.png",
+    //     name: 'Hawksmoor Manchester',
+    //     typeOfCuisine: ['Steak', 'Sea Food'],
+    //     officialPhoto: "uploads/hawksmoor.jpg",
     //     hasDelivery: true,
     //     photoGallery : [],
     //     address: {
-    //         streetName:'West Street',
-    //         city: 'Sheffield',
-    //         postcode: 'S37bw',
-    //         county:'South Yorkshire',
+    //         streetName:'Deansgate',
+    //         city: 'Manchester',
+    //         postcode: 'M3 3WB',
+    //         county:'Lancashire',
     //         country: 'England'
     //     },
     //     contactDetails: {
-    //         telephone: "9222334398",
-    //         website: "http://localhost:3003"
+    //         telephone: "0161 836 6980",
+    //         website: "thehawksmoor.com"
     //     },
     //     location: {
     //         type: "Point",
-    //         coordinates: [-2.2426305, 53.4807593],
+    //         coordinates: [-2.2493269, 53.4791756],
     //     },
     //     addedBy: "admin",
     //     rating: {
-    //         averageScore: 3.5,
-    //         totalScore: 7,
+    //         averageScore: 4.0,
+    //         totalScore: 8,
     //         score1: 0,
     //         score2: 0,
-    //         score3: 1,
-    //         score4: 1,
+    //         score3: 0,
+    //         score4: 2,
     //         score5: 0,
     //     },
     //     reviews: [
     //         {
-    //             postedBy: "Ferni",
+    //             postedBy: "James",
     //             score: 4,
     //             reviewTitle: "Excellent",
-    //             review: "Nice food at a good price"},
+    //             review: "Reservations highly recommended here as it's a very popular place."},
     //
     //         {
-    //             postedBy: "Fernifofer",
-    //             score: 3,
-    //             reviewTitle: "Una de cal otra de arena",
-    //             review: "Desserts were dirty"}
+    //             postedBy: "Sascha",
+    //             score: 4,
+    //             reviewTitle: "Just great.",
+    //             review: "Group of four, different dishes, every one was happy. The filet Steak was just amazing. The wine menu puts loads of Italian restaurants to shame. Staff very attentive and the tables not too close together. I think this is one of the best restaurants I have been to."}
     //     ]
     // });
     // console.log('name: '+restaurant3._id);
@@ -168,48 +168,48 @@ exports.init= function() {
     //
     //
     // var restaurant4 = new Restaurant({
-    //     name: 'FarFrom HomeWith A LongName',
-    //     typeOfCuisine: ['Pizza', 'Italian'],
-    //     officialPhoto: "uploads/whatkind.png",
+    //     name: 'Fazenda Leeds',
+    //     typeOfCuisine: ['Vegan', 'Meat', 'Continental'],
+    //     officialPhoto: "uploads/fazenda.jpg",
     //     hasDelivery: false,
     //     photoGallery : [],
     //     address: {
-    //         streetName:'West Street',
-    //         city: 'Sheffield',
-    //         postcode: 'S37bw',
-    //         county:'South Yorkshire',
+    //         streetName:'Waterman’s Place Unit 4-7 Granary Wharf',
+    //         city: 'Leeds',
+    //         postcode: 'LS1 4GL',
+    //         county:'Yorkshire',
     //         country: 'England'
     //     },
     //     contactDetails: {
-    //         telephone: "9222334398",
-    //         website: "http://localhost:3003"
+    //         telephone: "0113 400 1183",
+    //         website: "fazenda.co.uk"
     //     },
     //     location: {
     //         type: "Point",
-    //         coordinates: [-1.5238897,53.3622742],
+    //         coordinates: [-1.548702,53.793398],
     //     },
     //     addedBy: "admin",
     //     rating: {
-    //         averageScore: 3.5,
-    //         totalScore: 7,
+    //         averageScore: 4.5,
+    //         totalScore: 9,
     //         score1: 0,
     //         score2: 0,
-    //         score3: 1,
+    //         score3: 0,
     //         score4: 1,
-    //         score5: 0,
+    //         score5: 1,
     //     },
     //     reviews: [
     //         {
-    //             postedBy: "Ferni",
-    //             score: 4,
-    //             reviewTitle: "Excellent",
-    //             review: "Nice food at a good price"},
+    //             postedBy: "Joe",
+    //             score: 5,
+    //             reviewTitle: "Fantastic",
+    //             review: "Absolutely fantastic place. And not just if you like meat. My vegetarian friend had a lovely meal. There is so much choice at the salad/sides bar that you could easily fill up on it."},
     //
     //         {
-    //             postedBy: "Fernifofer",
-    //             score: 3,
-    //             reviewTitle: "Una de cal otra de arena",
-    //             review: "Desserts were dirty"}
+    //             postedBy: "Bill",
+    //             score: 4,
+    //             reviewTitle: "Excellent",
+    //             review: "Excellent service and the menu is very different to most places. Price was reasonable / expected for the kinds of things they serve at around £30 a head."}
     //     ]
     // });
     // console.log('name: '+restaurant4._id);
