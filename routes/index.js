@@ -18,7 +18,7 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/login');
 }
 // list of the cuisines
-var foodList = ["Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian", "Sandwiches"] ;
+var foodList = ["American","Grill","Mediterranean","Fast Food", "Burger", "British", "Chicken", "Chinese", "Curry", "Desserts", "Grill", "Healthy", "Indian", "Italian", "Japanese", "Kebab", "Mexican", "Pasta", "Pizza", "Vegan", "Vegetarian", "Sandwiches"] ;
 
 // route to index page and passes in the list of food and user
 router.get('/', function(req, res){

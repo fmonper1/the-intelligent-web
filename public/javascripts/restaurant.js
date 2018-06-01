@@ -39,6 +39,8 @@ $(function() { //load the map on page.ready
             }
         });
 
+        map.fitZoom();
+
         var distanceToRestaurant = distance(data.latitude, data.longitude, window.RestaurantData.location.coordinates[1], window.RestaurantData.location.coordinates[0], "K").toFixed(2);
 
         $('#distToRestaurant').html("<i class='fa fa-car' aria-hidden='true'></i> "+distanceToRestaurant+"km away from you");

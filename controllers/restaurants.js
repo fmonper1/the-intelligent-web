@@ -121,7 +121,7 @@ exports.queryByRadius = function(req, res) {
         var limit = userData.limit || 10;
 
         // get the max distance or set it to 8 kilometers
-        var maxDistance = userData.searchRadius || 8;
+        var maxDistance = 2;
 
         // we need to convert the distance to radians
         // the raduis of Earth is approximately 6371 kilometers
