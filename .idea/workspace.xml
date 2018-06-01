@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14ca0b54-dfb5-4f1f-8686-aa000ea6e5f8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.multi-select.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/multi-select.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/uploads/default.png" />
+      <change beforePath="$PROJECT_DIR$/controllers/auth.js" afterPath="$PROJECT_DIR$/controllers/auth.js" />
       <change beforePath="$PROJECT_DIR$/controllers/init.js" afterPath="$PROJECT_DIR$/controllers/init.js" />
       <change beforePath="$PROJECT_DIR$/controllers/restaurants.js" afterPath="$PROJECT_DIR$/controllers/restaurants.js" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/restaurant.js" afterPath="$PROJECT_DIR$/public/javascripts/restaurant.js" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change beforePath="$PROJECT_DIR$/views/insert.ejs" afterPath="$PROJECT_DIR$/views/insert.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/partials/addReviewForm.ejs" afterPath="$PROJECT_DIR$/views/partials/addReviewForm.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/partials/displayReview.ejs" afterPath="$PROJECT_DIR$/views/partials/displayReview.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/restaurant.ejs" afterPath="$PROJECT_DIR$/views/restaurant.ejs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,106 +17,41 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.62011534">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="restaurants.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/controllers/restaurants.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="324" column="32" lean-forward="false" selection-start-line="324" selection-start-column="32" selection-end-line="324" selection-end-column="32" />
-                  <folding>
-                    <marker date="1527874985310" expanded="true" signature="7367:7385" ph="{&quot;streetName&quot;: userData.streetName...}" />
-                    <marker date="1527874985310" expanded="true" signature="7413:7548" ph="{&quot;type&quot;: &quot;Point&quot;...}" />
-                    <marker date="1527874985310" expanded="true" signature="7966:9789" ph="{...}" />
-                    <marker date="1527874985310" expanded="true" signature="8103:9785" ph="{...}" />
-                    <marker date="1527874985310" expanded="true" signature="10071:10346" ph="{&quot;postedBy&quot;: data.posterName...}" />
-                    <marker date="1527874985310" expanded="true" signature="10759:10910" ph="{&quot;$inc&quot;: queryExec...}" />
-                    <marker date="1527874985310" expanded="true" signature="10788:10853" ph="{&quot;reviews&quot;: review...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="restaurant.ejs" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/views/restaurant.ejs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1550">
-                  <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Restaurants.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/Restaurants.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-327">
-                  <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/javascripts/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2800">
-                  <caret line="112" column="4" lean-forward="false" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="fileupload.ejs" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/views/fileupload.ejs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-                  <folding>
-                    <marker date="1527867645323" expanded="true" signature="744:1444" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="init.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/controllers/init.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-729">
-                  <caret line="52" column="22" lean-forward="false" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/routes/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="312">
-                  <caret line="17" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="restaurants.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/restaurants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-158">
+              <caret line="329" column="49" lean-forward="false" selection-start-line="329" selection-start-column="49" selection-end-line="329" selection-end-column="49" />
+              <folding>
+                <marker date="1527877678298" expanded="true" signature="7511:7529" ph="{&quot;streetName&quot;: userData.streetName...}" />
+                <marker date="1527877678298" expanded="true" signature="8323:10674" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1300">
+              <caret line="52" column="22" lean-forward="false" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -157,9 +84,10 @@
         <option value="$PROJECT_DIR$/views/restaurant.ejs" />
         <option value="$PROJECT_DIR$/views/fileupload.ejs" />
         <option value="$PROJECT_DIR$/views/multipleupload.ejs" />
-        <option value="$PROJECT_DIR$/controllers/restaurants.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/controllers/init.js" />
+        <option value="$PROJECT_DIR$/controllers/auth.js" />
+        <option value="$PROJECT_DIR$/controllers/restaurants.js" />
       </list>
     </option>
   </component>
@@ -213,38 +141,6 @@
               <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-intelligent-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-intelligent-web" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -381,12 +277,12 @@
       <workItem from="1527767539169" duration="4471000" />
       <workItem from="1527772913511" duration="1054000" />
       <workItem from="1527780795103" duration="27406000" />
-      <workItem from="1527867749484" duration="6196000" />
+      <workItem from="1527867749484" duration="8831000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45636000" />
+    <option name="totallyTimeSpent" value="48271000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,7 +303,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27606636" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -468,14 +364,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -504,13 +392,8 @@
         <state relative-caret-position="4475">
           <caret line="179" column="32" lean-forward="true" selection-start-line="179" selection-start-column="32" selection-end-line="179" selection-end-column="32" />
           <folding>
-            <marker date="1527874985310" expanded="true" signature="7367:7385" ph="{&quot;streetName&quot;: userData.streetName...}" />
-            <marker date="1527874985310" expanded="true" signature="7413:7548" ph="{&quot;type&quot;: &quot;Point&quot;...}" />
-            <marker date="1527874985310" expanded="true" signature="7966:9789" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="8103:9785" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="10071:10346" ph="{&quot;postedBy&quot;: data.posterName...}" />
-            <marker date="1527874985310" expanded="true" signature="10759:10910" ph="{&quot;$inc&quot;: queryExec...}" />
-            <marker date="1527874985310" expanded="true" signature="10788:10853" ph="{&quot;reviews&quot;: review...}" />
+            <marker date="1527877678298" expanded="true" signature="7511:7529" ph="{&quot;streetName&quot;: userData.streetName...}" />
+            <marker date="1527877678298" expanded="true" signature="8323:10674" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -575,13 +458,8 @@
         <state relative-caret-position="2646">
           <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
           <folding>
-            <marker date="1527874985310" expanded="true" signature="7367:7385" ph="{&quot;streetName&quot;: userData.streetName...}" />
-            <marker date="1527874985310" expanded="true" signature="7413:7548" ph="{&quot;type&quot;: &quot;Point&quot;...}" />
-            <marker date="1527874985310" expanded="true" signature="7966:9789" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="8103:9785" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="10071:10346" ph="{&quot;postedBy&quot;: data.posterName...}" />
-            <marker date="1527874985310" expanded="true" signature="10759:10910" ph="{&quot;$inc&quot;: queryExec...}" />
-            <marker date="1527874985310" expanded="true" signature="10788:10853" ph="{&quot;reviews&quot;: review...}" />
+            <marker date="1527877678298" expanded="true" signature="7511:7529" ph="{&quot;streetName&quot;: userData.streetName...}" />
+            <marker date="1527877678298" expanded="true" signature="8323:10674" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -631,13 +509,8 @@
         <state relative-caret-position="2562">
           <caret line="122" column="32" lean-forward="false" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
           <folding>
-            <marker date="1527874985310" expanded="true" signature="7367:7385" ph="{&quot;streetName&quot;: userData.streetName...}" />
-            <marker date="1527874985310" expanded="true" signature="7413:7548" ph="{&quot;type&quot;: &quot;Point&quot;...}" />
-            <marker date="1527874985310" expanded="true" signature="7966:9789" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="8103:9785" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="10071:10346" ph="{&quot;postedBy&quot;: data.posterName...}" />
-            <marker date="1527874985310" expanded="true" signature="10759:10910" ph="{&quot;$inc&quot;: queryExec...}" />
-            <marker date="1527874985310" expanded="true" signature="10788:10853" ph="{&quot;reviews&quot;: review...}" />
+            <marker date="1527877678298" expanded="true" signature="7511:7529" ph="{&quot;streetName&quot;: userData.streetName...}" />
+            <marker date="1527877678298" expanded="true" signature="8323:10674" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -686,13 +559,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1527874985310" expanded="true" signature="7367:7385" ph="{&quot;streetName&quot;: userData.streetName...}" />
-            <marker date="1527874985310" expanded="true" signature="7413:7548" ph="{&quot;type&quot;: &quot;Point&quot;...}" />
-            <marker date="1527874985310" expanded="true" signature="7966:9789" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="8103:9785" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="10071:10346" ph="{&quot;postedBy&quot;: data.posterName...}" />
-            <marker date="1527874985310" expanded="true" signature="10759:10910" ph="{&quot;$inc&quot;: queryExec...}" />
-            <marker date="1527874985310" expanded="true" signature="10788:10853" ph="{&quot;reviews&quot;: review...}" />
+            <marker date="1527877678298" expanded="true" signature="7511:7529" ph="{&quot;streetName&quot;: userData.streetName...}" />
+            <marker date="1527877678298" expanded="true" signature="8323:10674" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -732,13 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="58" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -817,33 +678,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/fileupload.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-          <folding>
-            <marker date="1527867645323" expanded="true" signature="744:1444" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/multipleupload.ejs" />
-    <entry file="file://$PROJECT_DIR$/controllers/restaurants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="324" column="32" lean-forward="false" selection-start-line="324" selection-start-column="32" selection-end-line="324" selection-end-column="32" />
-          <folding>
-            <marker date="1527874985310" expanded="true" signature="7367:7385" ph="{&quot;streetName&quot;: userData.streetName...}" />
-            <marker date="1527874985310" expanded="true" signature="7413:7548" ph="{&quot;type&quot;: &quot;Point&quot;...}" />
-            <marker date="1527874985310" expanded="true" signature="7966:9789" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="8103:9785" ph="{...}" />
-            <marker date="1527874985310" expanded="true" signature="10071:10346" ph="{&quot;postedBy&quot;: data.posterName...}" />
-            <marker date="1527874985310" expanded="true" signature="10759:10910" ph="{&quot;$inc&quot;: queryExec...}" />
-            <marker date="1527874985310" expanded="true" signature="10788:10853" ph="{&quot;reviews&quot;: review...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/displayReview.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -860,19 +695,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/views/fileupload.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-729">
-          <caret line="52" column="22" lean-forward="false" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+        <state relative-caret-position="315">
+          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+        <state relative-caret-position="425">
+          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1983">
+          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1300">
+          <caret line="52" column="22" lean-forward="false" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/restaurants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-158">
+          <caret line="329" column="49" lean-forward="false" selection-start-line="329" selection-start-column="49" selection-end-line="329" selection-end-column="49" />
+          <folding>
+            <marker date="1527877678298" expanded="true" signature="7511:7529" ph="{&quot;streetName&quot;: userData.streetName...}" />
+            <marker date="1527877678298" expanded="true" signature="8323:10674" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
