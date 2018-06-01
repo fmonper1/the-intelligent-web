@@ -9,35 +9,54 @@
 
 <main role="main">
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <form id=“xForm" method="post">
-            <div class="form-group">
-                <label for='firstname'>Restaurant Name:</label>
-                <input class="form-control" type="text" name="name" id="name" >
-                <p><label for='lastname'>Cuisine:</label>
-                    <input class="form-control" type="text" name="cuisine" id="cuisine" >
-                </p>
-                <p><label for='lastname'>Street Name:</label>
-                    <input class="form-control" type="text" name="streetName" id="streetName" >
-                </p>
-                <p><label for='lastname'>City:</label>
-                    <input class="form-control" type="text" name="city" id="city" >
-                </p>
-                <p><label for='lastname'>Postcode:</label>
-                    <input class="form-control" type="text" name="postcode" id="postcode" >
-                </p>
-                <p><label for='lastname'>County:</label>
-                    <input class="form-control" type="text" name="county" id="county" >
-                </p>
-                <p><label for='lastname'>Country:</label>
-                    <input class="form-control"type="text" name="country" id="country" >
-                </p>
-                <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
-            </div>
-        </form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form id=“xForm" method="post">
+                <h5 class="top-1-rem">The Restaurant</h5>
+                <div class="separator-red"></div>
+                <div class="form-group">
+                    <label for='firstname'>Restaurant Name:</label>
+                    <input class="form-control" type="text" name="name" id="name" >
+                    <p><label for='lastname'>Cuisine:</label>
+                        <input class="form-control" type="text" name="cuisine" id="cuisine" >
+                    </p>
+                    <p>
+                        <label for="exampleFormControlSelect1">Delivery?</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="hasDelivery">
+                            <option selected="selected" value="false">No Delivery</option>
+                            <option value="true">Has Delivery</option>
+                        </select>
+                    </p>
+                    <p><label for='telephone'>Telepone:</label>
+                        <input class="form-control" type="text" name="telephone" id="telephone" >
+                    </p>
+                    <p><label for='website'>Website:</label>
+                        <input class="form-control" type="text" name="website" id="website" >
+                    </p>
+                    <p><label for='streetName'>Street Name:</label>
+                        <input class="form-control" type="text" name="streetName" id="streetName" >
+                    </p>
+                    <p><label for='city'>City:</label>
+                        <input class="form-control" type="text" name="city" id="city" >
+                    </p>
+                    <p><label for='postcode'>Postcode:</label>
+                        <input class="form-control" type="text" name="postcode" id="postcode" >
+                    </p>
+                    <p><label for='lastname'>County:</label>
+                        <input class="form-control" type="text" name="county" id="county" >
+                    </p>
+                    <p><label for='lastname'>Country:</label>
+                        <input class="form-control"type="text" name="country" id="country" >
+                    </p>
+                    <p><input class="btn btn-primary" type="submit" name="g" value="Submit" id="g"></p>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
 
 <div id="results"></div>
 </main>

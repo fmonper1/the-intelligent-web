@@ -3,12 +3,10 @@ var Review = require('../models/Reviews');
 var ObjectId = require('mongodb').ObjectID;
 var formidable = require('formidable');
 var fs = require('fs');
-
 var NodeGeocoder = require('node-geocoder');
 
 var GeocoderOptions = {
     provider: 'google',
-
     // Optional depending on the providers
     httpAdapter: 'https', // Default
     apiKey: 'AIzaSyDkAOYCfVVZKFmNvBUm9NfY20Up4SveaXQ', // for Mapquest, OpenCage, Google Premier
@@ -51,7 +49,7 @@ exports.queryDB = function (req, res) {
                 console.log(query);
 
                 Restaurant.find(query,
-                'name typeOfCuisine address location rating officialPhoto',
+                'name typeOfCuisine address location rating officialPhoto hasDelivery',
                 function (err, data) {
                     if (err) {
                         console.log(err);
@@ -87,7 +85,7 @@ exports.queryDB = function (req, res) {
             console.log(query);
 
             Restaurant.find(query,
-                'name typeOfCuisine address location rating officialPhoto',
+                'name typeOfCuisine address location rating officialPhoto hasDelivery',
                 function (err, data) {
                     if (err) {
                         console.log(err);
@@ -106,7 +104,6 @@ exports.queryDB = function (req, res) {
         }
     }
 };
-
 
 exports.queryByRadius = function(req, res) {
     var userData = req.body;
@@ -205,33 +202,41 @@ exports.insert = function (req, res) {
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
-    try {
-        var restaurant = new Restaurant({
-            name: userData.name,
-            typeOfCuisine: userData.cuisine,
-            address: {
-                streetName: userData.streetName,
-                city: 'Sheffield',
-                postcode: userData.postcode,
-                county: userData.county,
-                country: userData.country
-            },
-            location: {
-                type: "Point",
-                coordinates: [-1.4820851, 53.3816197]
-            }
-        });
-        console.log('received: ' + restaurant);
+    var combinedAddress = userData.streetName+", "+userData.city+" "+userData.postcode;
+    Promise.all([geocoder.geocode(combinedAddress)]).then(function(values) {
+        console.log("geocoded address for new record")
+        console.log(values[0][0].latitude);
 
-        restaurant.save(function (err, results) {
-            if (err) console.log(err);
-            console.log(results._id);
+        try {
+            var restaurant = new Restaurant({
+                name: userData.name,
+                typeOfCuisine: userData.cuisine,
+                address: {
+                    streetName: userData.streetName,
+                    city: userData.city,
+                    postcode: userData.postcode,
+                    county: userData.county,
+                    country: userData.country
+                },
+                location: {
+                    type: "Point",
+                    coordinates: [values[0][0].longitude, values[0][0].latitude]
+                },
+            });
+            console.log('received: ' + restaurant);
 
-            res.redirect('/fileupload/'+results.id);
-        });
-    } catch (e) {
-        res.status(500).send('error ' + e);
-    }
+            restaurant.save(function (err, results) {
+                if (err) console.log(err);
+                console.log(results._id);
+
+                res.redirect('/fileupload/'+results.id);
+            });
+        } catch (e) {
+            res.status(500).send('error ' + e);
+        }
+
+    });
+
 };
 
 exports.uploadPhoto = function(req,res) {
@@ -239,7 +244,7 @@ exports.uploadPhoto = function(req,res) {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
         var oldpath = files.filetoupload.path;
-        var newpath = '../public/uploads/' + files.filetoupload.name;
+        var newpath = '/uploads/' + files.filetoupload.name;
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
             res.write('File uploaded and moved!');

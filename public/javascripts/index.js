@@ -86,13 +86,19 @@ function displayResultsNicely(data) {
     for(i in data) {
         $('#results').append("<div class='col-sm-12 col-md-6'><div class='row'>" +
             // + JSON.stringify(data[i]) + "<br>"
-            "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a></div>" +
-            "<div class='col-9'>"+ data[i].name + "<br>"
+            "<div class='col-3 align-items-middle'><a href='/restaurant/"+data[i]._id+"'><img src='"+ data[i].officialPhoto + "' class='img-fluid'></a>"
+            + "</div>"
+            +"<div class='col-9 no-pad-left'>"+ data[i].name
+            + (data[i].hasDelivery > 0 ? " <span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
+
+            + "<br>"
             + "<p class='resRating'>" + data[i].rating.averageScore + "<i class=\"fas fa-star\"></i> </p>"
             + data[i].typeOfCuisine.join() + "<br>"
-            + (data[i].hasDelivery > 0 ? "<span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
+            // + (data[i].hasDelivery > 0 ? "<span class='hasDelivery'> <i class='fas fa-motorcycle'></i> Delivery </span>":"")
 
-            + "<a href='/restaurant/"+data[i]._id+"'>view</a></div> </div></div>");
+            + "<a href='/restaurant/"+data[i]._id+"'>view more</a></div>"
+            + "<div class='col-12'><div class='separator-red-thin'></div></div>"
+            + "</div></div>");
     }
 }
 /**

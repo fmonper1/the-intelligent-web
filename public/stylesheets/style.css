@@ -8,6 +8,12 @@
   margin-bottom: 1rem;
 }
 
+.separator-red-thin {
+  background: rgb(188, 1, 13) !important;
+  height: 1px;
+  margin: 1rem 0;
+}
+
 .top-1-rem {
   margin-top: 1rem;
 }
