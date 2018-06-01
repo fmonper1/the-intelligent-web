@@ -70,11 +70,11 @@
 
                 <div class="row">
                 <% restaurant[0].photoGallery.forEach(function (photo) {  %>
-                    <div class="col-3">
+                    <div class="col-3"><div itemscope itemtype="http://schema.org/photos">
                         <a href="../<%= photo %>">
                             <img class="img-fluid" src="../<%= photo %>">
                         </a>
-                    </div>
+                        </div></div>
                 <% }) %>
                     <div class="col-3">
                     <a href="/multipleupload/<%=restaurant[0].id%>"><img class="img-fluid" src="../addImages.png"></a>
