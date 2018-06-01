@@ -3,6 +3,17 @@
 <head>
     <% include partials/page_head %>
     <% include partials/navbar %>
+    <script src="//localhost:3003/javascripts/jquery.multi-select.js"></script>
+    <link href="//localhost:3003/stylesheets/multi-select.css" rel="stylesheet">
+    <script type="text/javascript">
+        $(function() {
+            $('#my-select').multiSelect();
+        });
+
+
+
+    </script>
+
 </head>
 
 <body>
@@ -13,15 +24,26 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form id=“xForm" method="post">
+            <form method="post">
                 <h5 class="top-1-rem">The Restaurant</h5>
                 <div class="separator-red"></div>
                 <div class="form-group">
-                    <label for='firstname'>Restaurant Name:</label>
-                    <input class="form-control" type="text" name="name" id="name" >
-                    <p><label for='lastname'>Cuisine:</label>
-                        <input class="form-control" type="text" name="cuisine" id="cuisine" >
+                    <p>
+                        <label for='restaurantName'>Restaurant Name:</label>
+                        <input class="form-control" type="text" name="restaurantName" id="name" >
                     </p>
+                    <p>
+                        <label for='lastname'>Cuisine:</label>
+                    </p>
+                    <select multiple="multiple" id="my-select" name="cuisine">
+                        <option>All</option>
+                        <% for (i in foodTypes) { %>
+                        <div class="form-check form-check-inline">
+                            <option><%= foodTypes[i] %></option>
+                        </div>
+                        <% }%>
+                    </select>
+
                     <p>
                         <label for="exampleFormControlSelect1">Delivery?</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="hasDelivery">
@@ -29,7 +51,7 @@
                             <option value="true">Has Delivery</option>
                         </select>
                     </p>
-                    <p><label for='telephone'>Telepone:</label>
+                    <p><label for='telephone'>Telephone:</label>
                         <input class="form-control" type="text" name="telephone" id="telephone" >
                     </p>
                     <p><label for='website'>Website:</label>

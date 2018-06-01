@@ -96,12 +96,13 @@
             </div>
         </div>
 
-    <br>
 
+    <div class="row">
         <% restaurant[0].reviews.forEach(function (review) {  %>
             <!--<p><%= review %></p>-->
             <% include partials/displayReview.ejs %>
         <% }) %>
+    </div>
 
     <div id="myReview"></div>
 
